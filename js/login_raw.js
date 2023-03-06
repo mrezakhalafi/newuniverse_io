@@ -92,8 +92,7 @@ function checkEmail() {
 
             $('#alertEmail').addClass("d-none");
 
-        }
-        else {
+        } else {
 
             $('#alertEmail').removeClass('d-none')
 
@@ -114,7 +113,7 @@ function checkPassword() {
 
     if (val != "") {
         $("#emptyPass").removeClass("d-none");
-        
+
     } else {
         $("#emptyPass").addClass("d-none");
     }
@@ -122,117 +121,120 @@ function checkPassword() {
 
 function goLogin(email, password) {
     $.ajax({
-        dataType: 'json',
-        url: 'checkEmail.php?email=' + email + '&password=' + password + '&cc=' + localStorage.country_code,
-        type: 'GET',
-        success: function (data) {
-            // alert(data.response);
-            console.log(data);
-            if (data.response == "You already logged in with another account!") {
-                alert(data.response);
-                window.location.href = "dashboardv2/";
-            } else if (data.response == "ok") {
-                window.location.href = ('dashboardv2/');
-            } else if (data.response == "Please Validate Your Email!") {
-                window.location.href = ('verifyemail.php');
-            } else if (data.response == "Please Finish Your Payment!") {
-                window.location.href = ('paycheckout.php');
-            } else if (data.response == "Trial!") {
-                window.location.href = ('trialcheckout.php');
-            } else if (data.response == "expired") {
-                alert('Your account has expired. Please subscribe if you would like to continue.');
-                window.location.href = 'dashboardv2/index';
-            } else if (data.response == "Your Password is Incorrect!") {
+                dataType: 'json',
+                url: 'checkEmail.php?email=' + email + '&password=' + password + '&cc=' + localStorage.country_code,
+                type: 'GET',
+                success: function (data) {
+                        // alert(data.response);
+                        console.log(data);
+                        if (data.response == "You already logged in with another account!") {
+                            alert(data.response);
+                            window.location.href = "dashboardv2/";
+                        } else if (data.response == "ok") {
+                            window.location.href = ('dashboardv2/');
+                        } else if (data.response == "Please Validate Your Email!") {
+                            window.location.href = ('verifyemail.php');
+                        } else if (data.response == "Please Finish Your Payment!") {
+                            window.location.href = ('paycheckout.php');
+                        } else if (data.response == "Trial!") {
+                            window.location.href = ('trialcheckout.php');
+                        } else if (data.response == "expired") {
+                            alert('Your account has expired. Please subscribe if you would like to continue.');
+                            window.location.href = 'dashboardv2/index';
+                        } else if (data.response == "Your Password is Incorrect!") {
 
-    if (email == '' || password == ''){
+                            if (email == '' || password == '') {
 
-        if (localStorage.lang == 0){
-            alert('Please fill all the required fields.');
-        }else{
-            alert('Harap isi semua bidang yang diperlukan.');
-        }
+                                if (localStorage.lang == 0) {
+                                    alert('Please fill all the required fields.');
+                                } else {
+                                    alert('Harap isi semua bidang yang diperlukan.');
+                                }
 
-        let email = $('#emailTF').val();
-        let pass = $('#passwordTF').val();
+                                let email = $('#emailTF').val();
+                                let pass = $('#passwordTF').val();
 
-        if (localStorage.lang == 0){
-            $('#emptyEmail').text('Please fill this field.');
-            $('#emptyPass').text('Please fill this field.');
-        }else{
-            $('#emptyEmail').text('Harap isi bidang ini.');
-            $('#emptyPass').text('Harap isi bidang ini.');
-        }
+                                if (localStorage.lang == 0) {
+                                    $('#emptyEmail').text('Please fill this field.');
+                                    $('#emptyPass').text('Please fill this field.');
+                                } else {
+                                    $('#emptyEmail').text('Harap isi bidang ini.');
+                                    $('#emptyPass').text('Harap isi bidang ini.');
+                                }
 
-        if (!email){
-            $('#emptyEmail').removeClass("d-none");
-        }else{
-            $('#emptyEmail').addClass("d-none");
-        }
+                                if (!email) {
+                                    $('#emptyEmail').removeClass("d-none");
+                                } else {
+                                    $('#emptyEmail').addClass("d-none");
+                                }
 
-        if (!pass){
-            $('#emptyPass').removeClass("d-none");
-        }else{
-            $('#emptyPass').addClass("d-none");
-        }
+                                if (!pass) {
+                                    $('#emptyPass').removeClass("d-none");
+                                } else {
+                                    $('#emptyPass').addClass("d-none");
+                                }
 
-        $('body').on('keydown', function (e) {
-            if (e.keyCode == 9) e.preventDefault();
-        });
+                                $('body').on('keydown', function (e) {
+                                    if (e.keyCode == 9) e.preventDefault();
+                                });
 
-    }else{
+                            } else {
 
-        $.ajax({
-            dataType: 'json',
-            url: 'checkEmail.php?email=' + email + '&password=' + password + '&cc=' + localStorage.country_code,
-            type: 'GET',
-            success: function (data) {
-                // alert(data.response);
-                console.log(data);
-                if (data.response == "You already logged in with another account!") {
-                    alert(data.response);
-                    window.location.href = "dashboardv2/";
-                } else if (data.response == "ok") {
-                    window.location.href = ('dashboardv2/');
-                } else if (data.response == "Please Validate Your Email!") {
-                    window.location.href = ('verifyemail.php');
-                } else if (data.response == "Please Finish Your Payment!") {
-                    window.location.href = ('paycheckout.php');
-                } else if (data.response == "Trial!") {
-                    window.location.href = ('trialcheckout.php');
-                } else if (data.response == "expired") {
-                    alert('Your account has expired. Please subscribe if you would like to continue.');
-                    window.location.href = 'new_billing.php';
-                } else if(data.response == "Account does not exist!"){
-                    if (localStorage.lang == 0){
-                        alert('Account does not exist!');
-                    }else{
-                        alert('Akun tersebut tidak ditemukan!');
+                                $.ajax({
+                                    dataType: 'json',
+                                    url: 'checkEmail.php?email=' + email + '&password=' + password + '&cc=' + localStorage.country_code,
+                                    type: 'GET',
+                                    success: function (data) {
+                                        // alert(data.response);
+                                        console.log(data);
+                                        if (data.response == "You already logged in with another account!") {
+                                            alert(data.response);
+                                            window.location.href = "dashboardv2/";
+                                        } else if (data.response == "ok") {
+                                            window.location.href = ('dashboardv2/');
+                                        } else if (data.response == "Please Validate Your Email!") {
+                                            window.location.href = ('verifyemail.php');
+                                        } else if (data.response == "Please Finish Your Payment!") {
+                                            window.location.href = ('paycheckout.php');
+                                        } else if (data.response == "Trial!") {
+                                            window.location.href = ('trialcheckout.php');
+                                        } else if (data.response == "expired") {
+                                            alert('Your account has expired. Please subscribe if you would like to continue.');
+                                            window.location.href = 'dashboardv2/index';
+                                        } else if (data.response == "Account does not exist!") {
+                                            if (localStorage.lang == 0) {
+                                                alert('Account does not exist!');
+                                            } else {
+                                                alert('Akun tersebut tidak ditemukan!');
+                                            }
+                                        } else if (data.response == "Your Password is Incorrect!") {
+                                            $('#emptyEmail').css('display', 'none');
+
+                                            // $("#myModal").modal("show");
+
+                                            if (localStorage.lang == 0) {
+                                                alert('Your Password is Incorrect!');
+                                            } else {
+                                                alert('Password anda salah!');
+                                            }
+
+                                            $('body').on('keydown', function (e) {
+                                                if (e.keyCode == 9) e.preventDefault();
+                                            });
+                                        }
+                                    },
+                                    error: function (xhr, status, error) {
+                                        console.log(error);
+                                        $("#myModal").modal("show");
+                                    }
+                                });
+                            }
+                        }
                     }
-                } else if (data.response == "Your Password is Incorrect!") {
-                    $('#emptyEmail').css('display','none');
-
-                    // $("#myModal").modal("show");
-
-                    if (localStorage.lang == 0){
-                        alert('Your Password is Incorrect!');
-                    }else{
-                        alert('Password anda salah!');
-                    }
-
-                    $('body').on('keydown', function (e) {
-                        if (e.keyCode == 9) e.preventDefault();
-                    });
-                }
-            },
-            error: function (xhr, status, error) {
-                console.log(error);
-                $("#myModal").modal("show");
+                });
             }
-        });
-    }
-}
 
-/** success/error msg */
-// $(document).ready(function() {
-//     $("#myModal").modal("show");
-// });
+                        /** success/error msg */
+                        // $(document).ready(function() {
+                        //     $("#myModal").modal("show");
+                        // });

@@ -498,7 +498,7 @@ function monthFormat($month)
     <script src="https://unpkg.com/@paypal/paypal-js@2.0.0/dist/paypal.browser.min.js"></script>
 </head>
 
-<body id="invoice">
+<body id="invoice" class="d-none">
 
     <div class="container mt-5">
         <div class="row justify-content-center">
@@ -823,6 +823,8 @@ function monthFormat($month)
         $("#cvv-error").text("Harap isi kolom ini.");
         $("#credit-card-exp-year").attr("placeholder", "Tahun");
 
+        $('body').removeClass('d-none');
+
     } else {
 
         $('#order-date').show();
@@ -830,6 +832,8 @@ function monthFormat($month)
 
         $('#order-date-val').show();
         $('#order-date-val-id').hide();
+
+        $('body').removeClass('d-none');
 
     }
 

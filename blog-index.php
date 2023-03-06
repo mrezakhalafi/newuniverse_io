@@ -12,9 +12,9 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/state_control.php');
 ?>
 <?php
 
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
+// ini_set('display_errors', 1);
+// ini_set('display_startup_errors', 1);
+// error_reporting(E_ALL);
 
 $dbconn = getDBConn();
 
@@ -59,27 +59,12 @@ if (isset($active_tag)) {
 
 // print_r($blogpost->num_rows);
 
-// SECTION MEMCACHE
-
-$memcache = new Memcache;
-$memcache->connect('127.0.0.1', 11211) or die("Could not connect");
-$tags_result = unserialize($memcache->get('tags_result'));
-
-if ($tags_result == false) {
-
-  // GET ALL BLOG TAG
-  $str_tags = "SELECT * FROM BLOG_TAGLIST";
-  $query = $dbconn->prepare($str_tags);
-  $query->execute();
-  $tags_result = $query->get_result();
-
-  $memcache->set('tags_result', serialize($tags_result), false, 10);
-
-  $query->close();
-  // $memcache->close();
-}
-
-// END SECTION MEMCACHE
+//GET ALL BLOG TAG
+$str_tags = "SELECT * FROM BLOG_TAGLIST";
+$query = $dbconn->prepare($str_tags);
+$query->execute();
+$tags_result = $query->get_result();
+$query->close();
 
 $tags_arr = array();
 $list_cat_id = array();
@@ -101,43 +86,28 @@ if (isset($_GET['tag'])) {
   }
 }
 
-$tags = unserialize($memcache->get('tags'));
 
-if ($tags == false) {
-
-  //GET CORRECT TAGS FOR BLOG POSTS
-  $str = "SELECT btl.TAG, bp.ID, bp.IMAGE, bp.TITLE, bp.CONTENT
-  FROM BLOG_POST bp
-  LEFT JOIN BLOG_TAG bt on bp.ID = bt.BLOG_ID
-  LEFT JOIN BLOG_TAGLIST btl on bt.TAG = btl.ID";
-  $query = $dbconn->prepare($str);
-  $query->execute();
-  $tags = $query->get_result();
-
-  $memcache->set('tags', serialize($tags), false, 10);
-
-  $query->close();
-}
+//GET CORRECT TAGS FOR BLOG POSTS
+$str = "SELECT btl.TAG, bp.ID, bp.IMAGE, bp.TITLE, bp.CONTENT
+FROM BLOG_POST bp
+LEFT JOIN BLOG_TAG bt on bp.ID = bt.BLOG_ID
+LEFT JOIN BLOG_TAGLIST btl on bt.TAG = btl.ID";
+$query = $dbconn->prepare($str);
+$query->execute();
+$tags = $query->get_result();
+$query->close();
 
 // print_r(mysqli_num_rows($tags));
 
-$tagsID = unserialize($memcache->get('tagsID'));
-
-if ($tagsID == false) {
-
-  //GET CORRECT TAGS FOR BLOG POSTS ID
-  $strID = "SELECT btl.TAG_ID, bp.ID, bp.IMAGE, bp.TITLE, bp.CONTENT
-  FROM BLOG_POST bp
-  LEFT JOIN BLOG_TAG bt on bp.ID = bt.BLOG_ID
-  LEFT JOIN BLOG_TAGLIST btl on bt.TAG = btl.ID";
-  $queryID = $dbconn->prepare($strID);
-  $queryID->execute();
-  $tagsID = $queryID->get_result();
-
-  $memcache->set('tagsID', serialize($tagsID), false, 10);
-
-  $queryID->close();
-}
+//GET CORRECT TAGS FOR BLOG POSTS ID
+$strID = "SELECT btl.TAG_ID, bp.ID, bp.IMAGE, bp.TITLE, bp.CONTENT
+FROM BLOG_POST bp
+LEFT JOIN BLOG_TAG bt on bp.ID = bt.BLOG_ID
+LEFT JOIN BLOG_TAGLIST btl on bt.TAG = btl.ID";
+$queryID = $dbconn->prepare($strID);
+$queryID->execute();
+$tagsID = $queryID->get_result();
+$queryID->close();
 
 // GET 3 LATEST BLOG POSTS
 // $string = "SELECT * FROM (

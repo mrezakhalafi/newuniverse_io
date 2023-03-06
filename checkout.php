@@ -895,9 +895,9 @@ if (isset($_POST['dashboard']) || $userState == 1) {
                                     </div>
                                     </form>
 
-                                    <?php if ($currencyBill == 'USD' || $currency == 'USD') { ?>
+                                    <?php if ($currencyBill == 'USD' || $currency == 'USD'|| $_SESSION['country_code'] != 'ID') { ?>
                                         <div id="paypal-button-container"></div>
-                                    <?php } else if ($currencyBill == 'IDR' || $currency == 'IDR') { ?>
+                                    <?php } else if ($currencyBill == 'IDR' || $currency == 'IDR' ||  $_SESSION['country_code'] == 'ID') { ?>
                                         <div id="paypal-button-container" class="d-none"></div>
                                     <?php } else { ?>
                                         <div id="paypal-button-container"></div>
@@ -905,9 +905,9 @@ if (isset($_POST['dashboard']) || $userState == 1) {
                                     <!-- end paypal -->
 
                                     <!-- pay with credit card -->
-                                    <?php if ($currencyBill == 'USD' || $currency == 'USD') { ?>
+                                    <?php if ($currencyBill == 'USD' || $currency == 'USD' || $_SESSION['country_code'] != 'ID') { ?>
                                         <!-- <button id="credit-card-button" class="btn btn-lg btn-block d-flex justify-content-center align-items-center d-none" style="background-color: #f7f7f7; border-color: #608CA5;" data-toggle="collapse" data-target="#credit-card-form-container">Credit Card / Debit Card</button> -->
-                                    <?php } else if ($currencyBill == 'IDR' || $currency == 'IDR') { ?>
+                                    <?php } else if ($currencyBill == 'IDR' || $currency == 'IDR' ||  $_SESSION['country_code'] == 'ID') { ?>
                                         <button id="credit-card-button" class="btn btn-lg btn-block d-flex justify-content-center align-items-center" style="background-color: #f7f7f7; border-color: #608CA5;" data-toggle="collapse" data-target="#credit-card-form-container"></button>
                                     <?php } else { ?>
                                         <button id="credit-card-button" class="btn btn-lg btn-block d-flex justify-content-center align-items-center d-none" style="background-color: #f7f7f7; border-color: #608CA5;" data-toggle="collapse" data-target="#credit-card-form-container"></button>

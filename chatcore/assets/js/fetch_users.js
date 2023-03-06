@@ -5,7 +5,7 @@ function fetchUser(fpin, dir){
             return;
         } else {
             // var root = 'https://' + location.host;
-            var root = 'https://newuniverse.io/';
+            var root = 'https://newuniverse.io';
             var profpic = "/chatcore/assets/img/default_pp.png";
 
             if (data.IMAGE !== null && data.IMAGE !== "") {

@@ -844,13 +844,14 @@
                 isDrag = 1;
 
                 // $("[data-toggle='tooltip']").tooltip('update');
-
+                $('[data-toggle="tooltip"]').tooltip("hide");
             },
             stop: function() {
 
                 console.log("DROP");
 
                 isDrag = 0;
+                $('[data-toggle="tooltip"]').tooltip("hide");
             }
         });
 

@@ -5,6 +5,8 @@ include_once($_SERVER['DOCUMENT_ROOT'] . '/chatcore/logics/chat_dbconn.php');
 $flag = $_GET['flag'];
 $fpin = $_GET['f_pin'];
 
+
+
 if ($flag == 1) {
     $dbconn = paliolite();
     // SELECT USER PROFILE

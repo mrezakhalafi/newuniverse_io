@@ -5900,8 +5900,8 @@ function addBCtoBCArea(msg) {
 			<a href="#" class=" dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> 
 				<i class="fas fa-angle-down text-muted px-2"></i>
 			</a>
-			<div class="dropdown-menu dropdown-menu-right d-none">
-				<a class="dropdown-item " href="#">Delete</a>
+			<div class="dropdown-menu dropdown-menu-right">
+				<a class="dropdown-item" onclick="openBCHistoryInfo('${msg.id}');">Message info</a>
 			</div>
 		</div>
 		
@@ -5919,4 +5919,34 @@ function addBCtoBCArea(msg) {
 	`;
 
 	DOM.messages.innerHTML += html;
+}
+
+function openBCHistoryInfo(msg_id) {
+	var xhr = new XMLHttpRequest();
+
+	xhr.onreadystatechange = function () {
+		if (xhr.readyState === 4 && xhr.status === 200) {
+			let data = JSON.parse(xhr.responseText);
+			console.log(data);
+
+			if (data != null) {
+				console.log("TOTAL",data.TOTAL);
+				console.log("DELIVERED",data.DELIVERED);
+				console.log("READ",data.READ);
+				console.log("START_DATE",data.START_DATE);
+
+				$('span#bc-history-recipients').text(data.TOTAL);
+				$('span#bc-history-delivered').text(data.DELIVERED);
+				$('span#bc-history-read').text(data.READ);
+				$('span#bc-history-date').text(data.START_DATE);
+
+				$("#broadcast-history-info").modal('show');
+			} else {
+				$("#broadcast-info-error").modal('show');
+			}
+		}
+	};
+
+	xhr.open("GET", "/chatcore/logics/digisales/fetch_broadcast_info?msg=" + msg_id);
+	xhr.send();
 }

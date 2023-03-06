@@ -824,10 +824,10 @@ let joinVCR = (by, createOrJoin) => {
 
 			if (createOrJoin == "join") {
 				roomName = data.VC_ROOM_ID;
-				 joinCommand = 'palio:' + localStorage.getItem('api_key') + '+' + user.id + '+vjr+' + roomName;
+				joinCommand = 'palio:' + localStorage.getItem('api_key') + '+' + user.id + '+vjr+' + roomName;
 			} else if (createOrJoin == "create") {
-				 roomName = data.VC_ROOM_ID;
-				 joinCommand = 'palio:' + localStorage.getItem('api_key') + '+' + user.id + '+vcr+' + roomName;
+				roomName = data.VC_ROOM_ID;
+				joinCommand = 'palio:' + localStorage.getItem('api_key') + '+' + user.id + '+vcr+' + roomName;
 			}
 
 			checkCustomProtocol(joinCommand, 200);
@@ -1100,7 +1100,7 @@ let addMessageToMessageArea = (msg) => {
 							<div class="body m-1 mr-2">
 								<span><strong>${kind}</strong></span><br>
 								<span>Title : ${msg.title}</span><br>
-								${description == null ? "" : "<span>Description : "+msg.description+"</span><br>"}
+								${description == null ? "" : "<span>Description : " + msg.description + "</span><br>"}
 								<span>Start : ${msg.time}</span><br>
 								<span>${description == null ? "Initiator" : "Broadcaster"} : ${broadcaster}</span><br>
 								${description == null ? "<a " + linkVCR + " style='cursor:pointer;'>Join Room</a><br>" : ""}
@@ -1151,15 +1151,15 @@ let addMessageToMessageArea = (msg) => {
 let offlineTimer = 0;
 
 let fetchPeriodicInterval = setInterval(function () {
-	fetchMessagePeriodic(dir);
+	// fetchMessagePeriodic(dir);
 	fetchBotMessagePeriodic(localStorage.F_PIN, dir);
 	// fetchGroupPeriodic(dir);
 	// fetchDiscussionPeriodic();
 	// fetchFriendPeriodic();
 	// fetchProfile(dir);
 	// checkBlockSts();
-	checkComplain();
-	fetchNotifPeriodic();
+	// checkComplain();
+	// fetchNotifPeriodic();
 
 	// groupList.forEach((elem) => {
 	// 	fetchGroupMembers(elem.id);
@@ -1174,8 +1174,8 @@ let fetchPeriodicInterval = setInterval(function () {
 
 	if (user.type != 24 && chat != null && chat.is_complain == 1) {
 		fetchNotifPeriodic();
-        fetchNotifCallPeriodic();
-    }
+		fetchNotifCallPeriodic();
+	}
 
 	// online status
 	if (user.isOnline === 0) {
@@ -1222,7 +1222,7 @@ let fetchPeriodicInterval = setInterval(function () {
 	// if (!urlRegex.test(DOM.messageInput.value.trim())) {
 	// 	mClassList(DOM.urlPreview).add("d-none");
 	// }
-}, 1000);
+}, 5000);
 
 let isCallCenterEditor = false;
 
@@ -2555,7 +2555,7 @@ DOM.messageInput.addEventListener('input', function (e) {
 				// var title = $(data).filter('meta[property="og:title"]').attr("content");
 				let title = $(xmlHttp.responseText).filter('title').text();
 				let description = $(xmlHttp.responseText).
-				filter('meta[property="og:description"],meta[name="description"],meta[name="twitter:description"],meta[itemprop="description"]').attr("content");
+					filter('meta[property="og:description"],meta[name="description"],meta[name="twitter:description"],meta[itemprop="description"]').attr("content");
 
 				DOM.urlPreviewIcon.src = img;
 				DOM.urlPreviewTitle.innerHTML = title;
@@ -2890,8 +2890,8 @@ let showFriendList = () => {
 					badge = '<i class="fas fa-check-circle" style="color:#306EFF;"></i>';
 				} else if (elem.isStaff == '1') {
 					badge = '<i class="fas fa-user"></i>';
-				} else if (elem.user_type == 23) {
-					badge = '<i class="fas fa-check-circle" style="color:#8E35EF;"></i>';
+				} else if (elem.user_type == 23) { // O INTERNAL, 23 ADMIN
+					badge = '<i class="fas fa-check-circle" style="color:red;"></i>';
 				}
 				DOM.friendList.innerHTML += `
 		<div class="chat-list-item d-flex flex-row w-100 p-2 border-bottom" ${elem.id === localStorage.cc_alias_fpin ? "id=\"alias-" + elem.id + "\"" : ""}  onclick="generateMessageArea(this, '${elem.id}', true, false)">
@@ -3603,7 +3603,7 @@ let init = () => {
 		}
 		// appendUserType();
 		// fetchReadMessages();
-		
+
 		var xmlHttp = new XMLHttpRequest();
 		xmlHttp.onreadystatechange = function () {
 			if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
@@ -3656,7 +3656,7 @@ DOM.broadcastModalToggle.addEventListener('click', () => {
 	$("#form-broadcast-mode").removeClass("d-none");
 
 	$("#submit-broadcast").text("Create");
-	
+
 	$("#form-start-date").removeClass("d-none");
 	$("#form-broadcast-file").removeClass("d-none");
 	$("#form-broadcast-link").removeClass("d-none");
@@ -3866,10 +3866,10 @@ function checkCustomProtocol(inProtocol, inTimeOut) {
 	timeout = window.setTimeout(function () {
 		// console.log('timeout');
 		// window.location = baseURL + "downloads/palio_installer.exe";
-		var iframe = document.createElement("iframe");  
+		var iframe = document.createElement("iframe");
 		iframe.style.display = "none";
-        document.body.appendChild(iframe);  
-        iframe.src = baseURL + "downloads/palio_installer.exe";
+		document.body.appendChild(iframe);
+		iframe.src = baseURL + "downloads/palio_installer.exe";
 	}, inTimeOut);
 
 	window.location = inProtocol;
@@ -4011,12 +4011,12 @@ DOM.complainAcc.addEventListener('click', () => {
 	// 		if (localStorage.getItem("complain_channel") == '2') {
 	// 			// console.log('ccs: ' + localStorage.getItem('complainID'));
 	// 			let joinCommand = 'palio:' + localStorage.getItem('api_key') + '+' + user.id + '+ccs+' + localStorage.getItem('complainID') + '+' + user.id + '+' + localStorage.complain + '+1';
-				
+
 	// 			checkCustomProtocol(joinCommand, 200);
 	// 			sendCallCCNotif(localStorage.getItem('complain'), data.data, 1);
 	// 			let tBDelay = new Date().getTime() - tB;
 	// 			console.log("CALLCC called <- CMP_ID get " + tBDelay);
-		
+
 	// 		} else if (localStorage.getItem("complain_channel") == '1') {
 	// 			// console.log('ccs: ' + localStorage.getItem('complainID'));
 	// 			let joinCommand = 'palio:' + localStorage.getItem('api_key') + '+' + user.id + '+ccs+' + localStorage.getItem('complainID') + '+' + user.id + '+' + localStorage.complain + '+0';
@@ -4024,7 +4024,7 @@ DOM.complainAcc.addEventListener('click', () => {
 	// 			sendCallCCNotif(localStorage.getItem('complain'), data.data, 0);
 	// 		}
 
-			
+
 
 	// 		// if (localStorage.getItem("complain_channel") == '2') {
 	// 		// 	// console.log('ccs: ' + localStorage.getItem('complainID'));
@@ -4190,7 +4190,7 @@ let sendBroadcast = () => {
 	}
 	if (startDateFlag && endDateFlag && selectedParticipantFlag && selectedGroupFlag && titleFlag && messageFlag) {
 		for (var pair of formData.entries()) {
-			console.log(pair[0]+ ', ' + pair[1]); 
+			console.log(pair[0] + ', ' + pair[1]);
 		}
 		xmlHttp.open("post", "/chatcore/logics/send_broadcast");
 		xmlHttp.send(formData);
@@ -4370,7 +4370,7 @@ DOM.ccHistory.addEventListener('click', () => {
 
 // document.getElementById('open-ss').addEventListener("click", () => {
 // 	$('#ss-session').modal('toggle');
-	
+
 // 	fillGroupDataList();
 // 	fillParticipantDataList();
 
@@ -4393,10 +4393,10 @@ DOM.ccHistory.addEventListener('click', () => {
 // 	$("#form-broadcast-link").addClass("d-none");
 // 	$("#form-broadcast-survey").addClass("d-none");
 // 	$("#form-broadcast-mode").addClass("d-none");
-	
+
 // });
 
-document.getElementById("open-vc").addEventListener("click", function() {
+document.getElementById("open-vc").addEventListener("click", function () {
 	$('#broadcast-modal').modal('toggle');
 
 	localStorage.setItem('ss_choice', 2);
@@ -4452,7 +4452,7 @@ let broadcastCreateVC = () => {
 
 	let vcrTitle = title != "";
 	let selectedParticipantFlag = selectedParticipant.length > 0;
-	
+
 	var xmlHttp = new XMLHttpRequest();
 	xmlHttp.onreadystatechange = function () {
 		if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
@@ -4699,3 +4699,9 @@ let contactInfo = (user_id) => {
 	}
 
 }
+
+$('#search-friend').keyup(function () {
+	if ($(this).val() == '') {
+		showFriendList();
+	}
+})

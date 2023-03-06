@@ -5,7 +5,7 @@ function fetchProfile(dir){
         if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
             data = JSON.parse(xmlHttp.responseText);
 
-            var root = 'https://newuniverse.io/';
+            var root = 'https://newuniverse.io';
 
             let profPic = "";
             

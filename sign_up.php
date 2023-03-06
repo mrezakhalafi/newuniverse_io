@@ -56,9 +56,11 @@ if (isset($_POST['sign_up']) || isset($_POST['trial'])) {
 
     if (isset($_POST['country_code'])) {
         if ($_POST['country_code'] == 'ID') {
+            $_SESSION['country_code'] = 'ID';
             $currency = 'IDR';
             $price_chosen = 450000.00;
         } else {
+            $_SESSION['country_code'] = '';
             $currency = 'USD';
             $price_chosen = 33.50;
         }
@@ -249,7 +251,7 @@ if (isset($_POST['sign_up']) || isset($_POST['trial'])) {
                     $query->close();
 
                     // insert to user account
-                    $query = $dbconn->prepare("INSERT INTO USER_ACCOUNT (COMPANY, USERNAME, EMAIL_ACCOUNT, PASSWORD, STATUS, HASH, ACTIVE) VALUES (?, ?, ?, MD5(?), 0, ?, 0);");
+                    $query = $dbconn->prepare("INSERT INTO USER_ACCOUNT (COMPANY, USERNAME, EMAIL_ACCOUNT, PASSWORD, STATUS, HASH, ACTIVE) VALUES (?, ?, ?, MD5(?), 1, ?, 0);");
                     $query->bind_param("issss", $company_id, $username, $email, $password, $hash);
                     $query->execute();
                     if (!$dbconn->commit()) {

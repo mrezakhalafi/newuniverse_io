@@ -47,6 +47,9 @@
         $user_category = 0;
     }
 
+    
+    $message_id = $from . $start;
+
     // $connection = ssh2_connect('202.158.33.26', 2309);
     // ssh2_auth_password($connection, 'easysoft', '*347e^!VU4y+#hAP');
 
@@ -67,6 +70,7 @@
             'outlet_category' => $user_category,
             'category' => $category,
             'type' => $type,
+            'root_id' => $message_id,
         ),
     );
 
@@ -83,7 +87,6 @@
     }
 
     $arrCol = ['`MESSAGE_ID`', '`ORIGINATOR`', '`TITLE`', '`CONTENT`', '`START`'];
-    $message_id = $from . $start;
     $arrValues = ["'$message_id'", "'$from'", "'$title'", "'$message'", $start];
 
     if (isset($link) && $link != null && $link != '') {

@@ -67,10 +67,10 @@ $userState = $dataUser['STATE'];
 $email = $dataUser['EMAIL_ACCOUNT'];
 $query->close();
 
-if ($userState == 2) {
+if ($userState == 3 && $userStatus == 1) {
   header('Location: status/palio/status.php');
-} elseif ($userState == 3) {
-  header('Location: dashboardv2/index.php');
+} elseif ($userState < 2 && $userStatus == 1) {
+  header('Location: verifyemail.php');
 }
 
 $email = $_SESSION['email'];

@@ -979,6 +979,66 @@ if (isset($_POST['submit'])) {
 		</div>
 	</div>
 
+
+	<div class="modal" id="broadcast-history-info" tabindex="-1" role="dialog" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered" role="document" style="min-width: fit-content;">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title">Message info</h5>
+				</div>
+				<div class="modal-body text-center">
+					<table style="text-align:left">
+						<tbody>
+							<!-- <tr>
+								<td>Title:</td>
+								<td id="bc-history-title"></td>
+							</tr>
+							<tr>
+								<td>Message:</td>
+								<td id="bc-history-msg"></td>
+							</tr> -->
+							<tr>
+								<td>Total recipients</td>
+								<td style="padding-left: 10px">: <span id="bc-history-recipients"></span></td>
+							</tr>
+							<tr>
+								<td>Delivered</td>
+								<td style="padding-left: 10px">: <span id="bc-history-delivered"></span></td>
+							</tr>
+							<tr>
+								<td>Read</td>
+								<td style="padding-left: 10px">: <span id="bc-history-read"></span></td>
+							</tr>
+							<tr>
+								<td>Date</td>
+								<td style="padding-left: 10px">: <span id="bc-history-date"></span></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="modal fade" id="broadcast-info-error" tabindex="-1" role="dialog">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content px-2">
+				<div class="modal-header">
+					<h5 class="modal-title">Error</h5>
+				</div>
+				<div class="modal-body">
+					<p>Unable to find broadcast message info.</p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
 	<!-- <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script> -->
 	<script type="module" src="<?php echo base_url(); ?>translate_tsel.js?v=1.111"></script>
 	<?php
