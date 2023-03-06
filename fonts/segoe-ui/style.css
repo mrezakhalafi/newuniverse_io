@@ -1,0 +1,39 @@
+@font-face {font-family: 'Segoe UI Regular';
+    src: url("https://db.onlinewebfonts.com/t/623c7118249e082fe87a78e08506cb4b.eot"); /* IE9*/
+    src: url("https://db.onlinewebfonts.com/t/623c7118249e082fe87a78e08506cb4b.eot?#iefix") format("embedded-opentype"), /* IE6-IE8 */
+    url("https://db.onlinewebfonts.com/t/623c7118249e082fe87a78e08506cb4b.woff2") format("woff2"), /* chrome firefox */
+    url("https://db.onlinewebfonts.com/t/623c7118249e082fe87a78e08506cb4b.woff") format("woff"), /* chrome firefox */
+    url("https://db.onlinewebfonts.com/t/623c7118249e082fe87a78e08506cb4b.ttf") format("truetype"), /* chrome firefox opera Safari, Android, iOS 4.2+*/
+    url("https://db.onlinewebfonts.com/t/623c7118249e082fe87a78e08506cb4b.svg#Segoe UI") format("svg"); /* iOS 4.1- */
+    font-display: swap;
+}
+
+@font-face {font-family: 'Segoe UI Light';
+    src: url("https://db.onlinewebfonts.com/t/5076583fa2a14cd2cf3634ff59a1138b.eot"); /* IE9*/
+    src: url("https://db.onlinewebfonts.com/t/5076583fa2a14cd2cf3634ff59a1138b.eot?#iefix") format("embedded-opentype"), /* IE6-IE8 */
+    url("https://db.onlinewebfonts.com/t/5076583fa2a14cd2cf3634ff59a1138b.woff2") format("woff2"), /* chrome firefox */
+    url("https://db.onlinewebfonts.com/t/5076583fa2a14cd2cf3634ff59a1138b.woff") format("woff"), /* chrome firefox */
+    url("https://db.onlinewebfonts.com/t/5076583fa2a14cd2cf3634ff59a1138b.ttf") format("truetype"), /* chrome firefox opera Safari, Android, iOS 4.2+*/
+    url("https://db.onlinewebfonts.com/t/5076583fa2a14cd2cf3634ff59a1138b.svg#Segoe UI Light") format("svg"); /* iOS 4.1- */
+    font-display: swap;
+}
+
+@font-face {font-family: 'Segoe UI Semibold';
+    src: url("https://db.onlinewebfonts.com/t/d4d6e1a6527a21185217393c427a52cb.eot"); /* IE9*/
+    src: url("https://db.onlinewebfonts.com/t/d4d6e1a6527a21185217393c427a52cb.eot?#iefix") format("embedded-opentype"), /* IE6-IE8 */
+    url("https://db.onlinewebfonts.com/t/d4d6e1a6527a21185217393c427a52cb.woff2") format("woff2"), /* chrome firefox */
+    url("https://db.onlinewebfonts.com/t/d4d6e1a6527a21185217393c427a52cb.woff") format("woff"), /* chrome firefox */
+    url("https://db.onlinewebfonts.com/t/d4d6e1a6527a21185217393c427a52cb.ttf") format("truetype"), /* chrome firefox opera Safari, Android, iOS 4.2+*/
+    url("https://db.onlinewebfonts.com/t/d4d6e1a6527a21185217393c427a52cb.svg#Segoe UI Semibold") format("svg"); /* iOS 4.1- */
+    font-display: swap;
+}
+
+@font-face {font-family: 'Segoe UI Bold';
+    src: url("https://db.onlinewebfonts.com/t/60570a3f64a1fece44ebf71b43617029.eot"); /* IE9*/
+    src: url("https://db.onlinewebfonts.com/t/60570a3f64a1fece44ebf71b43617029.eot?#iefix") format("embedded-opentype"), /* IE6-IE8 */
+    url("https://db.onlinewebfonts.com/t/60570a3f64a1fece44ebf71b43617029.woff2") format("woff2"), /* chrome firefox */
+    url("https://db.onlinewebfonts.com/t/60570a3f64a1fece44ebf71b43617029.woff") format("woff"), /* chrome firefox */
+    url("https://db.onlinewebfonts.com/t/60570a3f64a1fece44ebf71b43617029.ttf") format("truetype"), /* chrome firefox opera Safari, Android, iOS 4.2+*/
+    url("https://db.onlinewebfonts.com/t/60570a3f64a1fece44ebf71b43617029.svg#Segoe UI") format("svg"); /* iOS 4.1- */
+    font-display: swap;
+}

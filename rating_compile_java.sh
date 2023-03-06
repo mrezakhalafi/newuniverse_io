@@ -1,0 +1,1 @@
+javac -cp ".:mysqlconnector.jar" RateUsage.java

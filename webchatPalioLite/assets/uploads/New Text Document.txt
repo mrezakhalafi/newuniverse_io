@@ -1,0 +1,93 @@
+github:
+pub server (simple pub server)
+
+Installation (Centos 8):
+1. Pastikan git sudah terpasang pada server
+	- yum install git
+2. Tentukan direktori
+	- cd /app/lcs/data
+3. Ambil simple_pub_server dengan cara git (https://github.com/rxreader/simple_pub_server)
+	- git clone https://github.com/rxreader/simple_pub_server.git
+4. Install Dart (https://github.com/dart-lang/sdk/wiki/Building-Dart-on-CentOS,-Red-Hat,-Fedora-and-Amazon-Linux-AMI)
+a. Install Subversion and the required build-tools
+	- yum -y install git subversion make gcc-c++
+b. Get the depot_tools and add them to the path
+	- git clone https://chromium.googlesource.com/chromium/tools/depot_tools.git
+	- export PATH=$PATH:`pwd`/depot_tools
+c. Getting the source (https://github.com/dart-lang/sdk/wiki/Building#source)
+	- mkdir dart-sdk
+	- cd dart-sdk
+	- fetch dart
+d. Building
+	- Build the 64-bit SDK:
+	cd dart-sdk/sdk
+	./tools/build.py --no-goma --mode release --arch x64 create_sdk
+	
+	The output will be in out/ReleaseX64/dart_sdk on Linux and Windows, and xcodebuild/ReleaseX64/dart_sdk on MacOS.
+
+	- Build the 32-bit SDK:
+	cd dart-sdk/sdk
+	./tools/build.py --no-goma --mode release --arch ia32 create_sdk
+
+	The output will be in out/ReleaseIA32/dart_sdk on Linux and Windows, or xcodebuild/ReleaseIA32/dart_sdk on MacOS.
+e. pub repository server
+	- cd /data/simple_pub_server/depot_tools/dart-sdk/sdk/out/ReleaseX64/dart-sdk/bin/
+	- ~/bin $ pub get
+		...
+	~/bin $ ./dart /data/simple_pub_server/bin/server.dart -s
+	Listening on http://localhost:8080
+
+	To make the pub client use this repository configure your shell via:
+
+	$ export PUB_HOSTED_URL=http://localhost:8080
+
+
+
+
+
+
+
+Using it for uploading new packages to the locally running server or downloading packages locally available or via a fallback to pub.dartlang.org is as easy as:
+
+~/foobar $ export PUB_HOSTED_URL=http://localhost:8080
+~/foobar $ pub get
+...
+~/foobar $ pub publish
+Publishing x 0.1.0 to http://localhost:8080:
+|-- ...
+'-- pubspec.yaml
+
+Looks great! Are you ready to upload your package (y/n)? y
+Uploading...
+Successfully uploaded package.
+
+
+
+
+The fact that the pub publish command requires you to grant it oauth2 access - which requires a Google account - is due to the fact that the pub publish cannot work without authentication or with another authentication scheme. But the information sent by the pub client is not used for this local server at the moment.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Install docker
+Install Docker Engine on CentOS (https://docs.docker.com/engine/install/centos/)
+https://hub.docker.com/r/google/dart

@@ -1,0 +1,327 @@
+select a.aa, b.bb, c.cc , (a.aa - b.bb - c.cc) jmlh f
+
+where
+
+jmlh<0
+
+
+
+
+SELECT
+NM.OUTLET,
+SUM(IK.POINT) KOIN,
+SUM(OUT.TRANSFERRED_COIN) TRANSFER_OUT,
+SUM(IN.TRANSFERRED_COIN) TRANSFER_IN,
+SUM(R.POIN_REDEEMED)
+FROM
+NOMOR_MOBO NM,
+INCENTIVE_KOIN IK,
+TRANSFER_KOIN `OUT`,
+TRANSFER_KOIN `IN`,
+REDEEM R
+WHERE
+NM.OUTLET=IK.HOLDER
+AND NM.OUTLET=R.OUTLET
+AND NM.OUTLET=OUT.TRANSFER_BY_OUTLET
+AND NM.OUTLET=IN.TRANSFER_TO_OUTLET
+AND NM.OUTLET=1320874 GROUP BY 1;
+
+
+
+
+mysql -e"SELECT
+IK.HOLDER,
+SUM(IK.POINT) KOIN,
+SUM(KELUAR.TRANSFERRED_COIN) TRANSFER_OUT,
+SUM(MASUK.TRANSFERRED_COIN) TRANSFER_IN,
+SUM(R.POIN_REDEEMED),
+(IK.POINT + MASUK.TRANSFERRED_COIN - KELUAR.TRANSFERRED_COIN - R.POIN_REDEEMED) JUMLAH
+FROM
+INCENTIVE_KOIN IK,
+TRANSFER_KOIN KELUAR,
+TRANSFER_KOIN MASUK,
+REDEEM R
+WHERE
+IK.HOLDER=IK.HOLDER
+AND IK.HOLDER=R.OUTLET
+AND IK.HOLDER=KELUAR.TRANSFER_BY_OUTLET
+AND IK.HOLDER=MASUK.TRANSFER_TO_OUTLET
+AND IK.POINT_TYPE='Koin Utama'
+GROUP BY 1 
+HAVING COUNT(JUMLAH<0);" -u sisodsadm -p sis3nf -A | tr '\t' '|' >> sisa.csv
+LIMIT 3;
+
+mysql -e"SELECT HOLDER, SUM(POINT) KOIN_UTAMA FROM INCENTIVE_KOIN WHERE POINT_TYPE='Koin Utama' GROUP BY HOLDER;" -u sisodsadm -p sis3nf -A | tr '\t' '|' >> koin_utama.csv
+//////////////////////////////////////
+
+mysql -e"SELECT
+IK.HOLDER,
+SUM(IK.POINT) KOIN,
+SUM(TK.TRANSFERRED_COIN) TRANSFER_OUT,
+SUM(R.POIN_REDEEMED),
+(IK.POINT - TK.TRANSFERRED_COIN - R.POIN_REDEEMED) JUMLAH
+FROM
+INCENTIVE_KOIN IK,
+TRANSFER_KOIN TK,
+REDEEM R
+WHERE
+IK.HOLDER=IK.HOLDER
+AND IK.HOLDER=R.OUTLET
+AND IK.HOLDER=TK.TRANSFER_BY_OUTLET
+AND IK.POINT_TYPE='Koin Utama'
+GROUP BY 1 
+HAVING COUNT(JUMLAH<0);" -u sisodsadm -p sis3nf -A | tr '\t' '|' >> sisa.csv
+LIMIT 3;
+
+
+/////////////////////////////////////////////////////
+
+SELECT HOLDER,
+SUM(IK.POINT) AS KOIN_DIDAPAT
+FROM INCENTIVE_KOIN 
+WHERE 
+AND POINT_TYPE='Koin Utama'
+GROUP BY 1 LIMIT 3;
+
+SELECT OUTLET,
+SUM(POIN_REDEEMED) AS KOIN_REDEEM
+FROM REDEEM
+WHERE OUTLET IN('1304680','836188')
+GROUP BY 1;
+
+SELECT TRANSFER_BY_OUTLET, 
+SUM(TRANSFERRED_COIN) AS KOIN_DITRANSFER
+FROM TRANSFER_KOIN
+GROUP BY 1;
+
+SELECT TRANSFER_TO_OUTLET,
+SUM(TRANSFERRED_COIN) AS TRANSFER_IN
+FROM TRANSFER_KOIN
+WHERE TRANSFER_TO_OUTLET IN(836188,1304680,1346079,1340864)
+GROUP BY 1;
+
+
+SELECT
+NM.OUTLET,
+SUM(IK.POINT) KOIN,
+SUM(OUT.TRANSFERRED_COIN) TRANSFER_OUT,
+SUM(IN.TRANSFERRED_COIN) TRANSFER_IN,
+SUM(R.POIN_REDEEMED)
+FROM
+NOMOR_MOBO NM,
+INCENTIVE_KOIN IK,
+TRANSFER_KOIN `OUT`,
+TRANSFER_KOIN `IN`,
+REDEEM R
+WHERE
+NM.OUTLET=IK.HOLDER
+AND NM.OUTLET=R.OUTLET
+AND NM.OUTLET=OUT.TRANSFER_BY_OUTLET
+AND NM.OUTLET=IN.TRANSFER_TO_OUTLET
+AND NM.OUTLET=836188 GROUP BY 1;
+
+////////////////////////////////////////////////////////////////////////////////////
+
+
+SELECT
+IR.INSERT_TIME, IP.CODE, INS.DESCRIPTION, IF(INS.PROGRESSIVE=0,'NO','YES') IS_PROGRESSIVE, IT.DESCRIPTION INCENTIVE_TARGET, IFNULL(IRH.DESCRIPTION,'-') INCENTIVE_REWARD, INTER.TERRITORY , IC.C_DESCRIPTION ,   IR.HOLDER, IR.POINT,
+CASE IR.POINT_TYPE
+WHEN 0 THEN 'Koin Utama'
+WHEN 1 THEN 'SEV'
+WHEN 2 THEN 'Dompetku'
+WHEN 3 THEN 'Koin Bonus'
+WHEN 4 THEN 'Koin Transfer'
+ELSE '-'
+END POINT_TYPE,
+TH
+FROM
+cmpa.INCENTIVE_RESULT IR
+left join cmpa.INCENTIVE_PROGRAM_MAPPING IPM on IR.INCENTIVE_PROGRAM_MAPPING=IPM.ID
+LEFT JOIN cmpa.INCENTIVE_REWARD_HDR IRH ON  IRH.ID=IPM.INCENTIVE_REWARD AND IR.INSERT_TIME BETWEEN IRH.SC_DATE AND IRH.EC_DATE,
+cmpa.INCENTIVE_PROGRAM IP,
+cmpa.INCENTIVE_SCHEME INS,
+cmpa.INCENTIVE_TARGET IT,
+cmpa.INCENTIVE_TERRITORY INTER ,
+cmpa.INCENTIVE_CHANNEL IC
+WHERE
+IR.INSERT_TIME BETWEEN DATE_SUB( '2015-08-07 00:00:00' ,INTERVAL 1 DAY) AND '2015-08-07 23:59:59'
+AND IP.ID=IPM.INCENTIVE_PROGRAM
+AND INS.ID=IPM.INCENTIVE_SCHEME
+AND IT.ID=IPM.INCENTIVE_TARGET
+AND INTER.ID=IPM.TERRITORY
+AND IC.ID=IPM.CHANNEL
+AND IR.INSERT_TIME BETWEEN IPM.SC_DATE AND IPM.EC_DATE
+AND IR.INSERT_TIME BETWEEN IP.SC_DATE AND IP.EC_DATE
+AND IR.INSERT_TIME BETWEEN INS.SC_DATE AND INS.EC_DATE
+AND IR.INSERT_TIME BETWEEN IT.SC_DATE AND IT.EC_DATE
+AND IR.INSERT_TIME BETWEEN INTER.SC_DATE AND INTER.EC_DATE
+AND IR.INSERT_TIME BETWEEN IC.SC_DATE AND IC.EC_DATE
+AND HOLDER=1304680;
+
+mysql> SELECT * FROM INCENTIVE_RESULT WHERE HOLDER=1304680 AND INSERT_TIME BETWEEN "2015-08-07 00:00:00" AND "2015-08-07 23:59:59" LIMIT 4;
++-----------------+---------------------------+-----------------------+---------+----------+------------+---------------------+------+--------------+---------+---------------------+
+| ID              | INCENTIVE_PROGRAM_MAPPING | INCENTIVE_SCHEME_ITEM | HOLDER  | POINT    | POINT_TYPE | TRANS_TIME          | TH   | PROCESS_TIME | VERSION | INSERT_TIME         |
++-----------------+---------------------------+-----------------------+---------+----------+------------+---------------------+------+--------------+---------+---------------------+
+| 290000000516152 |                       282 |                   924 | 1304680 | 16500.00 |          0 | 2015-08-07 22:18:18 | -1   | NULL         |       0 | 2015-08-07 22:18:18 |
++-----------------+---------------------------+-----------------------+---------+----------+------------+---------------------+------+--------------+---------+---------------------+
+
+mysql> SELECT * FROM INCENTIVE_PROGRAM WHERE CODE='ADD On Agst 2015 - Silver';
++-----+---------------------------+---------------------------+---------------+-----------------+------------+------------------+----------+------+--------------+---------+---------------------+---------------------+---------------------+-----------------+--------------+--------------+------------+
+| ID  | CODE                      | DESCRIPTION               | REDEEM_METHOD | CUT_OFF_PERIODE | CREATED_BY | PARTICIPANT_TYPE | DOMPETKU | SEV  | DOMPETKU_PIN | SEV_PIN | CREATED_DATE        | SC_DATE             | EC_DATE             | MAX_PARTICIPANT | ALLOW_REDEEM | START_REDEEM | END_REDEEM |
++-----+---------------------------+---------------------------+---------------+-----------------+------------+------------------+----------+------+--------------+---------+---------------------+---------------------+---------------------+-----------------+--------------+--------------+------------+
+| 210 | ADD On Agst 2015 - Silver | ADD On Agst 2015 - Silver |             1 |               0 |     634545 |                2 | NULL     | NULL | NULL         | NULL    | 2015-07-31 20:17:18 | 2015-08-01 00:00:00 | 2015-08-31 23:59:59 |            NULL |            1 | NULL         | NULL       |
++-----+---------------------------+---------------------------+---------------+-----------------+------------+------------------+----------+------+--------------+---------+---------------------+---------------------+---------------------+-----------------+--------------+--------------+------------+
+1 row in set (0.01 sec)
+
+mysql> SELECT * FROM INCENTIVE_PROGRAM_MAPPING WHERE INCENTIVE_PROGRAM=210;
++-----+-------------------+------------------+------------------+------------------+-----------+---------+--------+------+----------------+-----------+---------------------+---------------------+
+| ID  | INCENTIVE_PROGRAM | INCENTIVE_SCHEME | INCENTIVE_TARGET | INCENTIVE_REWARD | TERRITORY | CHANNEL | OBJECT | USER | CLASSIFICATION | AUTO_JOIN | SC_DATE             | EC_DATE             |
++-----+-------------------+------------------+------------------+------------------+-----------+---------+--------+------+----------------+-----------+---------------------+---------------------+
+| 268 |               210 |              128 |              237 |             NULL |        19 |       1 |      9 |    1 |              5 |         0 | 2015-07-31 20:17:18 | 9999-12-31 23:59:59 |
++-----+-------------------+------------------+------------------+------------------+-----------+---------+--------+------+----------------+-----------+---------------------+---------------------+
+1 row in set (0.00 sec)
+
+mysql> 	 ID=128;
++-----+------------------------------+-------------+---------------------+---------------------+
+| ID  | DESCRIPTION                  | PROGRESSIVE | SC_DATE             | EC_DATE             |
++-----+------------------------------+-------------+---------------------+---------------------+
+| 128 | Add On Agustus 2015 - Silver |           0 | 2015-07-30 16:27:46 | 9999-12-31 23:59:59 |
++-----+------------------------------+-------------+---------------------+---------------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT * FROM INCENTIVE_TARGET WHERE ID=237;
++-----+------------------------------+---------------------+---------------------+
+| ID  | DESCRIPTION                  | SC_DATE             | EC_DATE             |
++-----+------------------------------+---------------------+---------------------+
+| 237 | Add On Agustus 2015 - Silver | 2015-07-30 16:27:46 | 9999-12-31 23:59:59 |
++-----+------------------------------+---------------------+---------------------+
+1 row in set (0.01 sec)
+
+mysql> SELECT * FROM INCENTIVE_TERRITORY WHERE ID=19;
++----+------+---------------+-----------+---------------------+---------------------+
+| ID | T_ID | T_DESCRIPTION | TERRITORY | SC_DATE             | EC_DATE             |
++----+------+---------------+-----------+---------------------+---------------------+
+| 19 |    2 | Nasional      |       104 | 2014-09-01 07:43:27 | 9999-12-31 23:59:59 |
++----+------+---------------+-----------+---------------------+---------------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT * FROM INCENTIVE_CHANNEL WHERE ID=1;
++----+------+---------------+---------+---------------------+---------------------+
+| ID | C_ID | C_DESCRIPTION | CHANNEL | SC_DATE             | EC_DATE             |
++----+------+---------------+---------+---------------------+---------------------+
+|  1 |    1 | Traditional   |       1 | 2014-08-01 00:00:00 | 9999-12-31 23:59:59 |
++----+------+---------------+---------+---------------------+---------------------+
+1 row in set (0.00 sec)
+
+
+
+///////////////
+
+mysql> SELECT * FROM INCENTIVE_PROGRAM LIMIT 5;
++----+-------------------+-------------------+---------------+-----------------+------------+------------------+---------------+-----------+--------------+---------+---------------------+---------------------+---------------------+-----------------+--------------+---------------------+---------------------+
+| ID | CODE              | DESCRIPTION       | REDEEM_METHOD | CUT_OFF_PERIODE | CREATED_BY | PARTICIPANT_TYPE | DOMPETKU      | SEV       | DOMPETKU_PIN | SEV_PIN | CREATED_DATE        | SC_DATE             | EC_DATE             | MAX_PARTICIPANT | ALLOW_REDEEM | START_REDEEM        | END_REDEEM          |
++----+-------------------+-------------------+---------------+-----------------+------------+------------------+---------------+-----------+--------------+---------+---------------------+---------------------+---------------------+-----------------+--------------+---------------------+---------------------+
+|  1 | Sample Act Reload | Sample Act Reload |             1 |               2 |          1 |                2 | sis_incentive | mo-redeem | 123456       | NULL    | 2014-08-26 12:58:30 | 2014-08-01 00:00:00 | 2014-08-30 00:00:00 |            NULL |            0 | 2014-08-26 00:00:00 | 2014-09-30 00:00:00 |
+|  2 | Sample Act Psv    | Sample Act Psv    |             1 |               1 |          1 |                2 | sis_incentive | mo-redeem | 123456       | NULL    | 2014-08-26 13:09:48 | 2014-08-26 00:00:00 | 2014-08-30 00:00:00 |            NULL |            0 | 2014-08-26 00:00:00 | 2014-09-30 00:00:00 |
+|  3 | Sample Paket      | Sample Paket      |             1 |               2 |          1 |                2 | sis_incentive | mo-redeem | 123456       | NULL    | 2014-08-26 13:12:04 | 2014-08-26 00:00:00 | 2014-08-30 00:00:00 |            NULL |            0 | 2014-08-26 00:00:00 | 2014-09-30 00:00:00 |
+|  4 | Sample Paket Psv  | Sample Paket Psv  |             1 |               2 |          1 |                2 | sis_incentive | mo-redeem | 123456       | NULL    | 2014-08-26 13:13:43 | 2014-08-01 00:00:00 | 2014-08-30 00:00:00 |            NULL |            0 | 2014-08-26 00:00:00 | 2014-09-30 00:00:00 |
+|  5 | Act Reload Test   | Act Reload Test   |             1 |               2 |          1 |                2 | sis_incentive | mo-redeem | 123456       | NULL    | 2014-08-26 13:26:36 | 2014-08-26 00:00:00 | 2014-08-30 00:00:00 |            NULL |            0 | 2014-08-26 00:00:00 | 2014-09-30 00:00:00 |
++----+-------------------+-------------------+---------------+-----------------+------------+------------------+---------------+-----------+--------------+---------+---------------------+---------------------+---------------------+-----------------+--------------+---------------------+---------------------+
+5 rows in set (0.00 sec)
+
+
+
+
+SELECT
+ IR.id, IR.INCENTIVE_PROGRAM_MAPPING, IR.INCENTIVE_SCHEME_ITEM, TA.SALES_TERRITORY, IR.HOLDER, IR.POINT,
+ CASE IR.POINT_TYPE
+  WHEN 0 THEN 'Koin Utama'
+  WHEN 1 THEN 'SEV'
+  WHEN 2 THEN 'Dompetku'
+  WHEN 3 THEN 'Koin Bonus'
+  WHEN 4 THEN 'Koin Transfer'
+  ELSE '-'
+ END POINT_TYPE,
+ INSERT_TIME,
+ TH
+FROM
+ cmpa.INCENTIVE_PROGRAM IP,
+ cmpa.INCENTIVE_PROGRAM_MAPPING IPM
+   LEFT JOIN cmpa.GROUP_HDR GH ON IPM.OBJECT = GH.ID
+   LEFT JOIN cmpa.GROUP_DTL GD ON GH.ID = GD.GROUP_HEADER
+   LEFT JOIN cmpa.OBJECT O ON GD.MEMBER = O.ID
+   LEFT JOIN INCENTIVE_RESULT IR ON  IR.HOLDER = O.ID AND IPM.ID=IR.INCENTIVE_PROGRAM_MAPPING,
+ cmpa.SALES_CHANNEL SC,
+ cmpa.TERRITORY_AUTHORITY TA,
+ cmpa.SALES_TERRITORY ST
+ WHERE
+  IP.ID = IPM.INCENTIVE_PROGRAM
+  AND O.ID = SC.OBJECT
+  AND SC.DEALERSHIP = TA.ID
+  AND TA.SALES_TERRITORY = ST.ID
+  AND INSERT_TIME BETWEEN O.SC_DATE AND O.EC_DATE
+  AND INSERT_TIME BETWEEN SC.SC_DATE AND SC.EC_DATE
+  AND INSERT_TIME BETWEEN TA.SC_DATE AND TA.EC_DATE
+  AND INSERT_TIME BETWEEN ST.SC_DATE AND ST.EC_DATE
+  AND INSERT_TIME BETWEEN DATE_SUB('2015-08-07 00:00:00',INTERVAL 1 DAY) AND '2015-08-07 23:59:59'
+  AND O.ID=1304680;
+  
+  
+  SELECT O.ID, GH.ID, GD.MEMBER, IR.HOLDER, IPM.ID
+  FROM cmpa.INCENTIVE_PROGRAM_MAPPING IPM
+   LEFT JOIN cmpa.GROUP_HDR GH ON IPM.OBJECT = GH.ID
+   LEFT JOIN cmpa.GROUP_DTL GD ON GH.ID = GD.GROUP_HEADER
+   LEFT JOIN cmpa.OBJECT O ON GD.MEMBER = O.ID
+   LEFT JOIN INCENTIVE_RESULT IR ON  IR.HOLDER = O.ID AND IPM.ID=IR.INCENTIVE_PROGRAM_MAPPING
+   WHERE O.ID=1304680
+   AND IR.HOLDER= ;
+  
+  
+  SELECT * FROM INCENTIVE_RESULT WHERE HOLDER=1304680 AND INCENTIVE_PROGRAM_MAPPING=268;
+  
+  
+  mysql> SELECT * FROM INCENTIVE_PROGRAM WHERE CODE='ADD On Agst 2015 - Silver';
++-----+---------------------------+---------------------------+---------------+-----------------+------------+------------------+----------+------+--------------+---------+---------------------+---------------------+---------------------+-----------------+--------------+--------------+------------+
+| ID  | CODE                      | DESCRIPTION               | REDEEM_METHOD | CUT_OFF_PERIODE | CREATED_BY | PARTICIPANT_TYPE | DOMPETKU | SEV  | DOMPETKU_PIN | SEV_PIN | CREATED_DATE        | SC_DATE             | EC_DATE             | MAX_PARTICIPANT | ALLOW_REDEEM | START_REDEEM | END_REDEEM |
++-----+---------------------------+---------------------------+---------------+-----------------+------------+------------------+----------+------+--------------+---------+---------------------+---------------------+---------------------+-----------------+--------------+--------------+------------+
+| 210 | ADD On Agst 2015 - Silver | ADD On Agst 2015 - Silver |             1 |               0 |     634545 |                2 | NULL     | NULL | NULL         | NULL    | 2015-07-31 20:17:18 | 2015-08-01 00:00:00 | 2015-08-31 23:59:59 |            NULL |            1 | NULL         | NULL       |
++-----+---------------------------+---------------------------+---------------+-----------------+------------+------------------+----------+------+--------------+---------+---------------------+---------------------+---------------------+-----------------+--------------+--------------+------------+
+1 row in set (0.01 sec)
+
+mysql> SELECT * FROM INCENTIVE_PROGRAM_MAPPING WHERE INCENTIVE_PROGRAM=210;
++-----+-------------------+------------------+------------------+------------------+-----------+---------+--------+------+----------------+-----------+---------------------+---------------------+
+| ID  | INCENTIVE_PROGRAM | INCENTIVE_SCHEME | INCENTIVE_TARGET | INCENTIVE_REWARD | TERRITORY | CHANNEL | OBJECT | USER | CLASSIFICATION | AUTO_JOIN | SC_DATE             | EC_DATE             |
++-----+-------------------+------------------+------------------+------------------+-----------+---------+--------+------+----------------+-----------+---------------------+---------------------+
+| 268 |               210 |              128 |              237 |             NULL |        19 |       1 |      9 |    1 |              5 |         0 | 2015-07-31 20:17:18 | 9999-12-31 23:59:59 |
++-----+-------------------+------------------+------------------+------------------+-----------+---------+--------+------+----------------+-----------+---------------------+---------------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT * FROM GROUP_HDR WHERE ID=9;
++----+------+------+--------------+---------------------+------------+--------+---------------------+---------------------+
+| ID | CODE | TYPE | DESCRIPTION  | CREATED_DATE        | CREATED_BY | STATUS | SC_DATE             | EC_DATE             |
++----+------+------+--------------+---------------------+------------+--------+---------------------+---------------------+
+|  9 | IOC  |    1 | IOC Comunity | 2013-12-23 10:50:05 |     191506 |      1 | 2013-02-22 00:00:00 | 2017-12-31 00:00:00 |
++----+------+------+--------------+---------------------+------------+--------+---------------------+---------------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT * FROM SALES_CHANNEL WHERE OBJECT=1304680;
++------------------+---------+------------+---------------------+---------------------+
+| CHANNEL_CATEGORY | OBJECT  | DEALERSHIP | SC_DATE             | EC_DATE             |
++------------------+---------+------------+---------------------+---------------------+
+|                1 | 1304680 |        711 | 2014-07-17 11:51:35 | 9999-12-30 00:00:00 |
++------------------+---------+------------+---------------------+---------------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT * FROM TERRITORY_AUTHORITY WHERE ID=711;
++-----+-----------------+-----------------+------+---------------------+---------------------+
+| ID  | BUSINESS_ENTITY | SALES_TERRITORY | TYPE | SC_DATE             | EC_DATE             |
++-----+-----------------+-----------------+------+---------------------+---------------------+
+| 711 |            4086 |             560 | 1    | 2014-04-01 00:00:00 | 9999-12-31 00:00:00 |
++-----+-----------------+-----------------+------+---------------------+---------------------+
+1 row in set (0.00 sec)
+
+
+
+
+--------
+eS16Jkt!nd0sat

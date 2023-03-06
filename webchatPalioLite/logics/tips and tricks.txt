@@ -1,0 +1,13 @@
+// to create video thumbnail with js
+
+http://jsfiddle.net/giu_do/e98tffu6/
+
+<video id="video" src="http://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4" controls></video><br/>
+<button onclick="capture()">Capture</button> <br/><br/>
+<canvas id="canvas"></canvas> <br/><br/>
+
+function capture(){
+    var canvas = document.getElementById('canvas');
+    var video = document.getElementById('video');
+    canvas.getContext('2d').drawImage(video, 0, 0, video.videoWidth, video.videoHeight);
+}

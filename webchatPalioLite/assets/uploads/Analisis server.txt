@@ -1,0 +1,44 @@
+net.ipv4.icmp_ignore_bogus_error_responses = 1|Aktifkan Perlindungan Pesan Kesalahan Buruk
+net.ipv4.tcp_syncookies = 1|Aktifkan cookie SYN untuk memastikan server menghindari putus koneksi saat antrian SYN terisi	
+net.ipv4.tcp_max_syn_backlog = 2048|Tingkatkan ukuran antrian simpanan SYS menjadi 2048
+net.ipv4.tcp_synack_retries = 3	|tutup koneksi status SYN_RECV sebelumnya
+net.ipv4.netfilter.ip_conntrack_tcp_timeout_syn_recv=45	|Menurunkan nilai batas waktu SYN_RECV untuk membantu mengurangi serangan banjir SYN
+
+
+1.
+2.Ini adalah metode paling efektif untuk bertahan dari serangan SYN Flood. Penggunaan cookie SYN memungkinkan server untuk menghindari putusnya 
+  koneksi saat antrian SYN terisi. Sebaliknya, server berperilaku seolah antrian SYN telah diperbesar. Server mengirimkan kembali respon SYN + ACK
+  yang sesuai ke klien tetapi membuang entri antrian SYN. Jika server kemudian menerima respons ACK berikutnya dari klien, server dapat
+  merekonstruksi entri antrian SYN menggunakan informasi yang dikodekan dalam nomor urutan TCP.
+3.Teknik pertahanan opsional adalah dengan meningkatkan ukuran antrian simpanan SYS. Ukuran default adalah 1024. Ini dapat dilakukan dengan
+  menambahkan perintah berikut ke /etc/sysctl.conf
+4.Mengubah parameter kernel tcp_synack_retries menyebabkan kernel menutup koneksi status SYN_RECV sebelumnya. Nilai defaultnya adalah 5.
+5.Menurunkan nilai batas waktu untuk SYN_RECV akan membantu mengurangi serangan banjir SYN. Nilai defaultnya adalah 60 dan kita bisa menguranginya
+ menjadi 40 atau 45. Ini bisa dilakukan dengan menambahkan baris berikut ke sysctl.conf.
+
+
+
+
+Paket-paket SYN adalah salah satu jenis paket dalam protokol Transmission Control Protocol yang dapat digunakan untuk membuat koneksi antara
+dua host dan dikirimkan oleh host yang hendak membuat koneksi, sebagai langkah pertama pembuatan koneksi dalam proses "TCP Three-way Handshake". 
+
+
+
+Cookie SYN adalah teknik yang digunakan untuk menahan serangan IP Spoofing. Penemu utama teknik ini Daniel J. Bernstein mendefinisikan cookie SYN
+sebagai "pilihan khusus nomor urutan TCP awal oleh server TCP." Secara khusus, penggunaan cookie SYN memungkinkan server untuk menghindari putusnya
+koneksi saat antrian SYN terisi. Alih-alih menyimpan koneksi tambahan, entri antrian SYN dikodekan menjadi nomor urut yang dikirim dalam respon SYN
+dan ACK. Jika server kemudian menerima respons ACK berikutnya dari klien dengan nomor urut yang bertambah, server dapat merekonstruksi entri 
+antrian SYN menggunakan informasi yang dikodekan dalam nomor urut TCP dan melanjutkan seperti biasa dengan koneksi.
+
+
+
+Dalam sebuah serangan SYN Flooding, si penyerang akan mengirimkan paket-paket SYN ke dalam port-port yang sedang berada dalam keadaan "Listening"
+yang berada dalam host target. Normalnya, paket-paket SYN yang dikirimkan berisi alamat sumber yang menunjukkan sistem aktual, tetapi paket-paket 
+SYN dalam serangan ini didesain sedemikian rupa, sehingga paket-paket tersebut memiliki alamat sumber yang tidak menunjukkan sistem aktual.
+Ketika target menerima paket SYN yang telah dimodifikasi tersebut, target akan merespons dengan sebuah paket SYN/ACK yang ditujukan kepada alamat
+yang tercantum di dalam SYN Packet yang ia terima (yang berarti sistem tersebut tidak ada secara aktual), dan kemudian akan menunggu 
+paket Acknowledgment (ACK) sebagai balasan untuk melengkapi proses pembuatan koneksi. Tetapi, karena alamat sumber dalam paket SYN
+yang dikirimkan oleh penyerang tidaklah valid, paket ACK tidak akan pernah datang ke target, dan port yang menjadi target serangan akan menunggu
+hingga waktu pembuatan koneksi "kedaluwarsa" atau timed-out. Jika sebuah port yang listening tersebut menerima banyak paket-paket SYN,
+maka port tersebut akan meresponsnya dengan paket SYN/ACK sesuai dengan jumlah paket SYN yang ia dapat menampungnya di dalam buffer
+yang dialokasikan oleh sistem operasi.

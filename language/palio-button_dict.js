@@ -1,0 +1,56 @@
+var palioButton = {
+    'palioButton-1': {
+        'en': '<img id="FB_1" data-html="true" data-toggle="tooltip" data-placement="right" src="/newAssets/floating_button/button_cc.png" alt="cc" class="paliobutton" title="Provide your customers with an advanced Contact Center directly from your app. Engage with your customers through Video/VoIP Call or a simple text Chat..." />',
+        'id': '<img id="FB_1" data-html="true" data-toggle="tooltip" data-placement="right" src="/newAssets/floating_button/button_cc.png" alt="cc" class="paliobutton" title="Berikan Pelangganmu Contact Center canggih langsung dari aplikasimu. Libatkan pelanggan melalui VoIP/Video Call atau chat sederhana ..." />'
+    },
+    'palioButton-2': {
+        'en': '<img id="FB_2" data-html="true" data-toggle="tooltip" data-placement="right" src="/newAssets/floating_button/button_chat.png" alt="chat" class="paliobutton" title="Broadcast messages to notify your customers about your new products, special discounts, and promotions. You can also embed a feature that allows your customers to chat with each other. All the more reason why they should spend more time in your app..." />',
+        'id': '<img id="FB_2" data-html="true" data-toggle="tooltip" data-placement="right" src="/newAssets/floating_button/button_chat.png" alt="chat" class="paliobutton" title="Siarkan pesan untuk memberi tahu pelanggan kamu tentang produk baru, diskon khusus, dan promosi. Kamu juga dapat menambahkan fitur yang memungkinkan pelangganmu untuk mengobrol satu sama lain. Makin banyak alasan untuk mereka menghabiskan lebih banyak waktu di aplikasimu..." />'
+    },
+    'palioButton-3': {
+        'en': '<img id="FB_3" data-html="true" data-toggle="tooltip" data-placement="right" src="/newAssets/floating_button/button_call.png" alt="call" class="paliobutton" title="Additionally you can provide your customers with VoIP and Video Call to increase their loyalty..." />',
+        'id': '<img id="FB_3" data-html="true" data-toggle="tooltip" data-placement="right" src="/newAssets/floating_button/button_call.png" alt="call" class="paliobutton" title="Selain itu, kamu dapat menyediakan fitur VoIP & Video Call kepada pelangganmu untuk meningkatkan loyalitas mereka..." />'
+    },
+    'palioButton-4': {
+        'en': '<img id="FB_4" data-html="true" data-toggle="tooltip" data-placement="right" src="/newAssets/floating_button/button_stream.png" alt="stream" class="paliobutton" title="Announce and advertise new products, discounts, and other promotional contents by live streaming them directly to your customers..." />',
+        'id': '<img id="FB_4" data-html="true" data-toggle="tooltip" data-placement="right" src="/newAssets/floating_button/button_stream.png" alt="stream" class="paliobutton" title="Umumkan dan iklankan produk baru, diskon, dan konten promosi lainnya dengan livestreaming ke pelangganmu... " />'
+    },
+    'palioButton-5': {
+        'en': '<img alt="Contact Us" src="/newAssets/Email_icon2.png" class="animated zoomIn" />',
+        'id': '<img alt="Contact Us" src="/newAssets/Email_icon2.png" class="animated zoomIn" />'
+    },
+    'palioButton-6': {
+        'en': '<img alt="WhatsApp" src="/newAssets/Whatsapp.png" style="max-width: 43px;" class="animated zoomIn" />',
+        'id': '<img alt="WhatsApp" src="/newAssets/Whatsapp.png" style="max-width: 43px;" class="animated zoomIn" />'
+    },
+    'palioButton-7': {
+        'en': '<img alt="catchUp" src="/newAssets/cu_logo.webp" class="animated zoomIn" />',
+        'id': '<img alt="catchUp" src="/newAssets/cu_logo.webp" class="animated zoomIn" />'
+    },
+    'palioButton-8': {
+        'en': 'Provide your customers with an advanced <span style="color: #01686d"><b>Contact Center</b></span> directly from your app. Engage with your customers through Video/VoIP Call or a simple text Chat...',
+        'id': 'Berikan <span style="color: #01686d"><b>Pusat Kontak</b></span> lanjutan kepada pelanggan Anda langsung dari aplikasi Anda. Terlibat dengan pelanggan Anda melalui Panggilan Video/VoIP atau Obrolan teks sederhana...',
+    },
+    'palioButton-9': {
+        'en': 'Additionally you can provide your customers with  <span style="color: #01686d"><b>VoIP and Video Call</b></span> to increase their loyalty...',
+        'id': 'Selain itu, Anda dapat memberikan <span style="color: #01686d"><b>VoIP dan Panggilan Video</b></span> kepada pelanggan Anda untuk meningkatkan loyalitas mereka...',
+    },
+    'palioButton-10': {
+        'en': 'Announce and advertise new products, discounts, and other promotional contents by <span style="color: #01686d"><b>Live Streaming</b></span> them directly to your customers...',
+        'id': 'Umumkan dan iklankan produk baru, diskon, dan konten promosi lainnya dengan <span style="color: #01686d"><b>Siaran Langsung</b></span> langsung ke pelanggan Anda...',
+    },
+    'palioButton-11': {
+        'en': 'Azka: Good afternoon, any recommendations for the best food in this place?',
+        'id': 'Azka: Selamat siang, apakah rekomendasi makanan terbaik di tempat ini?',
+    },
+    'palioButton-12': {
+        'en': 'Deddy: Currently the best menu at our place is Rib Meatballs, currently there is a 20% discount promo just for today 😄',
+        'id': 'Deddy: Saat ini menu terbaik di tempat kami yaitu Bakso Rusuk, saat ini sedang ada promo diskon 20% hanya hari ini 😄',
+    },
+    'palioButton-13': {
+        'en': 'Azka: Wow interesting, may i order three servings? 😍',
+        'id': 'Azka: Wah menarik, saya pesan tiga porsi ya 😍',
+    },
+};
+
+export { palioButton };

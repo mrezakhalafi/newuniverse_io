@@ -1,0 +1,8 @@
+.img-placeholder {
+    background-repeat: no-repeat;
+    background-color: lightgray;
+    background-size: contain;
+    background-image: url('../img/img-placeholder.jpg');
+    min-height: 200px;
+}
+

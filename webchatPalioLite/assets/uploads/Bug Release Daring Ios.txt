@@ -1,0 +1,65 @@
+^Berikut Hasil Test DaRing versi iOS 20201202^
+^Release Note Bugs Conference Room^
+1. LV(Center View) pada dirisendiri Rotate 180 derajat jika user dirisendiri berbicara dan terzoom Tested
+
+^Release Note Bugs Bugs Tab 1^
+1. Tombol fullscreen pada floating video Tab 1 hilang setelah fullscreen video diikuti minimize video dengan kondisi video pause video saat minimize Tested
+2. Semua user baru yang memposting video berlabel akun verified pada Tab 1 Tested
+
+^Release Note Bugs Tab 2^
+1. Tidak dapat set target invitation atau target group saat create konten Tested
+2. Label privacy konten pada tab 2 menjadi public, walaupun target konten friend Tested
+
+^Release Note Feedback:^
+1. Jarak main video dengan list video terlalu jauh pada tab 1 Tested
+2. Munculkan notifikasi jika pencarian tidak ditemukan pada Tab 1 dan 2 Tested
+3. View search tidak tertutup setelah klik selesai pada keyboard pada tab 1 dan tab 2 Tested
+4. Tutup menu 'Run a video automatically' pada menu setting Tested
+
+
+^A. Bugs Tab 1^
+1. Video potrait menjadi gepeng jika di play pada tab 1
+2. Penanda verified(centang) tidak muncul pada list tab 1 walaupun akun tersebut sudah verified
+
+^B. Bugs Tab 2^
+1. Play video posting dari detail profile masih dummy 
+2. Create story pada detail profile tidak langsung muncul, saat ini harus pindah Tab
+3. User yang sudah di unfriend masih muncul pada story list tab 2
+
+^C. Bugs Tab 3^
+1. Muncul script html pada notifikasi user yang difollow ketika memposting konten
+2. Form yang dikirimkan oleh bot pada saat approve murid seharusnya tidak bisa di edit
+
+^D. Bugs Detail Profile^
+1. List teman masih muncul walaupun sudah di unfriend
+
+^E. Bugs Pendidikan:^
+1. User Pengajar tidak dapat membuat konten dengan target Sekolah(Grup)
+2. User murid yang sebelumnya didaftarkan oleh user orang tua tidak ada pada list Sub Account 
+3. Nama kelas tidak muncul pada hirarki sekolah yang dibuat oleh pengajar 
+4. Topik Pelajaran(forum) tidak muncul pada hirarki sekolah yang dibuat oleh pengajar 
+5. Isi text pada form approval menjadi hilang setelah di setujui/approve
+6. Seharusnya field email diubah menjadi no telpon/MSISDN pada form approve student
+7. Proses login menjadi register pada murid yang sudah didaftarkan oleh orang tua, sehingga tidak ada sekolah pada list grup user murid
+8. Nama user yang di approve tidak muncul pada list member sekolah
+
+^F. Feedback:^
+1. Tambahkan notifikasi "There's no conversation yet" jika tidak ada percakapan pada Tab 3
+2. Video potrait menjadi gepeng jika di play pada tab 1
+3. Sebaiknya tambahkan tanda bintang (mandatory) pada title saat create konten 
+4. Munculkan tanda ceklis pada saat memilih konten untuk story pada detail profile 
+5. Sesuaikan ukuran dan posisi (tengah) labal live pada story list user Tab 2 
+6. Sesuaikan tampilan LS pada penonton dan penyiar, saat ini ukuran tampilam tidak sama(Tidak fullscreen)  
+7. Sesuaikan warna select message pada editor pesan, dibuat warna yang lebih soft 
+8. Sebaiknya munculkan notifikasi jika user pendidikan klik regitsrasi akun edukasi pada pengaturan 
+9. Tambahkan Label nama user pada setiap RV saat Video Call Conference.
+10. Tambahkan Label edukasi pada profile user yang sudah menjadi pengajar.
+11. Photo Profile terlihat tidak presisi(gepeng) saat mengganti PP ketika register (Tab 0).
+12. Sebaiknya permission microfone tidak munculkan saat first install tapi saat menggunakan fitur terkait.
+13. Tambahkan Label pendidikan pada grup/sekolah pada Tab 3.
+14. Sesuaikan ukuran PP default dan PP yang sudah di ganti, saat ini ukuran PP terlihat berbeda pada story list Tab 2.
+15. Hilangkan tombol add call saat outgoing dan incoming video call.
+16. Sesuaikan notifikasi saat sukses membuat sekolah, saat ini muncul toast beberapa kali.
+17. Sesuaikan notifikasi saat sukses update username, saat ini muncul toast beberapa kali.
+18. Sebaiknya tampilan Change Name langsung tertutup saat klik next, saat ini tidak langsung tertutup dan dapat klik next berulang, sehingga memunculkan toast berulang.
+19. Sebaiknya di notifikasi approve student yang dikirimkan oleh bot berbentuk link/button

@@ -1,0 +1,711 @@
+.pull-right {
+  float: right;
+}
+
+/* sidebar */
+[class*="sidebar-dark"] .brand-link {
+  border-bottom: unset;
+}
+
+[class*="sidebar-dark-"] {
+  background-color: #1799ad;
+}
+
+[class*="sidebar-dark-"] .nav-treeview>.nav-item>.nav-link {
+  color: #fff;
+}
+
+[class*="sidebar-dark-"] .nav-treeview>.nav-item>.nav-link:hover {
+  background-color: #95f1ff;
+}
+
+[class*="sidebar-dark-"] .nav-sidebar>.nav-item>.nav-link {
+  color: #fff;
+}
+
+[class*="sidebar-dark-"] .nav-sidebar>.nav-item>.nav-link:hover {
+  background-color: #95f1ff;
+  color:black !important;
+}
+
+
+[class*="sidebar-dark-"] .nav-link .active {
+  background-color: #95f1ff !important;
+}
+
+[class*="sidebar-dark-"] .nav-link .active:hover {
+  background-color: #95f1ff;
+}
+
+.sidebar-dark-primary .nav-sidebar>.nav-item>.nav-link.active {
+  background-color: white;
+  color: #343a40;
+}
+
+/* .card {
+  height: 100%;
+} */
+
+/* top navbar */
+#username-dropdown {
+  border-radius: 7px;
+  padding: 0 0 0 10px;
+  margin: 0 auto;
+}
+
+#username-dropdown:hover {
+  background-color: #ced4da;
+}
+
+#username-top {
+  margin: auto;
+}
+
+@media screen and (orientation:portrait) and (max-width:600px) {
+  #username-top {
+    display: none;
+  }
+}
+
+#pfp-mini {
+  max-height: 100%;
+  width: auto;
+  border-radius: 7px;
+  margin-left: 5px;
+}
+
+.main-header {
+  border: unset;
+  background-color: #f4f6f9;
+}
+
+/* main content */
+.card-name {
+  font-family: 'Poppins', sans-serif !important;
+  /* color: #007a87; */
+  font-weight: 700;
+}
+
+.profile-pic {
+  max-width: 80%;
+  max-height: 80%;
+  margin: auto;
+}
+
+.profile-pic-settings {
+  width: 50%;
+  max-width: 200px;
+  height:auto;
+  margin: auto;
+}
+
+#overview-email {
+  margin: 0 auto;
+}
+
+.card {
+  padding: 1.5rem;
+  border-radius: 20px;
+}
+
+.josefin-sans {
+  font-family: 'Poppins', sans-serif;
+}
+
+/* .api-key {
+  max-width: 225px !important;
+  display: inline-block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+} */
+
+#copyapi {
+  background-color: #1799ad;
+  color: white;
+  /* float: right; */
+  vertical-align: middle;
+  padding: 4px 10px;
+}
+
+#copyinternalpass {
+  background-color: #1799ad;
+  color: white;
+  /* float: right; */
+  vertical-align: middle;
+  padding: 4px 10px;
+}
+
+#copyusername {
+  background-color: #1799ad;
+  color: white;
+  /* float: right; */
+  vertical-align: middle;
+  padding: 4px 10px;
+}
+
+#copypassword {
+  background-color: #1799ad;
+  color: white;
+  /* float: right; */
+  vertical-align: middle;
+  padding: 4px 10px;
+}
+
+#copyemail {
+  background-color: #1799ad;
+  color: white;
+  /* float: right; */
+  vertical-align: middle;
+  padding: 4px 10px;
+}
+
+ul#service-info {
+  list-style: none;
+  padding: 0;
+}
+
+ul#service-info li {
+  padding: 1rem 0;
+}
+
+#billing img {
+  width: 80%;
+  max-width: 233px;
+  height: auto;
+}
+
+.btn-green {
+  border: 2px solid #007a87 !important;
+  border-radius: 1rem;
+  font-size: 1.2rem;
+  font-family: 'Poppins', sans-serif;
+  font-weight: bold;
+  color: #007a87;
+}
+
+.btn-green:hover {
+  background-color: #1799ad;
+  color: #fff;
+}
+
+.btn-green:active {
+  background-color: #61a6ff;
+  border: 2px solid #61a6ff !important;
+}
+
+.btn-green-1 {
+  border: 3px solid #1799ad !important;
+  border-radius: 2rem;
+  font-size: 1rem;
+  font-family: 'Poppins', sans-serif;
+  font-weight: bold;
+  color: white;
+  background-color: #1799ad;
+}
+
+.btn-green-1:hover {
+  background-color: #61a6ff;
+  border: 3px solid #61a6ff !important;
+  color:white;
+}
+
+#docs {
+  /* padding-top: 4rem; */
+  background-color: #1799ad;
+}
+
+@media screen and (min-width:992px) and (orientation:landscape) {
+  #docs {
+    margin-top: 2.3rem;
+  }
+}
+
+#accordion .card {
+  padding: unset;
+  border-radius: unset;
+}
+
+#accordion .card {
+  box-shadow: unset;
+  border-bottom: 2px solid #1799ad;
+}
+
+#accordion .card .card-header {
+  cursor: pointer;
+  border-bottom: 2px solid #1799ad;
+}
+
+#accordion .card .card-header,
+#accordion .card .card-body {
+  font-family: 'Poppins', sans-serif;
+  border: 0;
+  padding: 0;
+}
+
+#accordion .card .card-header .col-sm-8 {
+  border-bottom: 2px solid #1799ad;
+}
+
+#accordion .card .card-header .col-sm-3,
+#accordion .card .card-header .col-sm-8 {
+  padding-bottom: .5rem;
+}
+
+#accordion .card .card-body .col-sm-3,
+#accordion .card .card-body .col-sm-8 {
+  padding-top: .6rem;
+}
+
+#accordion .card .card-body {
+  font-size: 0.9rem;
+}
+
+#accordion .card-header .fa-chevron-down {
+  margin-top: 4px;
+  float: right;
+}
+
+#accordion .card-header[aria-expanded="true"] .fa-chevron-down {
+  -webkit-transform: rotate(180deg);
+  -ms-transform: rotate(180deg);
+  -o-transform: rotate(180deg);
+  transform: rotate(180deg);
+}
+
+.docs-icon {
+  max-height: 40px;
+  max-width: 50px;
+  width: 100%;
+  height: auto;
+}
+
+.docs-link {
+  list-style: none;
+  margin: auto 0 !important;
+  padding-left: 0px;
+}
+
+#profile-modal .modal-content, #firstlogin .modal-content {
+  border-radius: 1rem;
+  min-width: 700px;
+}
+
+#firstlogin .modal-content h1, #firstlogin .modal-content h2, 
+#firstlogin .modal-content h3, #firstlogin .modal-content h4, 
+#firstlogin .modal-content h5 {
+  font-family: 'Poppins', sans-serif;
+  color: black;
+}
+
+#firstlogin .modal-content p {
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.1rem;
+}
+
+#profile-modal .modal-header {
+  padding: 1rem 1rem .5rem 1rem;
+  border-bottom: 3px solid #007a87;
+}
+
+#profile-modal .modal-header .nav-link {
+  font-family: 'Poppins', sans-serif;
+  color: grey;
+}
+
+#profile-modal .modal-header .nav-link.active {
+  font-family: 'Poppins', sans-serif;
+  color: black;
+}
+
+#profile-modal .modal-body *, #firstlogin .modal-content {
+  font-family: 'Poppins', sans-serif;
+}
+
+#profile-modal .modal-body .form-control, #firstlogin .modal-body .form-group .form-control {
+  border: 1px solid black;
+  border-radius: 2rem;
+}
+
+.btn-yellow {
+  background-color: #1799ad;
+  color: white;
+  border-radius: 2rem;
+  min-width: 120px;
+  margin: 0 10px;
+}
+
+.btn-yellow:hover,
+.btn-yellow:active {
+  background-color: #95f1ff;
+}
+
+.btn-yellow-1 {
+  border: 2px solid #1799ad;
+  color: #1799ad;
+  min-width: 120px;
+  border-radius: 2rem;
+  margin: 0 10px;
+}
+
+.btn-yellow-1:hover {
+  color: #1799ad;
+}
+
+.card#recent-usage {
+  padding: 1.25rem;
+}
+
+#recent-usage .card-body {
+  padding: 0;
+}
+
+#recent-usage .sparkline {
+  margin-bottom: .5rem;
+  border-bottom: 4px solid #007a87;
+}
+
+#recent-usage .chart-info {
+  font-family: 'Poppins', sans-serif;
+  font-style: italic;
+  font-weight: 700;
+}
+
+.main-footer {
+  font-family: 'Poppins', sans-serif !important;
+}
+
+
+/* usage.php */
+@media (min-width: 768px) {
+  #most-used {
+    float: right;
+  }
+}
+
+.card#monthly-report {
+  background-color: #679b67;
+}
+
+.card#monthly-report .card-name {
+  font-family: 'Poppins', sans-serif !important;
+}
+
+.card#monthly-report * {
+  color: white;
+  font-family: 'Poppins', sans-serif;
+}
+
+.card#growth {
+  border: 3px solid #679b67;
+  color: unset;
+}
+
+#growth #current-month,
+#growth #last-month {
+  padding: .5rem 2rem;
+  border-radius: 20px;
+  border: 3px solid #1799ad;
+}
+
+#growth .growth-usage {
+  font-size: 2rem;
+  font-family: 'Poppins', sans-serif;
+  color: black;
+}
+
+.growth-percent {
+  font-family: 'Poppins', sans-serif;
+  font-size: 3.25rem;
+  font-weight: 700;
+  /* color: #679b67; */
+}
+
+#bandwidth-chart.card {
+  height: 335.2px;
+}
+
+#monthly-chart {
+  max-height: 400px;
+}
+
+@media (min-width: 768px) {
+  #total-usage {
+    text-align: right;
+  }
+}
+
+@media (max-width: 992px) {
+  #prev-month {
+    margin-top: 1rem;
+  }
+}
+
+/* bill & payments */
+.card#payments * {
+  font-family: 'Poppins', sans-serif;
+}
+
+@media (min-width: 768px) {
+  #total-bill.card {
+    min-height: 278.8px;
+  }
+}
+
+#total-bill .row * {
+  font-family: 'Poppins', sans-serif;
+}
+
+.card#bills {
+  min-height: 278.8px;
+}
+
+#bills .monthly-bill .month-year {
+  font-family: 'Poppins', sans-serif !important;
+}
+
+#bills * {
+  font-family: 'Poppins', sans-serif;
+}
+
+#bills .form-control {
+  border-radius: 1.5rem;
+  border: 1px solid black;
+  max-width: 200px;
+  float: right;
+}
+
+#bills .monthly-bill .btn-green {
+  font-size: unset;
+  color: black;
+}
+
+#bills .monthly-bill span.month-year strong {
+  font-family: 'Poppins', sans-serif !important;
+  font-size: 1.3rem;
+}
+
+.monthly-bill {
+  border-bottom: 2px solid #007a87;
+}
+
+#bills i.fas {
+  font-family: 'Poppins',sans-serif !important;
+  font-size: 1.1rem;
+}
+
+#bills .bills-more {
+  display: none;
+}
+
+#search-mbl {
+  display: none;
+}
+
+@media screen and (max-width:991px) {
+  #search-mbl {
+    display: block;
+    float: right;
+  }
+
+  #searchModal.modal * {
+    font-family: 'Poppins', sans-serif;
+  }
+
+  #searchModal.modal .modal-footer {
+    border-top: 0;
+  }
+
+  #search-bill {
+    display: none;
+  }
+}
+
+@media screen and (min-width:1200px) and (max-width:1600px) {
+
+  #current-month.btn.btn-yellow,
+  #last-month.btn.btn-yellow-1 {
+    padding: .5rem .1rem !important;
+    margin: 0 !important;
+  }
+
+  #current-month.btn.btn-yellow .growth-usage,
+  #last-month.btn.btn-yellow-1 .growth-usage {
+    font-size: 1.5rem;
+  }
+
+  #growth .compare {
+    padding: 0;
+  }
+}
+
+/* support */
+div#support-wrapper .card {
+  font-family: 'Poppins', sans-serif;
+}
+
+div#support-wrapper .card .form-control {
+  border-radius: .5rem;
+  border: 1px solid black;
+}
+
+#monthly-chart.card {
+  padding: 0.75rem;
+}
+
+#create-ticket.card .card-header {
+  border-bottom: 0;
+}
+
+.container-check {
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  /* font-size: 22px; */
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Hide the browser's default checkbox */
+.container-check input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+/* Create a custom checkbox */
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 25px;
+  width: 25px;
+  background-color: #eee;
+  border-radius: 5px;
+}
+
+/* On mouse-over, add a grey background color */
+.container-check:hover input~.checkmark {
+  background-color: #ccc;
+}
+
+/* When the checkbox is checked, add a blue background */
+.container-check input:checked~.checkmark {
+  background-color: #1799ad;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the checkmark when checked */
+.container-check input:checked~.checkmark:after {
+  display: block;
+}
+
+/* Style the checkmark/indicator */
+.container-check .checkmark:after {
+  left: 9px;
+  top: 5px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+button#submit-ticket.btn-yellow {
+  border-radius: 0.5rem !important;
+}
+
+.btn-success {
+  border-radius: 2rem;
+  font-size: 1.2rem;
+  font-family: 'Poppins', sans-serif;
+  font-weight: bold;
+  padding: .375rem 1.5rem;
+}
+
+#recent-tickets .monthly-bill .btn-danger {
+  border-radius: 2rem;
+  font-size: 1.2rem;
+  font-family: 'Poppins', sans-serif;
+  font-weight: bold;
+  padding: .375rem 1.5rem;
+  background-color: #f00;
+}
+
+#recent-tickets.card {
+  padding: 1rem;
+}
+
+/* .card#recent-tickets {
+  min-height: 278.8px;
+} */
+
+#recent-tickets .monthly-bill .month-year {
+  font-family: 'Poppins', sans-serif !important;
+}
+
+#recent-tickets * {
+  font-family: 'Poppins', sans-serif;
+}
+
+#recent-tickets .form-control {
+  border-radius: 1.5rem;
+  border: 1px solid black;
+  max-width: 200px;
+  float: right;
+}
+
+#recent-tickets .monthly-bill .btn-green {
+  font-size: unset;
+  color: black;
+}
+
+#recent-tickets .monthly-bill span.month-year strong {
+  font-family: 'Poppins', sans-serif !important;
+  font-size: 1.3rem;
+}
+
+#recent-tickets i.fas {
+  font-family: 'Poppins',sans-serif !important;
+  font-size: 1.1rem;
+}
+
+#recent-tickets .bills-more {
+  display: none;
+}
+
+#recent-tickets.card .card-footer {
+  background-color: transparent;
+  padding: .5rem .75rem;
+}
+
+#recent-tickets.card .card-header {
+  border-bottom: 0;
+}
+
+#recent-tickets.card {
+  min-height: 693.8px;
+}
+
+#recent-tickets.card .card-body {
+  max-height: 565px;
+  overflow-y: auto;
+}
+
+.custom-select {
+  margin-bottom: .5rem;
+}

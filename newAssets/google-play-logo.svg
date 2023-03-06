@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="152" height="53" viewBox="0 0 152 53">
+  <g id="Group_5523" data-name="Group 5523" transform="translate(-9370 -1945)">
+    <g id="Group_5520" data-name="Group 5520" transform="translate(125.043 1)">
+      <path id="Icon_awesome-google-play" data-name="Icon awesome-google-play" d="M20.227,14.408,6.655.8l17.267,9.913-3.7,3.7ZM3.113,0A2.39,2.39,0,0,0,1.779,2.171V29.308a2.39,2.39,0,0,0,1.334,2.171L18.893,15.736ZM29.26,13.873l-3.622-2.1L21.6,15.742l4.04,3.966,3.7-2.1a2.467,2.467,0,0,0-.074-3.739ZM6.655,30.685l17.267-9.913-3.7-3.7Z" transform="translate(9253.178 1955)" fill="#4285f4"/>
+      <text id="Google_Play" data-name="Google Play" transform="translate(9292 1978)" fill="#4285f4" font-size="16" font-family="Poppins-Regular, Poppins"><tspan x="0" y="0">Google Play</tspan></text>
+    </g>
+    <g id="Rectangle_1247" data-name="Rectangle 1247" transform="translate(9370 1945)" fill="none" stroke="#4285f4" stroke-width="2">
+      <rect width="152" height="53" rx="7" stroke="none"/>
+      <rect x="1" y="1" width="150" height="51" rx="6" fill="none"/>
+    </g>
+  </g>
+</svg>

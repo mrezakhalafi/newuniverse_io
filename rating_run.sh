@@ -1,0 +1,1 @@
+java -cp ".:mysqlconnector.jar" RateUsage

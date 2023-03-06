@@ -1,0 +1,40 @@
+/*
+SQLyog Community
+MySQL - 10.4.17-MariaDB : Database - new_nus
+*********************************************************************
+*/
+
+/*!40101 SET NAMES utf8 */;
+
+/*!40101 SET SQL_MODE=''*/;
+
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+/*Table structure for table `webform` */
+
+CREATE TABLE `webform` (
+  `EMAIL` varchar(256) NOT NULL,
+  `USER_ID` int(11) NOT NULL,
+  `COMPANY_ID` int(11) NOT NULL,
+  `WEB_URL` varchar(256) NOT NULL,
+  `GENERATE_APK` int(11) DEFAULT 0,
+  `COMPANY_NAME` varchar(256) DEFAULT NULL,
+  `APP_ID` varchar(256) DEFAULT NULL,
+  `COMPANY_LOGO` varchar(256) DEFAULT NULL,
+  `APP_CERTIFICATE` varchar(256) DEFAULT NULL,
+  `NEW_CERTIFICATE` int(11) DEFAULT 0,
+  `ALIAS` varchar(256) DEFAULT NULL,
+  `PASSWORD` varchar(256) DEFAULT NULL,
+  `VALIDITY` int(11) DEFAULT NULL,
+  `FULL_NAME` varchar(256) DEFAULT NULL,
+  `ORGANIZATIONAL_UNIT` varchar(256) DEFAULT NULL,
+  `ORGANIZATION` varchar(256) DEFAULT NULL,
+  `CITY` varchar(256) DEFAULT NULL,
+  `STATE` varchar(256) DEFAULT NULL,
+  `COUNTRY_CODE` varchar(256) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;

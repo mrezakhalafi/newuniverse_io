@@ -1,0 +1,24 @@
+1. Munculkan info "session expired" jika expired!!! dan jika expired status user harus dibuat logout!, saat ini jika expired tidak bisa login ulang! 
+(done) 2. Ubah title "Prompt" pada popup (Invalid User or Password) 
+(done) 3. Ubah semua info@palio.io menjadi support@palio.io (ada di banyak titik) 
+(done) 4. Tambahkan logo Home disebelah logo Palio.io (kiri atas) 
+(done) 5. Seluruh font di Dashboard dan sub-Page dibuat lebih formal, disamakan dengan condition di pricing 
+(done) 6. Buang opsi Profile, redundant dengan Settings. 
+(done) 7. Ubah default company logo (jangan pakai logo palio). 
+(done) 8. Pada semua isian password harus ada pilihan show password (ada di banyak titik) 
+(done) 9. Tambahkan Admin Password di Settings 
+(done) 10. Ubah "New Internal Password" menjadi "Internal Password" 
+(done) 11. Ubah "New Support Email" menjadi "Email account for Support" 
+(done) 12. Tambahkan tombol di dekat 9, 10, 11, untuk mengubah value dari masing-masing. 
+(done) 13. Ubah "You currently don't have support email" menjadi "Currently You don't have any email account for customer support". 
+(done) 14. Support Email ini untuk apa? 
+(done) 15. Informasi Selected Service(s) salah!!! Diganti dengan hal/informasi sesuai Pricing/Invoice (Mobile Contact Center, Push Notification, dst...) 
+16. Tombol SUBSCRIBE di dalam Dashboard tidak bisa diklik! 
+(done) 17. Untuk Trial Account tidak perlu ada Invoice!!!!. Ubah content email Trial seperti sesuai note di bawah 
+(done) 18. Hilangkan semua VAT/TAX dalam invoice 
+(done) 19. Isi informasi di Invoice (nomer, dll) di Dashboard harus sama dengan informasi yg dikirimkan! 
+(done) 20. Trial tidal perlu muncul dalam Bill & Payment!!! 
+21. Support: Ticket tidak terkirim ke email support@palio.io!!! 
+(done) 22. Support: Mobile Contact Center"s", Push Notification"s" >>> tidak pakai "s" 
+(done) 23. Usage Record, pada Table Title tidak usah pakai Underscore 
+(done) 24. Ubah layout dashboard sesuai template terlampir. 

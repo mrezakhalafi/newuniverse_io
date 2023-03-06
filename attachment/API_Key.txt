@@ -1,0 +1,4 @@
+Subscribe Success!!!
+API Key has been Activated now.
+
+Your API Key : 2c190cf50f7babe4b4951cb1e1ba25bb

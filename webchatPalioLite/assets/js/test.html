@@ -1,0 +1,39 @@
+<video id="video" controls></video><br/>
+<button onclick="capture()">Capture</button> <br/><br/>
+<canvas id="canvas"></canvas> <br/><br/>
+
+<input id="demo" type="file" name="file[]" class="file_multi_video" accept="video/*">
+
+<script type="text/javascript">
+
+	function capture(){
+	    var canvas = document.getElementById('canvas');
+	    var video = document.getElementById('video');
+	    canvas.getContext('2d').drawImage(video, 0, 0, video.videoWidth, video.videoHeight);
+
+	  	console.log(canvas.toDataURL('image/jpeg', 1.0));
+	}
+
+	var fileInput = document.getElementById('demo');
+	let video = document.getElementById('video');
+	let canvas = document.getElementById('canvas');
+
+	fileInput.onchange = () => {
+	  	const selectedFile = fileInput.files[0];
+	  	console.log(video.readyState);
+
+	  	video.addEventListener('canplay', function(){
+			setTimeout(function(){
+					console.log(video.readyState);
+					canvas.getContext('2d').drawImage(video, 0, 0, video.videoWidth, video.videoHeight);
+
+					var fullQuality = canvas.toDataURL('image/jpeg', 1.0);
+					console.log(fullQuality);
+				
+			}, 200)
+		});
+
+	  	video.src = URL.createObjectURL(selectedFile);
+	}
+	
+</script>

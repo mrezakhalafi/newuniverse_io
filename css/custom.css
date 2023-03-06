@@ -1,0 +1,422 @@
+.background {
+	background-color: #ffffff;
+	background-size: cover;
+	background-position: bottom;
+	border-bottom: 2px solid #213458;
+}
+
+.bg-white {
+	background-color: #FFFFFF;
+}
+
+.bg-ee {
+	background-color: #EEEEEE;
+}
+
+.fs-13 {
+	font-size: 13px;
+}
+
+.fsz-15 {
+	font-size: 15px;
+}
+
+.fs-30 {
+	font-size: 30px;
+}
+
+.fc-7A {
+	color: #7A7A7A;
+}
+
+.fc-70 {
+	color: #707070;
+}
+
+.border-7A {
+	border: 1px solid #7A7A7A;
+}
+
+.border-70 {
+	border: 1px solid #707070;
+}
+
+.txt-decor-none {
+	text-decoration: none;
+}
+
+.transparent {
+	background: transparent;
+}
+
+a.tabprof {
+	display: block;
+	text-decoration: none;
+	margin: 5px 0;
+	padding: .5rem 0;
+	border: 0;
+	border-bottom: 3px solid #ccc;
+	color: #323232;
+	font-weight: bold;
+}
+
+a.tabprof.active {
+	border-bottom: 3px solid #1A71E8;
+}
+
+.msg-tabs {
+	background-color: #FFFFFF;
+	color: #707070;
+	width: 100%;
+	padding: 10px;
+	font-family: "Poppins",sans-serif;
+}
+
+a.msg-tabs.active {
+	background-color: #ccc !important;
+	border: 0;
+}
+
+#tab-msg {
+	width: 100%;
+	border: 0;
+}
+
+.nav-dashboard.active {
+	background-color: #ccc;
+}
+
+.ff-arial {
+	font-family: 'Poppins',sans-serif;
+	font-weight: normal;
+}
+
+#features-list .ls {
+	width: 500px;
+	height: auto;
+}
+
+#features-list .vc {
+	height: 500px;
+}
+
+#features-list .ac {
+	height: 500px;
+}
+
+#features-list .um {
+	width: 500px;
+	height: auto;
+}
+
+#features-list .cb {
+	width: 500px;
+	height: auto;
+}
+
+#features-list .ss {
+	height: 500px;
+}
+
+#features-list .wb {
+	width: 500px;
+}
+
+@media screen and (max-width:767px) {
+	#features-list .ls {
+		max-height: 400px;
+		margin-bottom: 15px;
+	}
+
+	#features-list .vc {
+		max-height: 350px;
+		margin-bottom: 15px;
+	}
+
+	#features-list .ac {
+		max-height: 350px;
+		margin-bottom: 15px;
+	}
+
+	#features-list .um {
+		max-height: 350px;
+		margin-bottom: 15px;
+	}
+
+	#features-list .cb {
+		max-height: 350px;
+		margin-bottom: 15px;
+	}
+
+	#features-list .ss {
+		max-height: 400px;
+		margin-bottom: 15px;
+	}
+
+	#features-list .wb {
+		max-height: 350px;
+		margin-bottom: 15px;
+	}
+}
+
+@media screen and (max-width:600px) {
+	.features-desc {
+		text-align: center;
+	}
+
+	#usecase-menu {
+		max-height: 40vh;
+		overflow-y: auto;
+	}
+
+
+}
+
+/* #features-list .features-desc { margin: 2rem 0; } */
+
+/* #features-list .row {height: 60vh;} */
+
+html,
+body {
+	overflow-x: hidden;
+}
+
+#features-list .row {
+	padding: 25px 0;
+}
+
+
+
+@media screen and (max-width:767px) {
+	.btn-mobile {
+		display: flex;
+	}
+
+	.header-img {
+		text-align: center;
+		height: auto;
+		width: auto;
+		max-width: 300px;
+		max-height: 300px;
+	}
+}
+
+.search-img {
+	height: 15vh;
+	width: auto;
+}
+
+.card {
+	border: 0;
+}
+
+.card-footer {
+	background-color: transparent;
+	border: 0;
+}
+
+#blog-header {
+	background-color: #007a87;
+	overflow: hidden;
+	/* margin: 35px 0 0 0; */
+	background-size: cover;
+	background-position: bottom;
+	padding: 35px 0;
+	min-height: 45vh;
+}
+
+#blog-title {
+	margin: 4rem 3rem 0 0;
+}
+
+#title {
+	font-size: 50px;
+}
+
+@media screen and (max-width:767px) {
+	#title {
+		font-size: 45px;
+	}
+}
+
+.bg-cream {
+	background-color: #eac6a7;
+}
+
+/* @media screen and (min-width: 768px) {
+	#blog-navbar {
+	  transition: padding-top 0.3s, padding-bottom 0.3s;
+	  border: none;
+	  background-color: transparent;
+	}
+
+	#blog-navbar {
+	  font-size: 1.3em;
+	  transition: all 0.3s;
+	}
+
+	#blog-navbar.navbar-shrink {
+	  padding-top: 0;
+	  padding-bottom: 0;
+	  background-color: #212529;
+	}
+
+	#blog-navbar.navbar-shrink .navbar-brand {
+	  font-size: 1.25em;
+	  padding: 12px 0;
+	}
+} */
+
+.card-text,
+.card-title,
+.headline,
+.btn {
+	font-family: 'Poppins',sans-serif;
+}
+
+.card-title {
+	font-weight: bold;
+}
+
+@media screen and (min-width: 768px) {
+	.blog-content {
+		width: 80%;
+	}
+}
+
+.search-result {
+	/* border-top: 1px solid grey; */
+	border-bottom: 1px solid grey;
+}
+
+.navbar-nav.navbar-center {
+	position: absolute;
+	left: 50%;
+	transform: translatex(-50%);
+}
+
+a.blog-title-links {
+	color: black;
+}
+
+a:hover .blog-title-links {
+	color: black;
+	text-decoration: none;
+	font-weight: bold !important;
+}
+
+.montserrat-font {
+	font-family: 'Poppins',sans-serif !important;
+}
+
+.work-sans-font {
+	font-family: 'Poppins',sans-serif !important;
+}
+
+.josefin-sans {
+	font-family: 'Poppins',sans-serif !important;
+}
+
+.btn {
+	font-size: 1.3rem;
+}
+
+.banner-img {
+	height: 90vh;
+	width: auto;
+	margin-right: -80px;
+}
+
+@media screen and (max-width: 1366px) {
+	.banner-img {
+		height: 90vh;
+		width: auto;
+		margin-right: -80px;
+	}
+}
+
+/* @media screen and (max-width:1024px) {
+	.banner-img {
+		width: 90%;
+		height: auto;
+	}
+}
+
+@media screen and (min-width:1025px) {
+	.banner-img {
+		width:90%;
+		height: auto;
+	}
+} */
+
+#instruction .col-md-10 {
+	background-color: #01686d;
+}
+
+.container-check {
+	display: block;
+	position: relative;
+	padding-left: 35px;
+	margin-bottom: 12px;
+	cursor: pointer;
+	font-size: 22px;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
+/* Hide the browser's default checkbox */
+.container-check input {
+	position: absolute;
+	opacity: 0;
+	cursor: pointer;
+	height: 0;
+	width: 0;
+}
+
+/* Create a custom checkbox */
+.checkmark {
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 25px;
+	width: 25px;
+	background-color: #eee;
+	border-radius: 5px;
+}
+
+/* On mouse-over, add a grey background color */
+.container-check:hover input~.checkmark {
+	background-color: #ccc;
+}
+
+/* When the checkbox is checked, add a blue background */
+.container-check input:checked~.checkmark {
+	background-color: #01686d;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+	content: "";
+	position: absolute;
+	display: none;
+}
+
+/* Show the checkmark when checked */
+.container-check input:checked~.checkmark:after {
+	display: block;
+}
+
+/* Style the checkmark/indicator */
+.container-check .checkmark:after {
+	left: 9px;
+	top: 5px;
+	width: 5px;
+	height: 10px;
+	border: solid white;
+	border-width: 0 3px 3px 0;
+	-webkit-transform: rotate(45deg);
+	-ms-transform: rotate(45deg);
+	transform: rotate(45deg);
+}
