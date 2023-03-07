@@ -377,7 +377,13 @@ if (isset($_POST['changeUserName'])) {
 // update adm pass
 if (isset($_POST['changeAdmPass'])) {
 
-    echo ('<script>alert("Admin Password has been changed.")</script>');
+    echo ('<script>');
+    echo ('if (localStorage.lang == 0) {');
+    echo ('alert("Admin Password has been changed.")');
+    echo ('}else{');
+    echo ('alert("Kata sandi Admin telah diganti.")');
+    echo ('}');
+    echo ('</script>');
 
     $adminPass = $_POST['adminPass'];
 

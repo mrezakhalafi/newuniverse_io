@@ -71,6 +71,8 @@ if ($userState == 3 && $userStatus == 1) {
   header('Location: status/palio/status.php');
 } elseif ($userState < 2 && $userStatus == 1) {
   header('Location: verifyemail.php');
+} else if ($userStatus == 3 && $userState == 3) {
+  header('Location: dashboardv2/index');
 }
 
 $email = $_SESSION['email'];
@@ -1047,10 +1049,12 @@ if (isset($_POST['dashboard']) || $userState == 1) {
                 <div class="input-group btn border-70 p-0 mt-4">
                   <input maxlength="16" size="16" type="text" required class="form-control form-control fs-16 fontRobReg" id="credit-card-number" placeholder="Credit Card Number (e.g 4000000000001091)" name="creditCardNumber">
                 </div>
-                <div class="row input-group btn border-70 p-0 mt-4" style="text-align: left">
-                  <div class="col-sm-4">
-                    <p id="exp-month-paycheckout">Exp Month</p>
-                    <div class="input-group btn border-70 p-0 mt-4">
+                <div class="row input-group btn border-70 p-0 mt-4" style="text-align: left; margin-left: 0px">
+                  <div class="col-5 d-flex justify-content-start align-items-center">
+                    <p id="exp-month-paycheckout" class="mb-0">Exp Date</p>
+                  </div>
+                  <div class="col-7">
+                    <div class="input-group btn border-70 p-0">
                       <select required class="form-control form-control fs-16 fontRobReg" id="credit-card-exp-month" placeholder="MM" style="border-color: #608CA5" name="creditCardExpMonth">
                         <option>01</option>
                         <option>02</option>
@@ -1067,15 +1071,19 @@ if (isset($_POST['dashboard']) || $userState == 1) {
                       </select>
                     </div>
                   </div>
-                  <div class="col-sm-5">
-                    <p id="exp-year-paycheckout">Exp Year</p>
-                    <div class="input-group btn border-70 p-0 mt-4">
+                  <div class="col-5 d-flex justify-content-start align-items-center mt-3">
+                    <p id="exp-year-paycheckout" class="mb-0">Exp Year</p>
+                  </div>
+                  <div class="col-7 mt-3">
+                    <div class="input-group btn border-70 p-0">
                       <input maxlength="4" size="4" type="text" required class="form-control form-control fs-16 fontRobReg" id="credit-card-exp-year" placeholder="YYYY" style="border-color: #608CA5" name="creditCardExpYear">
                     </div>
                   </div>
-                  <div class="col-sm-3">
-                    <p>CVV</p>
-                    <div class="input-group btn border-70 p-0 mt-4">
+                  <div class="col-5 d-flex justify-content-start align-items-center mt-3">
+                    <p class="mb-0">CVV</p>
+                  </div>
+                  <div class="col-7 mt-3">
+                    <div class="input-group btn border-70 p-0">
                       <input maxlength="3" size="3" type="text" required class="form-control form-control fs-16 fontRobReg" id="credit-card-cvv" placeholder="123" style="border-color: #608CA5" name="creditCardCvv">
                     </div>
                   </div>
@@ -1371,6 +1379,14 @@ if (isset($_POST['dashboard']) || $userState == 1) {
     $('#exp-month-paycheckout').text('Bulan Kadaluarsa');
     $('#exp-year-paycheckout').text('Tahun Kadaluarsa');
   }
+
+  $("#credit-card-exp-year").bind("change space keyup", function() {
+    $(this).val($(this).val().replace(/[^0-9]/g, ''));
+  });
+
+  $("#credit-card-cvv").bind("change space keyup", function() {
+    $(this).val($(this).val().replace(/[^0-9]/g, ''));
+  });
 </script>
 
 </html>

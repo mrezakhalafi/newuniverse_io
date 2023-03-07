@@ -40,7 +40,7 @@ function usageRawEN(){
             success: function(obj, textstatus) {
                 // console.log(obj);
                 var table = $('#table_id').DataTable({
-                    responsive: true,
+                    scrollX: true,
                     data: obj,
                     columns: [{
                             data: "SERVICE_TYPE",
@@ -130,7 +130,7 @@ function usageRawEN(){
                 var table_detail = $('#table_id_detail').DataTable({
                     searching: false,
                     paging: false,
-                    responsive: true,
+                    scrollX: true,
                     data: obj,
                     columns: [{
                             data: "SERVICE_TYPE",

@@ -73,7 +73,7 @@ if (isset($_POST['submit'])) {
 					<div class="nav-item dropdown">
 						<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><i class="fas fa-ellipsis-v text-white"></i></a>
 						<div class="dropdown-menu dropdown-menu-right">
-							<a class="dropdown-item" href="#" onclick="shogit wGroupList()">View Groups</a>
+							<a class="dropdown-item" href="#" onclick="showGroupList()">View Groups</a>
 							<a class="dropdown-item" href="#" id="broadcast-modal-toggle" data-toggle="modal" data-target="#broadcast-modal">Broadcast Message</a>
 							<form method='POST'>
 								<input type="submit" class="dropdown-item" name="submit" id="submit" value="Log Out">

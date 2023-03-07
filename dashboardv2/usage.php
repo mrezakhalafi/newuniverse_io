@@ -22,8 +22,8 @@ $result = $query->get_result();
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
 <style>
-    body{
-        font-family: 'Poppins',sans-serif;
+    body {
+        font-family: 'Poppins', sans-serif;
     }
 </style>
 
@@ -49,7 +49,7 @@ $result = $query->get_result();
                 <div class="col-12">
                     <div class="card usg-breakdown" id="usage_breakdown" style="display:none;">
                         <div class="card-header" style="border-bottom: 0;">
-                        <h5><i class="fa fa-times" id="closeDeets" style="float:right;"></i></h5>
+                            <h5><i class="fa fa-times" id="closeDeets" style="float:right;"></i></h5>
                         </div>
                         <div class="card-body">
                             <strong>
@@ -66,8 +66,8 @@ $result = $query->get_result();
 
 
 <script type="text/javascript" charset="utf8" src="DataTables/datatables.min.js" defer></script>
-<script type="text/javascript" src="js/usage_raw.js"></script>
-<script type="text/javascript" src="js/usage_raw_id.js"></script>
+<script type="text/javascript" src="js/usage_raw-min.js"></script>
+<script type="text/javascript" src="js/usage_raw_id-min.js"></script>
 
 <script>
     var comp_id = <?php echo $company_id ?>;
@@ -82,43 +82,41 @@ $result = $query->get_result();
 </html>
 <script src="plugins/jquery/jquery.min.js"></script>
 <script>
-
-    $('#lang-nav').hover(function(){
+    $('#lang-nav').hover(function() {
         $('#lang-menu').dropdown("show");
-        }, function(){
+    }, function() {
         $('#lang-menu').dropdown("hide");
     });
 
-    $('#lang-menu').hover(function(){
+    $('#lang-menu').hover(function() {
         $('#lang-menu').dropdown("show");
-        }, function(){
+    }, function() {
         $('#lang-menu').dropdown("hide");
     });
-    
-    $("#change-lang-EN").click(function () {
-		localStorage.lang = 0;
-		$("#lang-nav").text('EN');
+
+    $("#change-lang-EN").click(function() {
+        localStorage.lang = 0;
+        $("#lang-nav").text('EN');
         $('#details-id-text').text('Details for content ID ');
         $('#usage-record-text').text('Usage Record');
-		change_lang();
+        change_lang();
         usageRawEN();
-	});
+    });
 
-	$("#change-lang-ID").click(function () {
-		localStorage.lang = 1;
-		$("#lang-nav").text('ID');
+    $("#change-lang-ID").click(function() {
+        localStorage.lang = 1;
+        $("#lang-nav").text('ID');
         $('#details-id-text').text('Detail dari ID konten ');
         $('#usage-record-text').text('Riwayat Pemakaian');
-		change_lang();
+        change_lang();
         usageRawID();
-	}); 
+    });
 
-    if (localStorage.lang == 1){
+    if (localStorage.lang == 1) {
         $('#details-id-text').text('Detail dari ID konten ');
         $('#usage-record-text').text('Riwayat Pemakaian');
         usageRawID();
-    }else{
+    } else {
         usageRawEN();
     }
-
 </script>

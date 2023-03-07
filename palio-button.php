@@ -799,7 +799,7 @@
     var xPos = 0;
     var isDrag = 0;
 
-    
+
 
     $(function() {
 
@@ -828,7 +828,7 @@
         //     exampleEl = document.querySelectorAll('[data-bs-toggle="tooltip"]')
         //     tooltipFB = new bootstrap.Tooltip(exampleEl)
         // } catch (e) {
-            
+
         // }
 
         $("#wrap-all").draggable({
@@ -854,6 +854,14 @@
                 $('[data-toggle="tooltip"]').tooltip("hide");
             }
         });
+
+        $('.icon-bar-wrap *').on('touchmove', function() {
+            $('[data-toggle="tooltip"]').tooltip("hide");
+        })
+
+        $('.icon-bar-wrap *').on('touchend', function() {
+            $('[data-toggle="tooltip"]').tooltip("hide");
+        })
 
         $("#main_button").mouseup(function() {
             let iconBar = document.querySelector('.icon-bar-wrap .icon-bar');

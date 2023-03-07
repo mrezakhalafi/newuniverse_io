@@ -77,8 +77,8 @@ $version = 'v=' . time();
   <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Josefin+Sans:300,400|Work+Sans:500,700&display=swap" rel="stylesheet">
 
-<!-- <script type="text/javascript" src="<?php echo base_url(); ?>dashboardv2/plugins/popper/popper.min.js"></script> -->
- <script type="text/javascript" src="<?php echo base_url(); ?>bootstrap/js/bootstrap.min.js"></script>
+  <!-- <script type="text/javascript" src="<?php echo base_url(); ?>dashboardv2/plugins/popper/popper.min.js"></script> -->
+  <script type="text/javascript" src="<?php echo base_url(); ?>bootstrap/js/bootstrap.min.js"></script>
 
   <!-- Core -->
   <script src="<?php echo base_url(); ?>js/api_web_raw.js?<?php echo ($version); ?>"></script>
@@ -143,12 +143,11 @@ $version = 'v=' . time();
 
     // CLICK LANG IN MOBILE
 
-    $('#lang-nav').on('click',function(){
-		
+    $('#lang-nav').on('click', function() {
+
       $('#lang-li').dropdown('toggle');
-      
+
     })
-    
   </script>
 
   <!-- Global site tag (gtag.js) - Google Ads: 689853920 -->

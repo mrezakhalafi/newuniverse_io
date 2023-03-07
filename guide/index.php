@@ -153,7 +153,7 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/url_function.php');
   </style>
 </head>
 
-<body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed" data-bs-spy="scroll" data-bs-target="#sidenav" data-bs-offset="70">
+<body class="hold-transition layout-fixed layout-navbar-fixed layout-footer-fixed" data-bs-spy="scroll" data-bs-target="#sidenav" data-bs-offset="70">
   <div class="wrapper">
 
     <!-- Preloader -->
@@ -165,8 +165,8 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/url_function.php');
     <nav class="main-header navbar navbar-expand navbar-dark">
       <!-- Left navbar links -->
       <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+        <li class="nav-item" style="margin-left: 10px">
+          <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i style="font-size: 20px" class="fas fa-bars"></i></a>
         </li>
         <!-- <li class="nav-item d-none d-sm-inline-block">
         <a href="index3.html" class="nav-link">Home</a>
@@ -321,6 +321,7 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/url_function.php');
         <div class="container-fluid mt-3">
           <div class="row">
             <div class="col-sm-12">
+              <a href="<?= base_url(); ?>dashboardv2/mailbox.php" style="text-decoration: none"><span style="font-family:'Josefin Sans', sans-serif">&lt;&lt; <span id="back-inbox-text">Back to Mailbox</span></span></a>
               <h1 id="head">Nexilis Android SDK</h1>
               <hr style="border-top: 2px solid blue; opacity: 1;">
               <p>
@@ -716,43 +717,43 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/url_function.php');
 </html>
 
 <script>
-  var navVal = 0;
+  // var navVal = 0;
 
-  $(".navbar-nav").on("click", function() {
+  // $(".navbar-nav").on("click", function() {
 
-    if (navVal == 1) {
-      navVal = 0;
-      $(".brand-image").removeClass("d-none");
-    } else {
-      navVal = 1;
-      $(".brand-image").addClass("d-none");
-    }
-    console.log(navVal);
+  //   if (navVal == 1) {
+  //     navVal = 0;
+  //     $(".brand-image").removeClass("d-none");
+  //   } else {
+  //     navVal = 1;
+  //     $(".brand-image").addClass("d-none");
+  //   }
+  //   console.log(navVal);
 
-  });
+  // });
 
-  $('.main-sidebar').hover(function() {
+  // $('.main-sidebar').hover(function() {
 
-      setTimeout(function() {
-        if ($('.sidebar').hasClass('os-host-scrollbar-horizontal-hidden')) {
-          $('.brand-image').removeClass('d-none');
-        } else {
-          $('.brand-image').addClass('d-none');
-        }
-      }, 270);
+  //     setTimeout(function() {
+  //       if ($('.sidebar').hasClass('os-host-scrollbar-horizontal-hidden')) {
+  //         $('.brand-image').removeClass('d-none');
+  //       } else {
+  //         $('.brand-image').addClass('d-none');
+  //       }
+  //     }, 270);
 
 
-    },
+  //   },
 
-    function() {
-      setTimeout(function() {
-        if ($('.sidebar').hasClass('os-host-scrollbar-horizontal-hidden')) {
-          $('.brand-image').removeClass('d-none');
-        } else {
+  //   function() {
+  //     setTimeout(function() {
+  //       if ($('.sidebar').hasClass('os-host-scrollbar-horizontal-hidden')) {
+  //         $('.brand-image').removeClass('d-none');
+  //       } else {
 
-          $('.brand-image').addClass('d-none');
-        }
-      }, 270);
+  //         $('.brand-image').addClass('d-none');
+  //       }
+  //     }, 270);
 
-    });
+  //   });
 </script>

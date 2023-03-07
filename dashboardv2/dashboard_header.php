@@ -84,35 +84,35 @@ if ($_SESSION['id_user'] != '') {
 
   if ($itemUser['EMAIL_ACCOUNT'] != '') {
 
-      if ($itemUser['PASSWORD'] != $password) {
+    if ($itemUser['PASSWORD'] != $password) {
 
-          $msg = "Your Password is Incorrect!";
+      $msg = "Your Password is Incorrect!";
 
-          //echo '<script>alert("Wrong Password")</script>';
+      //echo '<script>alert("Wrong Password")</script>';
 
-      } else if ($itemUser2 != null && strtotime($itemUser2['CUT_OFF_DATE']) < strtotime(date('Y-m-d H:i:s'))) {
-              $msg = 'expired';
-              // header("Location: dashboard2/");
-      } else if ($itemUser['ACTIVE'] == 0 && $itemUser['STATE'] < 2) {
-              $msg = "Please Validate Your Email!";
-              header("Location: /verifyemail.php");
-              die();
-      } else if ($itemUser['STATE'] == 2 && $itemUser['ACTIVE'] == 1) {
-              $msg = "Please Finish Your Payment!";
-              header("Location: /paycheckout.php");
-              die();
-      } else {
-         
-              if ($itemUser['ACTIVE'] == 3 && $itemUser['STATE'] == 2) {
-                  $msg = "Trial!";
-                  header("Location: /trialcheckout.php");
-                  die();
-              } 
-              // else {
-              //     $msg = 'ok';
-              //     header("Location: index.php");
-              // }
+    } else if ($itemUser2 != null && strtotime($itemUser2['CUT_OFF_DATE']) < strtotime(date('Y-m-d H:i:s'))) {
+      $msg = 'expired';
+      // header("Location: dashboard2/");
+    } else if ($itemUser['ACTIVE'] == 0 && $itemUser['STATE'] < 2) {
+      $msg = "Please Validate Your Email!";
+      header("Location: /verifyemail.php");
+      die();
+    } else if ($itemUser['STATE'] == 2 && $itemUser['ACTIVE'] == 1) {
+      $msg = "Please Finish Your Payment!";
+      header("Location: /paycheckout.php");
+      die();
+    } else {
+
+      if ($itemUser['ACTIVE'] == 3 && $itemUser['STATE'] == 2) {
+        $msg = "Trial!";
+        header("Location: /trialcheckout.php");
+        die();
       }
+      // else {
+      //     $msg = 'ok';
+      //     header("Location: index.php");
+      // }
+    }
   }
 }
 
@@ -218,9 +218,9 @@ include '../new_billing.php';
 // echo "today " . $today;
 // echo "duedate " . $due_date;
 if ($today > $due_date || $bill2['IS_PAID'] == 0) {
-    echo "CHECKOUT";
-    newBilling();
-    die();
+  echo "CHECKOUT";
+  newBilling();
+  die();
 }
 
 if ($user['STATE'] < 2 || $user['STATE'] == null) {
@@ -243,8 +243,8 @@ $query->execute();
 $background = $query->get_result()->fetch_assoc();
 $query->close();
 
-if(isset($background['VALUE'])){
- $oldBG = $background['VALUE'];
+if (isset($background['VALUE'])) {
+  $oldBG = $background['VALUE'];
 }
 
 ?>
@@ -267,13 +267,14 @@ if(isset($background['VALUE'])){
   <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
 
   <style>
-      body{
-          font-family: 'Poppins',sans-serif !important;
-      }
-      .scroll-html-modal {
-        max-width: 100% !important;
-        overflow: hidden !important;
-      }
+    body {
+      font-family: 'Poppins', sans-serif !important;
+    }
+
+    .scroll-html-modal {
+      max-width: 100% !important;
+      overflow: hidden !important;
+    }
   </style>
   <link rel="icon" type="image/x-icon" href="<?php echo base_url(); ?>palio_logo_round.png">
   <!-- Font Awesome Icons -->
@@ -290,6 +291,28 @@ if(isset($background['VALUE'])){
   <!-- DataTables -->
   <link rel="stylesheet" href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css">
 
+  <style>
+    /* width */
+    ::-webkit-scrollbar {
+      width: 5px;
+    }
+
+    /* Track */
+    ::-webkit-scrollbar-track {
+      background: #f1f1f1;
+    }
+
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+      background: #888;
+    }
+
+    /* Handle on hover */
+    ::-webkit-scrollbar-thumb:hover {
+      background: #555;
+    }
+  </style>
+
   <script src="js/dashboard.js?<?php echo $version; ?>"></script>
   <script type="module" src="<?php echo base_url(); ?>translate.js?<?php echo time(); ?>"></script>
 
@@ -304,7 +327,7 @@ if(isset($background['VALUE'])){
     gtag('js', new Date());
     gtag('config', 'AW-689853920');
   </script>
-<!-- <script src="/embeddedbutton.js"></script> -->
+  <!-- <script src="/embeddedbutton.js"></script> -->
 </head>
 <!--
 BODY TAG OPTIONS:
@@ -391,24 +414,24 @@ to get the desired effect
     </nav>
     <!-- /.navbar -->
 
-     <!-- session expire modal -->
-     <div class="modal" tabindex="-1" id="modal-session-expire" data-backdrop="static">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <!-- <div class="modal-header">
+    <!-- session expire modal -->
+    <div class="modal" tabindex="-1" id="modal-session-expire" data-backdrop="static">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <!-- <div class="modal-header">
                     <h5 class="modal-title">Modal title</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div> -->
-                <div class="modal-body">
-                    You are now logged out.
-                </div>
-                <div class="modal-footer">
-                    <button type="button" id="close-session-expire" class="btn btn-sm btn-primary" style="background-color:#1799ad !important; border: 1px solid #1799ad !important">OK</button>
-                </div>
-            </div>
+          <div class="modal-body">
+            You are now logged out.
+          </div>
+          <div class="modal-footer">
+            <button type="button" id="close-session-expire" class="btn btn-sm btn-primary" style="background-color:#1799ad !important; border: 1px solid #1799ad !important">OK</button>
+          </div>
         </div>
+      </div>
     </div>
 
     <!-- Main Sidebar Container -->
@@ -475,14 +498,14 @@ to get the desired effect
                 </p>
               </a>
             </li>
-            <li class="nav-item">
+            <!-- <li class="nav-item">
               <a href="appservice.php" class="nav-link">
                 <i class="nav-icon fab fa-pushed"></i>
                 <p>
                   FCM
                 </p>
               </a>
-            </li>
+            </li> -->
             <li class="nav-item">
               <a href="form_management.php" class="nav-link">
                 <div class="row">
@@ -492,7 +515,7 @@ to get the desired effect
                   <div class="col-10">
                     <p data-translate="dashside-7">
                       <!-- Digital Form<br>Management -->
-                  </p>
+                    </p>
                   </div>
                 </div>
               </a>
@@ -659,7 +682,8 @@ to get the desired effect
         (localStorage['country_code'] == null || typeof localStorage[_0x1cf666(0x90)] === _0x1cf666(0x96) || localStorage[_0x1cf666(0x8c)] == null || typeof localStorage[_0x1cf666(0x8c)] === _0x1cf666(0x96) || Math[_0x1cf666(0x8f)](Date['now']() / 0x3e8) - localStorage['lastCheck'] > ONE_HOUR) && geoLoc();
 
         <?php  } else {
-        if ($language == 0) {z
+        if ($language == 0) {
+
         ?>
           var _0x5abb = ['167hIGFlJ', '8842EOayDa', '407772ewZdLp', '1TmWibq', 'switchLang', 'clear', '1GgYeAX', '1791943NGugQK', '1428326sAeBTM', 'lang_visible', '16401unhvea', '9lqTnnj', '107639Lljmeo', 'lang', '832851zkVJXr', '13MaKQRk', 'currentGeoloc'];
           var _0xaf8e = function(_0x1af948, _0x3d41f9) {

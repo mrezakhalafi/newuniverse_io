@@ -237,6 +237,8 @@ if (isset($_POST["token_id"])) {
                     'api_key' => $apikey,
                     'expire_date' => $expire_date,
                     'private_key' => $_SESSION['password'],
+                    'is_anonymous' => 1,
+                    'is_trial' => 0,
                 ),
 
             );

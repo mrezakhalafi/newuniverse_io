@@ -449,6 +449,11 @@ if (isset($_POST['dashboard']) || $userState == 1) {
         gtag('js', new Date());
         gtag('config', 'AW-689853920');
     </script>
+    <style>
+        html {
+            height: 1000px;
+        }
+    </style>
     <script>
         <?php if ($geolocSts == 1) { ?>
 
@@ -895,7 +900,7 @@ if (isset($_POST['dashboard']) || $userState == 1) {
                                     </div>
                                     </form>
 
-                                    <?php if ($currencyBill == 'USD' || $currency == 'USD'|| $_SESSION['country_code'] != 'ID') { ?>
+                                    <?php if ($currencyBill == 'USD' || $currency == 'USD' || $_SESSION['country_code'] != 'ID') { ?>
                                         <div id="paypal-button-container"></div>
                                     <?php } else if ($currencyBill == 'IDR' || $currency == 'IDR' ||  $_SESSION['country_code'] == 'ID') { ?>
                                         <div id="paypal-button-container" class="d-none"></div>

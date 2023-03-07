@@ -56,7 +56,7 @@ function usageRawID(){
                 })
 
                 var table = $('#table_id').DataTable({
-                    responsive: true,
+                    scrollX: true,
                     data: obj,
                     language: {
                         "lengthMenu":     "Tampilkan _MENU_ entri",
@@ -178,7 +178,7 @@ function usageRawID(){
                 var table_detail = $('#table_id_detail').DataTable({
                     searching: false,
                     paging: false,
-                    responsive: true,
+                    scrollX: true,
                     data: obj,
                     language: {
                         "lengthMenu":     "Tampilkan _MENU_ entri",

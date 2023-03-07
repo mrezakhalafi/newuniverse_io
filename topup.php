@@ -219,6 +219,11 @@ function monthFormat($month)
 
     <script src="https://www.paypal.com/sdk/js?client-id=AaIDxN07-OfsTeeqPXhMG-BpfLAVhBah94jfutKGersh9uIKkU5kgupWXiWRDxtfsnFF1rnjYTCeNGCi&currency=USD" data-sdk-integration-source="button-factory"></script>
 
+    <style>
+        html {
+            height: 1000px;
+        }
+    </style>
 
     <script>
         <?php if ($geolocSts == 1) { ?>
@@ -574,17 +579,11 @@ function monthFormat($month)
                                                         </div>
                                                         <div id="credit-card-number-error" class="text-danger d-none">Please fill this field.</div>
                                                         <div id="topup-content" class="row input-group btn border-70 p-0 mt-4 ml-0" style="text-align: left">
-                                                            <div class="col-3">
-                                                                <p id="exp-month-text">Exp. Date</p>
+                                                            <div class="col-5 d-flex justify-content-start align-items-center">
+                                                                <p class="mb-0" id="exp-month-text">Exp Date</p>
                                                             </div>
-                                                            <div class="col-6">
-                                                                <p id="exp-year-text">Exp Year</p>
-                                                            </div>
-                                                            <div class="col-3">
-                                                                <p>CVV</p>
-                                                            </div>
-                                                            <div class="col-3">
-                                                                <div class="input-group btn border-70 p-0 mt-4">
+                                                            <div class="col-7">
+                                                                <div class="input-group btn border-70 p-0">
                                                                     <select class="form-control form-control fs-16 fontRobReg" id="credit-card-exp-month" placeholder="MM" style="border-color: #608CA5" name="creditCardExpMonth">
                                                                         <option>01</option>
                                                                         <option>02</option>
@@ -601,14 +600,20 @@ function monthFormat($month)
                                                                     </select>
                                                                 </div>
                                                             </div>
-                                                            <div class="col-6">
-                                                                <div class="input-group btn border-70 p-0 mt-4">
+                                                            <div class="col-5 d-flex justify-content-start align-items-center mt-3">
+                                                                <p class="mb-0" id="exp-year-text">Exp Year</p>
+                                                            </div>
+                                                            <div class="col-7 mt-3">
+                                                                <div class="input-group btn border-70 p-0">
                                                                     <input maxlength="4" size="4" type="text" class="form-control form-control fs-16 fontRobReg" id="credit-card-exp-year" placeholder="YYYY" style="border-color: #608CA5" name="creditCardExpYear">
                                                                 </div>
                                                                 <div id="exp-year-error" class="text-danger d-none">Please fill this field.</div>
                                                             </div>
-                                                            <div class="col-3">
-                                                                <div class="input-group btn border-70 p-0 mt-4">
+                                                            <div class="col-5 d-flex justify-content-start align-items-center mt-3">
+                                                                <p class="mb-0">CVV</p>
+                                                            </div>
+                                                            <div class="col-7 mt-3">
+                                                                <div class="input-group btn border-70 p-0">
                                                                     <input maxlength="3" size="3" type="text" class="form-control form-control fs-16 fontRobReg" id="credit-card-cvv" placeholder="123" style="border-color: #608CA5" name="creditCardCvv">
                                                                 </div>
                                                                 <div id="cvv-error" class="text-danger d-none">Please fill this field.</div>
@@ -806,8 +811,8 @@ function monthFormat($month)
         $('.pay-debit-text').text('Bayar dengan Kartu Kredit / Debit');
         $('#pay-with-credit-card').attr('value', 'Bayar dengan Kartu Kredit');
 
-        $('#exp-month-text').text('Bulan Kad.');
-        // $('#exp-year-text').text('Tahun Kad.');
+        $('#exp-month-text').text('Bulan Kadaluarsa');
+        $('#exp-year-text').text('Tahun Kadaluarsa');
 
         $('#order-date').hide();
         $('#order-date-id').show();
