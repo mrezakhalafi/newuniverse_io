@@ -95,6 +95,10 @@ $(function () {
                         $('#creditModalCenter').modal('hide');
                         window.onbeforeunload = null;
                         localStorage.removeItem('in_checkout');
+                        $("#amount").val("");
+                        $("#credit-card-number").val("");
+                        $("#credit-card-exp-year").val("");
+                        $("#credit-card-cvv").val("");
                         window.open("/status/palio/status.php?status=1", "_self");
                     }
                     else {
