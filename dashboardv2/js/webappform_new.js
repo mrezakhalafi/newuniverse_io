@@ -93,11 +93,11 @@ function checkWebview(elementID) {
             // document.getElementById("notification").innerHTML = elt.options[elt.selectedIndex].text + " Subject Already Choosen!";
 
             // FOR RESET VALUE IF DETECTED DUPLICATE
-            $('#'+elementID).val("");
+            $('#' + elementID).val("");
 
-            if (localStorage.lang == 1){
+            if (localStorage.lang == 1) {
                 alert("Anda memilih konten tab duplikat.");
-            }else{
+            } else {
                 alert("You selected duplicate tab contents.");
             }
         }
@@ -127,11 +127,11 @@ function checkWebviewEdit(elementID) {
             // document.getElementById("notification").innerHTML = elt.options[elt.selectedIndex].text + " Subject Already Choosen!";
 
             // FOR RESET VALUE IF DETECTED DUPLICATE
-            $('#'+elementID).val("");
+            $('#' + elementID).val("");
 
-            if (localStorage.lang == 1){
+            if (localStorage.lang == 1) {
                 alert("Anda memilih konten tab duplikat.");
-            }else{
+            } else {
                 alert("You selected duplicate tab contents.");
             }
         }
@@ -170,11 +170,11 @@ function checkOpt(elementID) {
             // document.getElementById("notification").innerHTML = elt.options[elt.selectedIndex].text + " Subject Already Choosen!";
 
             // FOR RESET VALUE IF DETECTED DUPLICATE
-            $('#'+elementID).val("");
+            $('#' + elementID).val("");
 
-            if (localStorage.lang == 1){
+            if (localStorage.lang == 1) {
                 alert("Anda memilih konten tab duplikat.");
-            }else{
+            } else {
                 alert("You selected duplicate tab contents.");
             }
             fillURL.innerHTML = '';
@@ -216,7 +216,7 @@ function checkOpt(elementID) {
 
         let inputhtml = "";
 
-        if (localStorage.lang == 1){
+        if (localStorage.lang == 1) {
 
             inputhtml = `
                 <label class="col-sm-4 col-form-label" for="url_content">Konten <span style="color:red;">*</span> :</label>
@@ -233,7 +233,7 @@ function checkOpt(elementID) {
                 </div>
                 `;
 
-        }else{
+        } else {
 
             inputhtml = `
                 <label class="col-sm-4 col-form-label" for="url_content">Content <span style="color:red;">*</span> :</label>
@@ -275,7 +275,7 @@ function checkOpt(elementID) {
 
         let inputhtml = "";
 
-        if (localStorage.lang == 1){
+        if (localStorage.lang == 1) {
 
             inputhtml = `
                 <label class="col-sm-4 col-form-label" for="tab3_mode">Konten <span style="color:red;">*</span> :</label>
@@ -292,7 +292,7 @@ function checkOpt(elementID) {
                 </div>
                 `;
 
-        }else{
+        } else {
 
             inputhtml = `
                 <label class="col-sm-4 col-form-label" for="tab3_mode">Content <span style="color:red;">*</span> :</label>
@@ -363,11 +363,11 @@ function checkOptEdit(elementID) {
             document.getElementById("submit-form").setAttribute("disabled", "disabled");
 
             // FOR RESET VALUE IF DETECTED DUPLICATE
-            $('#'+elementID).val("");
-            
-            if (localStorage.lang == 1){
+            $('#' + elementID).val("");
+
+            if (localStorage.lang == 1) {
                 alert("Anda memilih konten tab duplikat.");
-            }else{
+            } else {
                 alert("You selected duplicate tab contents.");
             }
             return false;
@@ -380,7 +380,7 @@ function checkOptEdit(elementID) {
 
         let inputhtml = "";
 
-        if (localStorage.lang == 1){
+        if (localStorage.lang == 1) {
 
             inputhtml = `
                 <label class="col-sm-4 col-form-label" for="edit_url_content">Konten <span style="color:red;">*</span> :</label>
@@ -397,7 +397,7 @@ function checkOptEdit(elementID) {
                 </div>
                 `;
 
-        }else{
+        } else {
 
             inputhtml = `
                 <label class="col-sm-4 col-form-label" for="edit_url_content">Content <span style="color:red;">*</span> :</label>
@@ -422,7 +422,7 @@ function checkOptEdit(elementID) {
 
         let inputhtml = "";
 
-        if (localStorage.lang == 1){
+        if (localStorage.lang == 1) {
 
             inputhtml = `
                 <label class="col-sm-4 col-form-label" for="edit_tab3_mode">Konten <span style="color:red;">*</span> :</label>
@@ -439,7 +439,7 @@ function checkOptEdit(elementID) {
                 </div>
                 `;
 
-        }else{
+        } else {
 
             inputhtml = `
                 <label class="col-sm-4 col-form-label" for="edit_tab3_mode">Content <span style="color:red;">*</span> :</label>
@@ -5095,7 +5095,7 @@ function onChangeHuawei(event) {
     reader.readAsText(event.target.files[0]);
 }
 
-function validatePackageNameHuawei(event){
+function validatePackageNameHuawei(event) {
     // console.log(event.target.result);
 
     let appId = document.querySelector("input#appId").value;
@@ -5119,7 +5119,7 @@ function onChangeGPS(event) {
     reader.readAsText(event.target.files[0]);
 }
 
-function validatePackageNameGPS(event){
+function validatePackageNameGPS(event) {
     // console.log(event.target.result);
 
     let appId = document.querySelector("input#appId").value;
@@ -5375,7 +5375,7 @@ function sendData() {
     formData.append('company-website', companyWebsite);
     formData.append('ver_code', ver_code);
 
-    if(!generate_apk && !edit_apk){
+    if (!generate_apk && !edit_apk) {
         formInvalid = false;
         if (localStorage.lang == 1) {
             whichInvalid = "Mohon pilih buat atau edit APK";
@@ -5385,11 +5385,11 @@ function sendData() {
     }
 
     if (generate_apk && !edit_apk) {
-        
 
-        $('#generate-apk-form :required').each(function() {
-            if ($(this).val() === ''|| $(this).val() === null) {
-                formInvalid = false;   
+
+        $('#generate-apk-form :required').each(function () {
+            if ($(this).val() === '' || $(this).val() === null) {
+                formInvalid = false;
                 let fieldId = $(this).attr("id");
                 // if (fieldName == "tab1" || fieldName == "tab2" || fieldName == "tab3" || fieldName == "tab4" ||
                 // fieldName == "tab1_edit" || fieldName == "tab2_edit" || fieldName == "tab3_edit" || fieldName == "tab4_edit") {
@@ -5399,7 +5399,7 @@ function sendData() {
                 // }
                 console.log("FIELD ID", fieldId);
                 let fieldName = "";
-                switch(fieldId) {
+                switch (fieldId) {
                     case "tab1":
                     case "tab2":
                     case "tab3":
@@ -5407,7 +5407,7 @@ function sendData() {
                     case "tab1_edit":
                     case "tab2_edit":
                     case "tab3_edit":
-                    case "tab4_edit":                        
+                    case "tab4_edit":
                         fieldName = localStorage.lang == 1 ? "Konten Tab" : "Tab content";
                         break;
                     case "appId":
@@ -5418,7 +5418,7 @@ function sendData() {
                         break;
                     case "ver_name":
                         fieldName = localStorage.lang == 1 ? "Nama versi" : "Version name";
-                        break;    
+                        break;
                     default:
                         fieldName = localStorage.lang == 1 ? "Ada field yang" : "A field";
                         break;
@@ -5432,8 +5432,31 @@ function sendData() {
                 return false;
             }
         })
-        
+
         let gen_apk_val = $('#generate-apk').val();
+
+        var attr_plus_1 = $("#plus-1").attr("src");
+        var attr_plus_2 = $("#plus-2").attr("src");
+        var attr_plus_3 = $("#plus-3").attr("src");
+        var attr_plus_4 = $("#plus-4").attr("src");
+        var attr_plus_5 = $("#plus-5").attr("src");
+        var attr_plus_6 = $("#plus-6").attr("src");
+        var attr_plus_7 = $("#plus-7").attr("src");
+        var attr_plus_8 = $("#plus-8").attr("src");
+        var attr_plus_9 = $("#plus-9").attr("src");
+        var attr_plus_10 = $("#plus-10").attr("src");
+
+        var attr_plus_11 = $("#plus-11").attr("src");
+        var attr_plus_12 = $("#plus-12").attr("src");
+        var attr_plus_13 = $("#plus-13").attr("src");
+        var attr_plus_14 = $("#plus-14").attr("src");
+        var attr_plus_15 = $("#plus-15").attr("src");
+        var attr_plus_16 = $("#plus-16").attr("src");
+        var attr_plus_17 = $("#plus-17").attr("src");
+        var attr_plus_18 = $("#plus-18").attr("src");
+        var attr_plus_19 = $("#plus-19").attr("src");
+        var attr_plus_20 = $("#plus-20").attr("src");
+
         formData.append('generate-apk', gen_apk_val);
         formData.append('company-name', companyName);
         formData.append('app-id', appId);
@@ -5443,16 +5466,322 @@ function sendData() {
         formData.append('tab3', tab3_page);
         formData.append('tab4', tab4_page);
 
-        formData.append('tab1_icon', tab1_icon);
-        formData.append('tab2_icon', tab2_icon);
-        formData.append('tab3_icon', tab3_icon);
-        formData.append('tab4_icon', tab4_icon);
-        formData.append('cpaas_icon', cpaas_icon);
-        formData.append('fb1_icon', fb1_icon);
-        formData.append('fb2_icon', fb2_icon);
-        formData.append('fb3_icon', fb3_icon);
-        formData.append('fb4_icon', fb4_icon);
-        formData.append('fb5_icon', fb5_icon);
+        if (menuType == 0) {
+            if (attr_plus_17 != undefined) {
+                if ($("#image-preview-17").attr("src") != "") {
+                    formData.append('tab1_icon', tab1_icon);
+                }
+                else {
+                    tab1_icon = attr_plus_17;
+                    formData.append('tab1_icon', tab1_icon);
+                }
+            }
+            else {
+                formData.append('tab1_icon', tab1_icon);
+            }
+
+            if (attr_plus_18 != undefined) {
+                if ($("#image-preview-18").attr("src") != "") {
+                    formData.append('tab2_icon', tab2_icon);
+                }
+                else {
+                    tab2_icon = attr_plus_18;
+                    formData.append('tab2_icon', tab2_icon);
+                }
+            }
+            else {
+                formData.append('tab2_icon', tab2_icon);
+            }
+
+            if (attr_plus_19 != undefined) {
+                if ($("#image-preview-19").attr("src") != "") {
+                    formData.append('tab3_icon', tab3_icon);
+                }
+                else {
+                    tab3_icon = attr_plus_19;
+                    formData.append('tab3_icon', tab3_icon);
+                }
+            }
+            else {
+                formData.append('tab3_icon', tab3_icon);
+            }
+
+            if (attr_plus_20 != undefined) {
+                if ($("#image-preview-20").attr("src") != "") {
+                    formData.append('tab4_icon', tab4_icon);
+                }
+                else {
+                    tab4_icon = attr_plus_20;
+                    formData.append('tab4_icon', tab4_icon);
+                }
+            }
+            else {
+                formData.append('tab4_icon', tab4_icon);
+            }
+
+            if (attr_plus_16 != undefined) {
+                if ($("#image-preview-16").attr("src") != "") {
+                    formData.append('fb1_icon', fb1_icon);
+                }
+                else {
+                    fb1_icon = attr_plus_16;
+                    formData.append('fb1_icon', fb1_icon);
+                }
+            }
+            else {
+                formData.append('fb1_icon', fb1_icon);
+            }
+
+            if (attr_plus_13 != undefined) {
+                if ($("#image-preview-13").attr("src") != "") {
+                    formData.append('fb2_icon', fb2_icon);
+                }
+                else {
+                    fb2_icon = attr_plus_13;
+                    formData.append('fb2_icon', fb2_icon);
+                }
+            }
+            else {
+                formData.append('fb2_icon', fb2_icon);
+            }
+
+            if (attr_plus_15 != undefined) {
+                if ($("#image-preview-15").attr("src") != "") {
+                    formData.append('fb3_icon', fb3_icon);
+                }
+                else {
+                    fb3_icon = attr_plus_15;
+                    formData.append('fb3_icon', fb3_icon);
+                }
+            }
+            else {
+                formData.append('fb3_icon', fb3_icon);
+            }
+
+            if (attr_plus_14 != undefined) {
+                if ($("#image-preview-14").attr("src") != "") {
+                    formData.append('fb4_icon', fb4_icon);
+                }
+                else {
+                    fb4_icon = attr_plus_14;
+                    formData.append('fb4_icon', fb4_icon);
+                }
+            }
+            else {
+                formData.append('fb4_icon', fb4_icon);
+            }
+
+            if (attr_plus_12 != undefined) {
+                if ($("#image-preview-12").attr("src") != "") {
+                    formData.append('fb5_icon', fb5_icon);
+                }
+                else {
+                    fb5_icon = attr_plus_12;
+                    formData.append('fb5_icon', fb5_icon);
+                }
+            }
+            else {
+                formData.append('fb5_icon', fb5_icon);
+            }
+
+            if (attr_plus_11 != undefined) {
+                if ($("#image-preview-11").attr("src") != "") {
+                    formData.append('cpaas_icon', cpaas_icon);
+                }
+                else {
+                    cpaas_icon = attr_plus_11;
+                    formData.append('cpaas_icon', cpaas_icon);
+                }
+            }
+            else {
+                formData.append('cpaas_icon', cpaas_icon);
+            }
+        }
+        else if (menuType == 1) {
+            if (attr_plus_1 != undefined) {
+                if ($("#image-preview-1").attr("src") != "") {
+                    formData.append('tab1_icon', tab1_icon);
+                }
+                else {
+                    tab1_icon = attr_plus_1;
+                    formData.append('tab1_icon', tab1_icon);
+                }
+            }
+            else {
+                formData.append('tab1_icon', tab1_icon);
+            }
+
+            if (attr_plus_2 != undefined) {
+                if ($("#image-preview-2").attr("src") != "") {
+                    formData.append('tab2_icon', tab2_icon);
+                }
+                else {
+                    tab2_icon = attr_plus_2;
+                    formData.append('tab2_icon', tab2_icon);
+                }
+            }
+            else {
+                formData.append('tab2_icon', tab2_icon);
+            }
+
+            if (attr_plus_3 != undefined) {
+                if ($("#image-preview-3").attr("src") != "") {
+                    formData.append('tab3_icon', tab3_icon);
+                }
+                else {
+                    tab3_icon = attr_plus_3;
+                    formData.append('tab3_icon', tab3_icon);
+                }
+            }
+            else {
+                formData.append('tab3_icon', tab3_icon);
+            }
+
+            if (attr_plus_4 != undefined) {
+                if ($("#image-preview-4").attr("src") != "") {
+                    formData.append('tab4_icon', tab4_icon);
+                }
+                else {
+                    tab4_icon = attr_plus_4;
+                    formData.append('tab4_icon', tab4_icon);
+                }
+            }
+            else {
+                formData.append('tab4_icon', tab4_icon);
+            }
+
+            if (attr_plus_10 != undefined) {
+                if ($("#image-preview-10").attr("src") != "") {
+                    formData.append('fb1_icon', fb1_icon);
+                }
+                else {
+                    fb1_icon = attr_plus_10;
+                    formData.append('fb1_icon', fb1_icon);
+                }
+            }
+            else {
+                formData.append('fb1_icon', fb1_icon);
+            }
+
+            if (attr_plus_9 != undefined) {
+                if ($("#image-preview-9").attr("src") != "") {
+                    formData.append('fb2_icon', fb2_icon);
+                }
+                else {
+                    fb2_icon = attr_plus_9;
+                    formData.append('fb2_icon', fb2_icon);
+                }
+            }
+            else {
+                formData.append('fb2_icon', fb2_icon);
+            }
+
+            if (attr_plus_6 != undefined) {
+                if ($("#image-preview-6").attr("src") != "") {
+                    formData.append('fb3_icon', fb3_icon);
+                }
+                else {
+                    fb3_icon = attr_plus_6;
+                    formData.append('fb3_icon', fb3_icon);
+                }
+            }
+            else {
+                formData.append('fb3_icon', fb3_icon);
+            }
+
+            if (attr_plus_8 != undefined) {
+                if ($("#image-preview-8").attr("src") != "") {
+                    formData.append('fb4_icon', fb4_icon);
+                }
+                else {
+                    fb4_icon = attr_plus_8;
+                    formData.append('fb4_icon', fb4_icon);
+                }
+            }
+            else {
+                formData.append('fb4_icon', fb4_icon);
+            }
+
+            if (attr_plus_7 != undefined) {
+                if ($("#image-preview-7").attr("src") != "") {
+                    formData.append('fb5_icon', fb5_icon);
+                }
+                else {
+                    fb5_icon = attr_plus_7;
+                    formData.append('fb5_icon', fb5_icon);
+                }
+            }
+            else {
+                formData.append('fb5_icon', fb5_icon);
+            }
+
+            if (attr_plus_5 != undefined) {
+                if ($("#image-preview-5").attr("src") != "") {
+                    formData.append('cpaas_icon', cpaas_icon);
+                }
+                else {
+                    cpaas_icon = attr_plus_5;
+                    formData.append('cpaas_icon', cpaas_icon);
+                }
+            }
+            else {
+                formData.append('cpaas_icon', cpaas_icon);
+            }
+        }
+        else {
+            if (attr_plus_17 != undefined) {
+                if ($("#image-preview-17").attr("src") != "") {
+                    formData.append('tab1_icon', tab1_icon);
+                }
+                else {
+                    tab1_icon = attr_plus_17;
+                    formData.append('tab1_icon', tab1_icon);
+                }
+            }
+            else {
+                formData.append('tab1_icon', tab1_icon);
+            }
+
+            if (attr_plus_18 != undefined) {
+                if ($("#image-preview-18").attr("src") != "") {
+                    formData.append('tab2_icon', tab2_icon);
+                }
+                else {
+                    tab2_icon = attr_plus_18;
+                    formData.append('tab2_icon', tab2_icon);
+                }
+            }
+            else {
+                formData.append('tab2_icon', tab2_icon);
+            }
+
+            if (attr_plus_19 != undefined) {
+                if ($("#image-preview-19").attr("src") != "") {
+                    formData.append('tab3_icon', tab3_icon);
+                }
+                else {
+                    tab3_icon = attr_plus_19;
+                    formData.append('tab3_icon', tab3_icon);
+                }
+            }
+            else {
+                formData.append('tab3_icon', tab3_icon);
+            }
+
+            if (attr_plus_20 != undefined) {
+                if ($("#image-preview-20").attr("src") != "") {
+                    formData.append('tab4_icon', tab4_icon);
+                }
+                else {
+                    tab4_icon = attr_plus_20;
+                    formData.append('tab4_icon', tab4_icon);
+                }
+            }
+            else {
+                formData.append('tab4_icon', tab4_icon);
+            }
+        }
+
         formData.append('access_model', menuType);
         formData.append('app_font', app_font);
         formData.append('enable_sms', enable_sms);
@@ -5481,12 +5810,12 @@ function sendData() {
         }
         // if (document.querySelector("input#gps_pushkit").files.length > 0) {
         //     formData.append("gps_pushkit", $("input#gps_pushkit")[0].files[0]);
-            // if ($("input#gps_client_id").val() != "") {
-            //     formData.append("gps_clientID", $("input#gps_client_id").val());
-            // } else {
-            //     alert("Please input your Google Firebase Project ID");
-            //     return false;
-            // }            
+        // if ($("input#gps_client_id").val() != "") {
+        //     formData.append("gps_clientID", $("input#gps_client_id").val());
+        // } else {
+        //     alert("Please input your Google Firebase Project ID");
+        //     return false;
+        // }            
         // }
 
         if (menuType == 1) {
@@ -5584,9 +5913,9 @@ function sendData() {
         formData.append('inputCode', inputCode);
     } else if (!generate_apk && edit_apk) {
         console.log('EDIT')
-        $('#generate-apk-form-2 :required').each(function() {
+        $('#generate-apk-form-2 :required').each(function () {
             if ($(this).val() === '' || $(this).val() === null) {
-                formInvalid = false;   
+                formInvalid = false;
                 let fieldId = $(this).attr("id");
                 // if (fieldName == "tab1" || fieldName == "tab2" || fieldName == "tab3" || fieldName == "tab4" ||
                 // fieldName == "tab1_edit" || fieldName == "tab2_edit" || fieldName == "tab3_edit" || fieldName == "tab4_edit") {
@@ -5596,7 +5925,7 @@ function sendData() {
                 // }
                 console.log("FIELD ID", fieldId);
                 let fieldName = "";
-                switch(fieldId) {
+                switch (fieldId) {
                     case "tab1":
                     case "tab2":
                     case "tab3":
@@ -5604,7 +5933,7 @@ function sendData() {
                     case "tab1_edit":
                     case "tab2_edit":
                     case "tab3_edit":
-                    case "tab4_edit":                        
+                    case "tab4_edit":
                         fieldName = localStorage.lang == 1 ? "Konten Tab" : "Tab content";
                         break;
                     case "appId":
@@ -5615,7 +5944,7 @@ function sendData() {
                         break;
                     case "ver_name":
                         fieldName = localStorage.lang == 1 ? "Nama versi" : "Version name";
-                        break;    
+                        break;
                     default:
                         fieldName = localStorage.lang == 1 ? "Ada field yang" : "A field";
                         break;
@@ -5798,10 +6127,10 @@ function sendData() {
         var hoursEnd = getEndBuild.getHours();
         var minutesEnd = getEndBuild.getMinutes();
 
-        if (localStorage.lang == 1){
+        if (localStorage.lang == 1) {
             $('#build-start-time').html('Waktu awal build <span style="background-color: #1a73e8; padding: 5px; padding-left: 15px; margin-left: 60px; padding-right: 15px; color: white; border-radius: 20px"><b>' + hoursBuild + " : " + minutesBuild + '</b></span>');
             $('#build-end-time').html('Estimasi selesai build <span style="background-color: #28a745; padding: 5px; padding-left: 15px; margin-left: 25px; padding-right: 15px; color: white; border-radius: 20px"><b>' + hoursEnd + " : " + minutesEnd + '</b>');
-        }else{
+        } else {
             $('#build-start-time').html('Build start time <span style="background-color: #1a73e8; padding: 5px; padding-left: 15px; margin-left: 60px; padding-right: 15px; color: white; border-radius: 20px"><b>' + hoursBuild + " : " + minutesBuild + '</b></span>');
             $('#build-end-time').html('Estimated end time <span style="background-color: #28a745; padding: 5px; padding-left: 15px; margin-left: 25px; padding-right: 15px; color: white; border-radius: 20px"><b>' + hoursEnd + " : " + minutesEnd + '</b>');
         }
@@ -5815,7 +6144,7 @@ function sendData() {
         xmlHttp.onreadystatechange = function () {
 
             if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
-                console.log(xmlHttp.responseText);                
+                console.log(xmlHttp.responseText);
 
                 let response = xmlHttp.responseText.split("|");
 
@@ -5830,16 +6159,16 @@ function sendData() {
                     }
                 } else {
 
-                    setTimeout(function() {
+                    setTimeout(function () {
                         $('#warningModal').modal('hide');
                     }, 2000);
-                    
-                    setTimeout(function() {
+
+                    setTimeout(function () {
                         // alert("Build Failed. Error Code : " + response[1]);
 
-                        if (localStorage.lang == 1){
+                        if (localStorage.lang == 1) {
                             alert("Build Gagal, Harap coba lagi.");
-                        }else{
+                        } else {
                             alert("Build Failed, Please try again.");
                         }
                     }, 3000);
@@ -5847,10 +6176,10 @@ function sendData() {
                 }
             }
         }
-        xmlHttp.onerror = function() {
+        xmlHttp.onerror = function () {
             $('#warningModal').modal('hide');
 
-            if (localStorage.lang == 0){
+            if (localStorage.lang == 0) {
                 alert("Please check your network and try refreshing the page.");
             } else {
                 alert("Mohon periksa koneksi Anda dan coba refresh halaman ini.")
@@ -5858,8 +6187,8 @@ function sendData() {
         }
 
         // try {
-            xmlHttp.open("post", "logics/submit_build_apk");
-            xmlHttp.send(formData);
+        xmlHttp.open("post", "logics/submit_build_apk_new");
+        xmlHttp.send(formData);
         // } catch (e) {
         //     console.log("SEND ERR", e);
         // }
@@ -5878,7 +6207,7 @@ function sendData() {
 async function downloadFiles(fileName) {
     try {
         $('#warningModal').modal('toggle');
-        for (let i = 0;; i++) {
+        for (let i = 0; ; i++) {
             const req = await fetch(fileName);
             const reader = req.body.getReader();
             window.location.href = fileName;

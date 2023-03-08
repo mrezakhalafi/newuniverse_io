@@ -17,7 +17,7 @@ $session_company = $_SESSION['id_company'];
 
 $dbConnPalio = dbConnPalioLite();
 
-$query_one = $dbconn->prepare("SELECT wf.WEB_URL, wf.VERSION_CODE FROM WEBFORM wf WHERE wf.COMPANY_ID = " . $session_company . "
+$query_one = $dbconn->prepare("SELECT wf.COMPANY_NAME, wf.APP_ID, wf.TAB1, wf.TAB2, wf.TAB3, wf.TAB4, wf.ENABLE_SMS, wf.ENABLE_OSINT, wf.ENABLE_SCAN, wf.ENABLE_EMAIL, wf.APP_BG, wf.CPAAS_ICON, wf.TAB1_ICON, wf.TAB2_ICON, wf.TAB3_ICON, wf.TAB4_ICON, wf.FBUTTON1, wf.FBUTTON2, wf.FBUTTON3, wf.FBUTTON4, wf.FBUTTON5, wf.ACCESS_MODEL, wf.FONT, wf.VERSION_NAME, wf.WEB_URL, wf.VERSION_CODE FROM WEBFORM wf WHERE wf.COMPANY_ID = " . $session_company . "
 ORDER BY CREATED_AT DESC LIMIT 1");
 $query_one->execute();
 $query_one_result = $query_one->get_result()->fetch_assoc();
@@ -653,7 +653,7 @@ if ($query_one_result['WEB_URL'] == null) {
         }
     }
 
-    
+
     @media screen and (min-width:415px) {
 
         #cpaas-model-text {
@@ -678,7 +678,6 @@ if ($query_one_result['WEB_URL'] == null) {
         max-width: 100%;
         overflow-x: hidden;
     }
-    
 </style>
 
 <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
@@ -758,11 +757,13 @@ if ($query_one_result['WEB_URL'] == null) {
                                     <div class="row mb-5">
                                         <div class="col-sm-12 col-md-6 left">
                                             <label for="companyName" data-translate="dashform-9">Your company name <span style="color:red;">*</span> :</label>
-                                            <input type="textarea" id="companyName" class="form-control" name="company-name" placeholder="Company Name">
+                                            <input type="textarea" id="companyName" class="form-control" name="company-name" placeholder="Company Name" value="<?php if ($query_one_result['COMPANY_NAME'] != "") : echo $query_one_result['COMPANY_NAME'];
+                                                                                                                                                                endif; ?>">
                                         </div>
                                         <div class="col-sm-12 col-md-6 right">
                                             <label for="appId" data-translate="dashform-10">Your app id <span style="color:red;">*</span> :</label>
-                                            <input type="textarea" id="appId" class="form-control" name="app-id" placeholder="com.example">
+                                            <input type="textarea" id="appId" class="form-control" name="app-id" placeholder="com.example" value="<?php if ($query_one_result['APP_ID'] != "") : echo $query_one_result['APP_ID'];
+                                                                                                                                                    endif; ?>">
                                         </div>
                                     </div>
 
@@ -829,13 +830,13 @@ if ($query_one_result['WEB_URL'] == null) {
 
                                                 <div class="col-sm-8">
                                                     <select id="tab1" class="form-control tab-content" name="tab1" onchange="checkOpt(this.id);" required>
-                                                        <option value="" disabled selected data-translate="dashform-22">Select your option</option>
-                                                        <option value="1">Home Page</option>
-                                                        <option value="2">Chats & Groups</option>
-                                                        <option value="3">Content Posting</option>
-                                                        <option value="4">Settings & User Profile</option>
-                                                        <option value="5">Secure Folder</option>
-                                                        <option value="6">Call Log</option>
+                                                        <option value="" disabled <?php if ($query_one_result['TAB1'] == "") : ?> selected <?php endif; ?> data-translate="dashform-22">Select your option</option>
+                                                        <option value="1" <?php if ($query_one_result['TAB1'] == 1) : ?> selected <?php endif; ?>>Home Page</option>
+                                                        <option value="2" <?php if ($query_one_result['TAB1'] == 2) : ?> selected <?php endif; ?>>Chats & Groups</option>
+                                                        <option value="3" <?php if ($query_one_result['TAB1'] == 3) : ?> selected <?php endif; ?>>Content Posting</option>
+                                                        <option value="4" <?php if ($query_one_result['TAB1'] == 4) : ?> selected <?php endif; ?>>Settings & User Profile</option>
+                                                        <option value="5" <?php if ($query_one_result['TAB1'] == 5) : ?> selected <?php endif; ?>>Secure Folder</option>
+                                                        <option value="6" <?php if ($query_one_result['TAB1'] == 6) : ?> selected <?php endif; ?>>Call Log</option>
                                                         <option value="0" data-translate="dashform-71">Unused</option>
                                                     </select>
                                                 </div>
@@ -871,13 +872,13 @@ if ($query_one_result['WEB_URL'] == null) {
 
                                                 <div class="col-sm-8">
                                                     <select id="tab2" class="form-control tab-content" name="tab2" onchange="checkOpt(this.id);" required>
-                                                        <option value="" disabled selected data-translate="dashform-22">Select your option</option>
-                                                        <option value="1">Home Page</option>
-                                                        <option value="2">Chats & Groups</option>
-                                                        <option value="3">Content Posting</option>
-                                                        <option value="4">Settings & User Profile</option>
-                                                        <option value="5">Secure Folder</option>
-                                                        <option value="6">Call Log</option>
+                                                        <option value="" disabled <?php if ($query_one_result['TAB2'] == "") : ?> selected <?php endif; ?> data-translate="dashform-22">Select your option</option>
+                                                        <option value="1" <?php if ($query_one_result['TAB2'] == 1) : ?> selected <?php endif; ?>>Home Page</option>
+                                                        <option value="2" <?php if ($query_one_result['TAB2'] == 2) : ?> selected <?php endif; ?>>Chats & Groups</option>
+                                                        <option value="3" <?php if ($query_one_result['TAB2'] == 3) : ?> selected <?php endif; ?>>Content Posting</option>
+                                                        <option value="4" <?php if ($query_one_result['TAB2'] == 4) : ?> selected <?php endif; ?>>Settings & User Profile</option>
+                                                        <option value="5" <?php if ($query_one_result['TAB2'] == 5) : ?> selected <?php endif; ?>>Secure Folder</option>
+                                                        <option value="6" <?php if ($query_one_result['TAB2'] == 6) : ?> selected <?php endif; ?>>Call Log</option>
                                                         <option value="0" data-translate="dashform-71">Unused</option>
                                                     </select>
                                                 </div>
@@ -914,13 +915,13 @@ if ($query_one_result['WEB_URL'] == null) {
 
                                                 <div class="col-sm-8">
                                                     <select id="tab3" class="form-control tab-content" name="tab3" onchange="checkOpt(this.id);" required>
-                                                        <option value="" disabled selected data-translate="dashform-22">Select your option</option>
-                                                        <option value="1">Home Page</option>
-                                                        <option value="2">Chats & Groups</option>
-                                                        <option value="3">Content Posting</option>
-                                                        <option value="4">Settings & User Profile</option>
-                                                        <option value="5">Secure Folder</option>
-                                                        <option value="6">Call Log</option>
+                                                        <option value="" disabled <?php if ($query_one_result['TAB3'] == "") : ?> selected <?php endif; ?> data-translate="dashform-22">Select your option</option>
+                                                        <option value="1" <?php if ($query_one_result['TAB3'] == 1) : ?> selected <?php endif; ?>>Home Page</option>
+                                                        <option value="2" <?php if ($query_one_result['TAB3'] == 2) : ?> selected <?php endif; ?>>Chats & Groups</option>
+                                                        <option value="3" <?php if ($query_one_result['TAB3'] == 3) : ?> selected <?php endif; ?>>Content Posting</option>
+                                                        <option value="4" <?php if ($query_one_result['TAB3'] == 4) : ?> selected <?php endif; ?>>Settings & User Profile</option>
+                                                        <option value="5" <?php if ($query_one_result['TAB3'] == 5) : ?> selected <?php endif; ?>>Secure Folder</option>
+                                                        <option value="6" <?php if ($query_one_result['TAB3'] == 6) : ?> selected <?php endif; ?>>Call Log</option>
                                                         <option value="0" data-translate="dashform-71">Unused</option>
                                                     </select>
                                                 </div>
@@ -956,14 +957,14 @@ if ($query_one_result['WEB_URL'] == null) {
                                                 <label class="col-sm-4 col-form-label" for="tab4" data-translate="dashform-25">Tab 4 content <span style="color:red;">*</span> :</label>
 
                                                 <div class="col-sm-8">
-                                                    <select id="tab4" class="form-control tab-content" name="tab4" onchange="checkOpt(this.id);"  required>
-                                                        <option value="" disabled selected data-translate="dashform-22">Select your option</option>
-                                                        <option value="1">Home Page</option>
-                                                        <option value="2">Chats & Groups</option>
-                                                        <option value="3">Content Posting</option>
-                                                        <option value="4">Settings & User Profile</option>
-                                                        <option value="5">Secure Folder</option>
-                                                        <option value="6">Call Log</option>
+                                                    <select id="tab4" class="form-control tab-content" name="tab4" onchange="checkOpt(this.id);" required>
+                                                        <option value="" disabled <?php if ($query_one_result['TAB4'] == "") : ?> selected <?php endif; ?> data-translate="dashform-22">Select your option</option>
+                                                        <option value="1" <?php if ($query_one_result['TAB4'] == 1) : ?> selected <?php endif; ?>>Home Page</option>
+                                                        <option value="2" <?php if ($query_one_result['TAB4'] == 2) : ?> selected <?php endif; ?>>Chats & Groups</option>
+                                                        <option value="3" <?php if ($query_one_result['TAB4'] == 3) : ?> selected <?php endif; ?>>Content Posting</option>
+                                                        <option value="4" <?php if ($query_one_result['TAB4'] == 4) : ?> selected <?php endif; ?>>Settings & User Profile</option>
+                                                        <option value="5" <?php if ($query_one_result['TAB4'] == 5) : ?> selected <?php endif; ?>>Secure Folder</option>
+                                                        <option value="6" <?php if ($query_one_result['TAB4'] == 6) : ?> selected <?php endif; ?>>Call Log</option>
                                                         <option value="0" data-translate="dashform-71">Unused</option>
                                                     </select>
                                                 </div>
@@ -1015,7 +1016,7 @@ if ($query_one_result['WEB_URL'] == null) {
                                             <div class="row">
                                                 <div class="col-md-12">
                                                     <label class="genapkcheckbox" for="enable_sms" style="font-size:.8rem;"> SMS
-                                                        <input type="checkbox" id="enable_sms" name="enable_sms" value="1">
+                                                        <input type="checkbox" id="enable_sms" name="enable_sms" value="1" <?php if ($query_one_result['ENABLE_SMS'] == 1) : ?> checked <?php endif; ?>>
                                                         <span class="checkmark-small"></span>
                                                     </label>
                                                 </div>
@@ -1023,7 +1024,7 @@ if ($query_one_result['WEB_URL'] == null) {
                                             <div class="row">
                                                 <div class="col-md-12">
                                                     <label class="genapkcheckbox" for="enable_osint" style="font-size:.8rem;"> OSINT Search
-                                                        <input type="checkbox" id="enable_osint" name="enable_osint" value="1">
+                                                        <input type="checkbox" id="enable_osint" name="enable_osint" value="1" <?php if ($query_one_result['ENABLE_OSINT'] == 1) : ?> checked <?php endif; ?>>
                                                         <span class="checkmark-small"></span>
                                                     </label>
                                                 </div>
@@ -1031,7 +1032,7 @@ if ($query_one_result['WEB_URL'] == null) {
                                             <div class="row">
                                                 <div class="col-md-12">
                                                     <label class="genapkcheckbox" for="enable_scan" style="font-size:.8rem;"> ID Scan
-                                                        <input type="checkbox" id="enable_scan" name="enable_scan" value="1">
+                                                        <input type="checkbox" id="enable_scan" name="enable_scan" value="1" <?php if ($query_one_result['ENABLE_SCAN'] == 1) : ?> checked <?php endif; ?>>
                                                         <span class="checkmark-small"></span>
                                                     </label>
                                                 </div>
@@ -1039,7 +1040,7 @@ if ($query_one_result['WEB_URL'] == null) {
                                             <div class="row">
                                                 <div class="col-md-12">
                                                     <label class="genapkcheckbox" for="enable_email" style="font-size:.8rem;"> Email
-                                                        <input type="checkbox" id="enable_email" name="enable_email" value="1">
+                                                        <input type="checkbox" id="enable_email" name="enable_email" value="1" <?php if ($query_one_result['ENABLE_EMAIL'] == 1) : ?> checked <?php endif; ?>>
                                                         <span class="checkmark-small"></span>
                                                     </label>
                                                 </div>
@@ -1127,9 +1128,9 @@ if ($query_one_result['WEB_URL'] == null) {
                                                 <div class="col-sm-8">
                                                     <!-- <input type="file" id="tab3_icon" class="form-control" name="tab3_icon"> -->
                                                     <select class="form-control" name="access_model" onchange="selectTabMenu()" id="menuType">
-                                                        <option value="0" selected>Floating button</option>
-                                                        <option value="1">Docked</option>
-                                                        <option value="2">Hamburger Menu</option>
+                                                        <option value="0" <?php if ($query_one_result['ACCESS_MODEL'] == 0) : ?> selected <?php endif; ?>>Floating button</option>
+                                                        <option value="1" <?php if ($query_one_result['ACCESS_MODEL'] == 1) : ?> selected <?php endif; ?>>Docked</option>
+                                                        <option value="2" <?php if ($query_one_result['ACCESS_MODEL'] == 2) : ?> selected <?php endif; ?>>Hamburger Menu</option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -1219,8 +1220,8 @@ if ($query_one_result['WEB_URL'] == null) {
                                                 <div class="col-sm-8">
                                                     <!-- <input type="file" id="tab3_icon" class="form-control" name="tab3_icon"> -->
                                                     <select class="form-control" name="app_font" id="app_font">
-                                                        <option value="0">Poppins</option>
-                                                        <option value="1">Roboto</option>
+                                                        <option value="0" <?php if ($query_one_result['FONT'] == 0) : ?> selected <?php endif; ?>>Poppins</option>
+                                                        <option value="1" <?php if ($query_one_result['FONT'] == 1) : ?> selected <?php endif; ?>>Roboto</option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -1263,7 +1264,7 @@ if ($query_one_result['WEB_URL'] == null) {
 
                                             <div class="check-existing-image mt-2 mb-4">
 
-                                                <?php if(isset($oldBG)): ?>
+                                                <?php if (isset($oldBG)) : ?>
                                                     <div class="text-success"><b data-translate="dashform-37">Existing Background Image Found.</b></div>
                                                 <?php endif; ?>
 
@@ -1271,7 +1272,7 @@ if ($query_one_result['WEB_URL'] == null) {
 
                                             </div>
 
-                                            <?php if(isset($oldBG)): ?>
+                                            <?php if (isset($oldBG)) : ?>
                                                 <label class="genapkcheckbox mt-2 mb-5" for="use-old-bg"> <span data-translate="dashform-38">I want to use old background</span>
                                                     <input type="checkbox" id="use-old-bg" name="use-old-bg" value="1">
                                                     <span class="checkmark"></span>
@@ -1288,7 +1289,7 @@ if ($query_one_result['WEB_URL'] == null) {
                                                         </label>
                                                         <input id="no-chosen-splash" type="text" style="margin-top: -5px; padding-left: 130px; border: none; background-color:none; background-color: transparent !important" class="form-control border-70" readonly value="No file chosen.">
                                                         <input id="splash-upload-name" type="text" style="margin-top: -5px; padding-left: 130px; border: none; background-color:none; background-color: transparent !important" class="form-control border-70 d-none" readonly>
-                
+
                                                         <input type="file" id="splashscreen" class="form-control d-none" accept="image/*,video/*" name="splashscreen">
                                                     </div>
                                                 </div>
@@ -1305,7 +1306,8 @@ if ($query_one_result['WEB_URL'] == null) {
                                                 <label class="col-sm-4 col-form-label" for="ver_name" data-translate="dashform-41">Version name <span style="color:red;">*</span> :</label>
 
                                                 <div class="col-sm-8">
-                                                    <input type="text" id="ver_name" class="form-control mb-1" name="ver_name" required>
+                                                    <input type="text" id="ver_name" class="form-control mb-1" name="ver_name" value="<?php if ($query_one_result['VERSION_NAME'] != "") : echo $query_one_result['VERSION_NAME'];
+                                                                                                                                        endif; ?>" required>
                                                     <p id="ver_name_format" style="font-size:.85rem; color:red;" class="d-none">
                                                         Please use only alphabet, numbers and dots.
                                                     </p>
@@ -1319,7 +1321,7 @@ if ($query_one_result['WEB_URL'] == null) {
                                                     </p>
                                                 </div>
                                             </div>
-                                            
+
                                             <div class="row d-none">
                                                 <div class="col-md-12">
                                                     <label class="genapkcheckbox" for="include_hms" style="font-size:.8rem;"> Include HMS
@@ -1377,7 +1379,7 @@ if ($query_one_result['WEB_URL'] == null) {
                                                 <p style="font-size: 20px; margin-top: 30px" class="text-center" data-translate="dashform-43"><b>CPaaS</b> in app Preview</p>
                                                 <p id="cpaas-model-text" class="text-center" data-translate="dashform-44">Change <b>CPaaS</b> model in Access Model option.</p>
                                                 <img src="assets/note-5.webp" style="width: 100%; height: auto; pointer-events: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -o-user-select: none; user-select: none" alt="">
-                                                <img id="phone-bg" src="" style="position: absolute; width: 232px; height: 366px; margin-left: -315px; margin-top: 81px; pointer-events: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -o-user-select: none; user-select: none" alt="">
+                                                <img id="phone-bg" <?php if ($query_one_result['APP_BG'] != "") : ?> src="/dashboardv2/uploads/background/<?= $query_one_result['APP_BG']; ?>" <?php else : ?> src="" <?php endif; ?> style="position: absolute; width: 232px; height: 366px; margin-left: -315px; margin-top: 81px; pointer-events: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -o-user-select: none; user-select: none" alt="">
 
                                                 <!-- START BURGER AREA -->
                                                 <div id="burger-area" style="width: 232px; margin-left: 85px; height: 40px; margin-top: -486; background-color: grey; position: absolute">
@@ -1395,13 +1397,33 @@ if ($query_one_result['WEB_URL'] == null) {
                                                 <div class="docked-content row gx-0" style="position: absolute; margin-top: -119px; margin-left: 85px; background-color: #d7d7d7; width: 232px; height: 45px; z-index: 999">
                                                     <label for="tab1_icon" style="display: contents">
                                                         <div id="big-icon-1" class="col-2 d-flex justify-content-center msg-icon pt-2" style="width: 60px; height: 45px; border-right: 1px solid grey; z-index: 1000">
-                                                            <span id="plus-1" style="margin-top: -5px; font-size: 25px">+</span>
+                                                            <?php
+                                                            if ($query_one_result['TAB1_ICON'] != "") {
+                                                            ?>
+                                                                <img id="plus-1" width="30" height="30" src="/dashboardv2/uploads/tab_icon/<?= $query_one_result['TAB1_ICON']; ?>"></img>
+                                                            <?php
+                                                            } else {
+                                                            ?>
+                                                                <span id="plus-1" style="margin-top: -5px; font-size: 25px">+</span>
+                                                            <?php
+                                                            }
+                                                            ?>
                                                             <img id="image-preview-1" class="image-preview" src="" width="30" height="30" />
                                                         </div>
                                                     </label>
                                                     <label for="tab2_icon" style="display: contents">
                                                         <div id="big-icon-2" class="col-2 d-flex justify-content-center smile-icon pt-2" style="width: 60px; height: 45px; z-index: 1000">
-                                                            <span id="plus-2" style="margin-top: -5px; font-size: 25px">+</span>
+                                                            <?php
+                                                            if ($query_one_result['TAB2_ICON'] != "") {
+                                                            ?>
+                                                                <img id="plus-2" width="30" height="30" src="/dashboardv2/uploads/tab_icon/<?= $query_one_result['TAB2_ICON']; ?>"></img>
+                                                            <?php
+                                                            } else {
+                                                            ?>
+                                                                <span id="plus-2" style="margin-top: -5px; font-size: 25px">+</span>
+                                                            <?php
+                                                            }
+                                                            ?>
                                                             <img id="image-preview-2" class="image-preview" src="" width="30" height="30" />
                                                         </div>
                                                     </label>
@@ -1412,38 +1434,98 @@ if ($query_one_result['WEB_URL'] == null) {
                                                                 <div class="small-icon gx-0 justify-content-center" style="width: 260px; height: 80px; position: absolute; margin-top: -30px">
                                                                     <label for="fb3_icon" style="display: contents">
                                                                         <div id="small-icon-1" class="small-icon-1 d-flex justify-content-center" style="position: absolute; margin-top: -80px; background-color: #d7d7d7; border-radius: 50%; width: 40px; height: 40px; margin-left: 110px">
-                                                                            <span id="plus-6" style="margin-top: 10px; font-size: 15px">+</span>
+                                                                            <?php
+                                                                            if ($query_one_result['FBUTTON3'] != "") {
+                                                                            ?>
+                                                                                <img id="plus-6" style="margin-top: 10px" width="20" height="20" src="/dashboardv2/uploads/fb_icon/<?= $query_one_result['FBUTTON3']; ?>"></img>
+                                                                            <?php
+                                                                            } else {
+                                                                            ?>
+                                                                                <span id="plus-6" style="margin-top: 10px; font-size: 15px">+</span>
+                                                                            <?php
+                                                                            }
+                                                                            ?>
                                                                             <img id="image-preview-6" class="image-preview" src="" style="margin-top: 10px" width="20px" height="20px" />
                                                                         </div>
                                                                     </label>
                                                                     <label for="fb5_icon" style="display: contents">
                                                                         <div id="small-icon-2" class="small-icon-2 d-flex justify-content-center" style="position: absolute; margin-top: -25px; margin-left: 180px; background-color: #d7d7d7; border-radius: 50%; width: 40px; height: 40px">
-                                                                            <span id="plus-7" style="margin-top: 10px; font-size: 15px">+</span>
+                                                                            <?php
+                                                                            if ($query_one_result['FBUTTON5'] != "") {
+                                                                            ?>
+                                                                                <img id="plus-7" style="margin-top: 10px" width="20" height="20" src="/dashboardv2/uploads/fb_icon/<?= $query_one_result['FBUTTON5']; ?>"></img>
+                                                                            <?php
+                                                                            } else {
+                                                                            ?>
+                                                                                <span id="plus-7" style="margin-top: 10px; font-size: 15px">+</span>
+                                                                            <?php
+                                                                            }
+                                                                            ?>
                                                                             <img id="image-preview-7" class="image-preview" src="" style="margin-top: 10px" width="20px" height="20px" />
                                                                         </div>
                                                                     </label>
                                                                     <label for="fb4_icon" style="display: contents">
                                                                         <div id="small-icon-3" class="small-icon-3 d-flex justify-content-center" style="position: absolute; margin-top: -65px; margin-left: 150px; background-color: #d7d7d7; border-radius: 50%; width: 40px; height: 40px">
-                                                                            <span id="plus-8" style="margin-top: 10px; font-size: 15px">+</span>
+                                                                            <?php
+                                                                            if ($query_one_result['FBUTTON4'] != "") {
+                                                                            ?>
+                                                                                <img id="plus-8" style="margin-top: 10px" width="20" height="20" src="/dashboardv2/uploads/fb_icon/<?= $query_one_result['FBUTTON4']; ?>"></img>
+                                                                            <?php
+                                                                            } else {
+                                                                            ?>
+                                                                                <span id="plus-8" style="margin-top: 10px; font-size: 15px">+</span>
+                                                                            <?php
+                                                                            }
+                                                                            ?>
                                                                             <img id="image-preview-8" class="image-preview" src="" style="margin-top: 10px" width="20px" height="20px" />
                                                                         </div>
                                                                     </label>
                                                                     <label for="fb2_icon" style="display: contents">
                                                                         <div id="small-icon-4" class="small-icon-4 d-flex justify-content-center" style="position: absolute; margin-top: -65px; margin-left: 70px; background-color: #d7d7d7; border-radius: 50%; width: 40px; height: 40px">
-                                                                            <span id="plus-9" style="margin-top: 10px; font-size: 15px">+</span>
+                                                                            <?php
+                                                                            if ($query_one_result['FBUTTON2'] != "") {
+                                                                            ?>
+                                                                                <img id="plus-9" style="margin-top: 10px" width="20" height="20" src="/dashboardv2/uploads/fb_icon/<?= $query_one_result['FBUTTON2']; ?>"></img>
+                                                                            <?php
+                                                                            } else {
+                                                                            ?>
+                                                                                <span id="plus-9" style="margin-top: 10px; font-size: 15px">+</span>
+                                                                            <?php
+                                                                            }
+                                                                            ?>
                                                                             <img id="image-preview-9" class="image-preview" src="" style="margin-top: 10px" width="20px" height="20px" />
                                                                         </div>
                                                                     </label>
                                                                     <label for="fb1_icon" style="display: contents">
                                                                         <div id="small-icon-5" class="small-icon-5 d-flex justify-content-center" style="position: absolute; margin-top: -25px; margin-left: 40px; background-color: #d7d7d7; border-radius: 50%; width: 40px; height: 40px">
-                                                                            <span id="plus-10" style="margin-top: 10px; font-size: 15px">+</span>
+                                                                            <?php
+                                                                            if ($query_one_result['FBUTTON1'] != "") {
+                                                                            ?>
+                                                                                <img id="plus-10" style="margin-top: 10px" width="20" height="20" src="/dashboardv2/uploads/fb_icon/<?= $query_one_result['FBUTTON1']; ?>"></img>
+                                                                            <?php
+                                                                            } else {
+                                                                            ?>
+                                                                                <span id="plus-10" style="margin-top: 10px; font-size: 15px">+</span>
+                                                                            <?php
+                                                                            }
+                                                                            ?>
                                                                             <img id="image-preview-10" class="image-preview" src="" style="margin-top: 10px" width="20px" height="20px" />
                                                                         </div>
                                                                     </label>
                                                                 </div>
                                                                 <label for="cpaas_icon" style="display: contents">
                                                                     <div id="big-icon-5" style="z-index: 1000">
-                                                                        <div id="plus-5" style="padding-top: 12px; font-size: 25px">+</div>
+                                                                        <?php
+                                                                        if ($query_one_result['CPAAS_ICON'] != "") {
+                                                                        ?>
+                                                                            <img id="plus-5" width="60" height="60" src="/dashboardv2/uploads/logofloat/<?= $query_one_result['CPAAS_ICON']; ?>"></img>
+                                                                        <?php
+                                                                        } else {
+                                                                        ?>
+                                                                            <div id="plus-5" style="padding-top: 12px; font-size: 25px">+</div>
+                                                                        <?php
+                                                                        }
+                                                                        ?>
                                                                         <img id="image-preview-5" class="image-preview" src="" width="60" height="60" />
                                                                     </div>
                                                                 </label>
@@ -1453,13 +1535,33 @@ if ($query_one_result['WEB_URL'] == null) {
 
                                                     <label for="tab3_icon" style="display: contents;">
                                                         <div id="big-icon-3" class="col-2 d-flex justify-content-center home-icon pt-2" style="width: 60px; height: 45px; border-right: 1px solid grey; z-index: 1000">
-                                                            <span id="plus-3" style="margin-top: -5px; font-size: 25px">+</span>
+                                                            <?php
+                                                            if ($query_one_result['TAB3_ICON'] != "") {
+                                                            ?>
+                                                                <img id="plus-3" width="30" height="30" src="/dashboardv2/uploads/tab_icon/<?= $query_one_result['TAB3_ICON']; ?>"></img>
+                                                            <?php
+                                                            } else {
+                                                            ?>
+                                                                <span id="plus-3" style="margin-top: -5px; font-size: 25px">+</span>
+                                                            <?php
+                                                            }
+                                                            ?>
                                                             <img id="image-preview-3" class="image-preview" src="" width="30" height="30" />
                                                         </div>
                                                     </label>
                                                     <label for="tab4_icon" style="display: contents; z-index: 1000">
                                                         <div id="big-icon-4" class="col-2 d-flex justify-content-center settings-icon pt-2" style="width: 60px; height: 45px">
-                                                            <span id="plus-4" style="margin-top: -5px; font-size: 25px">+</span>
+                                                            <?php
+                                                            if ($query_one_result['TAB4_ICON'] != "") {
+                                                            ?>
+                                                                <img id="plus-4" width="30" height="30" src="/dashboardv2/uploads/tab_icon/<?= $query_one_result['TAB4_ICON']; ?>"></img>
+                                                            <?php
+                                                            } else {
+                                                            ?>
+                                                                <span id="plus-4" style="margin-top: -5px; font-size: 25px">+</span>
+                                                            <?php
+                                                            }
+                                                            ?>
                                                             <img id="image-preview-4" class="image-preview" src="" width="30" height="30" />
                                                         </div>
                                                     </label>
@@ -1470,25 +1572,65 @@ if ($query_one_result['WEB_URL'] == null) {
                                                 <div class="docked-content-2 row gx-0" style="position: absolute; margin-top: -119px; margin-left: 85px; background-color: #d7d7d7; width: 232px; height: 45px; z-index: 999">
                                                     <label for="tab5_icon" style="display: contents">
                                                         <div id="big-icon-6" class="col-3 d-flex justify-content-center msg-icon pt-2" style="width: 60px; height: 45px; border-right: 1px solid grey; z-index: 1000">
-                                                            <span id="plus-17" style="margin-top: -5px; font-size: 25px">+</span>
+                                                            <?php
+                                                            if ($query_one_result['TAB1_ICON'] != "") {
+                                                            ?>
+                                                                <img id="plus-17" width="30" height="30" src="/dashboardv2/uploads/tab_icon/<?= $query_one_result['TAB1_ICON']; ?>"></img>
+                                                            <?php
+                                                            } else {
+                                                            ?>
+                                                                <span id="plus-17" style="margin-top: -5px; font-size: 25px">+</span>
+                                                            <?php
+                                                            }
+                                                            ?>
                                                             <img id="image-preview-17" class="image-preview" src="" width="30" height="30" />
                                                         </div>
                                                     </label>
                                                     <label for="tab6_icon" style="display: contents">
                                                         <div id="big-icon-7" class="col-3 d-flex justify-content-center smile-icon pt-2" style="width: 60px; height: 45px; border-right: 1px solid grey; z-index: 1000">
-                                                            <span id="plus-18" style="margin-top: -5px; font-size: 25px">+</span>
+                                                            <?php
+                                                            if ($query_one_result['TAB2_ICON'] != "") {
+                                                            ?>
+                                                                <img id="plus-18" width="30" height="30" src="/dashboardv2/uploads/tab_icon/<?= $query_one_result['TAB2_ICON']; ?>"></img>
+                                                            <?php
+                                                            } else {
+                                                            ?>
+                                                                <span id="plus-18" style="margin-top: -5px; font-size: 25px">+</span>
+                                                            <?php
+                                                            }
+                                                            ?>
                                                             <img id="image-preview-18" class="image-preview" src="" width="30" height="30" />
                                                         </div>
                                                     </label>
                                                     <label for="tab7_icon" style="display: contents;">
                                                         <div id="big-icon-8" class="col-3 d-flex justify-content-center home-icon pt-2" style="width: 60px; height: 45px; border-right: 1px solid grey; z-index: 1000">
-                                                            <span id="plus-19" style="margin-top: -5px; font-size: 25px">+</span>
+                                                            <?php
+                                                            if ($query_one_result['TAB3_ICON'] != "") {
+                                                            ?>
+                                                                <img id="plus-19" width="30" height="30" src="/dashboardv2/uploads/tab_icon/<?= $query_one_result['TAB3_ICON']; ?>"></img>
+                                                            <?php
+                                                            } else {
+                                                            ?>
+                                                                <span id="plus-19" style="margin-top: -5px; font-size: 25px">+</span>
+                                                            <?php
+                                                            }
+                                                            ?>
                                                             <img id="image-preview-19" class="image-preview" src="" width="30" height="30" />
                                                         </div>
                                                     </label>
                                                     <label for="tab8_icon" style="display: contents; z-index: 1000">
                                                         <div id="big-icon-9" class="col-3 d-flex justify-content-center settings-icon pt-2" style="width: 60px; height: 45px">
-                                                            <span id="plus-20" style="margin-top: -5px; font-size: 25px">+</span>
+                                                            <?php
+                                                            if ($query_one_result['TAB4_ICON'] != "") {
+                                                            ?>
+                                                                <img id="plus-20" width="30" height="30" src="/dashboardv2/uploads/tab_icon/<?= $query_one_result['TAB4_ICON']; ?>"></img>
+                                                            <?php
+                                                            } else {
+                                                            ?>
+                                                                <span id="plus-20" style="margin-top: -5px; font-size: 25px">+</span>
+                                                            <?php
+                                                            }
+                                                            ?>
                                                             <img id="image-preview-20" class="image-preview" src="" width="30" height="30" />
                                                         </div>
                                                     </label>
@@ -1500,39 +1642,99 @@ if ($query_one_result['WEB_URL'] == null) {
                                                     <div class="small_icon gx-0 justify-content-center" style="width: 260px; height: 80px; position: absolute; margin-left: 150px; margin-top: -390px">
                                                         <label for="fb8_icon" style="display: contents">
                                                             <div id="small-icon-6" class="small-icon-1 d-flex justify-content-center" style="position: absolute; margin-top: -80px; background-color: #d7d7d7; border-radius: 50%; width: 40px; height: 40px; margin-left: 110px">
-                                                                <span id="plus-12" style="margin-top: 10px; font-size: 15px">+</span>
+                                                                <?php
+                                                                if ($query_one_result['FBUTTON5'] != "") {
+                                                                ?>
+                                                                    <img id="plus-12" style="margin-top: 10px" width="20" height="20" src="/dashboardv2/uploads/fb_icon/<?= $query_one_result['FBUTTON5']; ?>"></img>
+                                                                <?php
+                                                                } else {
+                                                                ?>
+                                                                    <span id="plus-12" style="margin-top: 10px; font-size: 15px">+</span>
+                                                                <?php
+                                                                }
+                                                                ?>
                                                                 <img id="image-preview-12" class="image-preview" src="" style="margin-top: 10px" width="20px" height="20px" />
                                                             </div>
                                                         </label>
                                                         <!-- HIDDEN POST ON FLOATING BUTTON -->
                                                         <label for="fb10_icon" style="display: contents">
                                                             <div id="small-icon-7" class="small-icon-2 d-flex justify-content-center" style="position: absolute; margin-top: 55px; margin-left: 110px; background-color: #d7d7d7; border-radius: 50%; width: 40px; height: 40px">
-                                                                <span id="plus-13" style="margin-top: 10px; font-size: 15px">+</span>
+                                                                <?php
+                                                                if ($query_one_result['FBUTTON2'] != "") {
+                                                                ?>
+                                                                    <img id="plus-13" style="margin-top: 10px" width="20" height="20" src="/dashboardv2/uploads/fb_icon/<?= $query_one_result['FBUTTON2']; ?>"></img>
+                                                                <?php
+                                                                } else {
+                                                                ?>
+                                                                    <span id="plus-13" style="margin-top: 10px; font-size: 15px">+</span>
+                                                                <?php
+                                                                }
+                                                                ?>
                                                                 <img id="image-preview-13" class="image-preview" src="" style="margin-top: 10px" width="20px" height="20px" />
                                                             </div>
                                                         </label>
                                                         <label for="fb9_icon" style="display: contents">
                                                             <div id="small-icon-8" class="small-icon-3 d-flex justify-content-center" style="position: absolute; margin-top: -35px; margin-left: 110px; background-color: #d7d7d7; border-radius: 50%; width: 40px; height: 40px">
-                                                                <span id="plus-14" style="margin-top: 10px; font-size: 15px">+</span>
+                                                                <?php
+                                                                if ($query_one_result['FBUTTON4'] != "") {
+                                                                ?>
+                                                                    <img id="plus-14" style="margin-top: 10px" width="20" height="20" src="/dashboardv2/uploads/fb_icon/<?= $query_one_result['FBUTTON4']; ?>"></img>
+                                                                <?php
+                                                                } else {
+                                                                ?>
+                                                                    <span id="plus-14" style="margin-top: 10px; font-size: 15px">+</span>
+                                                                <?php
+                                                                }
+                                                                ?>
                                                                 <img id="image-preview-14" class="image-preview" src="" style="margin-top: 10px" width="20px" height="20px" />
                                                             </div>
                                                         </label>
                                                         <label for="fb7_icon" style="display: contents">
                                                             <div id="small-icon-9" class="small-icon-4 d-flex justify-content-center" style="position: absolute; margin-top: 10px; margin-left: 110px; background-color: #d7d7d7; border-radius: 50%; width: 40px; height: 40px">
-                                                                <span id="plus-15" style="margin-top: 10px; font-size: 15px">+</span>
+                                                                <?php
+                                                                if ($query_one_result['FBUTTON3'] != "") {
+                                                                ?>
+                                                                    <img id="plus-15" style="margin-top: 10px" width="20" height="20" src="/dashboardv2/uploads/fb_icon/<?= $query_one_result['FBUTTON3']; ?>"></img>
+                                                                <?php
+                                                                } else {
+                                                                ?>
+                                                                    <span id="plus-15" style="margin-top: 10px; font-size: 15px">+</span>
+                                                                <?php
+                                                                }
+                                                                ?>
                                                                 <img id="image-preview-15" class="image-preview" src="" style="margin-top: 10px" width="20px" height="20px" />
                                                             </div>
                                                         </label>
                                                         <label for="fb11_icon" style="display: contents">
                                                             <div id="small-icon-10" class="small-icon-5 d-flex justify-content-center" style="position: absolute; margin-top: 100px; margin-left: 110px; background-color: #d7d7d7; border-radius: 50%; width: 40px; height: 40px">
-                                                                <span id="plus-16" style="margin-top: 10px; font-size: 15px">+</span>
+                                                                <?php
+                                                                if ($query_one_result['FBUTTON1'] != "") {
+                                                                ?>
+                                                                    <img id="plus-16" style="margin-top: 10px" width="20" height="20" src="/dashboardv2/uploads/fb_icon/<?= $query_one_result['FBUTTON1']; ?>"></img>
+                                                                <?php
+                                                                } else {
+                                                                ?>
+                                                                    <span id="plus-16" style="margin-top: 10px; font-size: 15px">+</span>
+                                                                <?php
+                                                                }
+                                                                ?>
                                                                 <img id="image-preview-16" class="image-preview" src="" style="margin-top: 10px" width="20px" height="20px" />
                                                             </div>
                                                         </label>
                                                     </div>
                                                     <label for="cpaas_icon2" style="display: contents">
                                                         <div id="floating-button" style="z-index: 1000; background-color: grey; width: 60px; height: 60px; border-radius: 50%; text-align: center; margin-top: -245px; margin-left: 240px; position: absolute">
-                                                            <div id="plus-11" style="padding-top: 12px; font-size: 25px">+</div>
+                                                            <?php
+                                                            if ($query_one_result['CPAAS_ICON'] != "") {
+                                                            ?>
+                                                                <img id="plus-11" width="60" height="60" src="/dashboardv2/uploads/logofloat/<?= $query_one_result['CPAAS_ICON']; ?>"></img>
+                                                            <?php
+                                                            } else {
+                                                            ?>
+                                                                <div id="plus-11" style="padding-top: 12px; font-size: 25px">+</div>
+                                                            <?php
+                                                            }
+                                                            ?>
                                                             <img id="image-preview-11" class="image-preview" src="" width="60" height="60" />
                                                         </div>
                                                     </label>
@@ -1654,11 +1856,11 @@ if ($query_one_result['WEB_URL'] == null) {
 
                                         <div class="col-sm-4">
                                             <div class="form-control">
-                                            <label for="appCertificate" class="btn" style="position: absolute">
-                                                <button data-translate="dashindex-35" style="border: 1px solid grey; margin-top: -8px; margin-left: -8px; pointer-events: none">Choose File</button>
-                                            </label>
-                                            <input id="no-chosen-certif" type="text" style="margin-top: -5px; padding-left: 130px; border: none; background-color:none; background-color: transparent !important" class="form-control border-70" readonly value="No file chosen.">
-                                            <input id="certif-upload-name" type="text" style="margin-top: -5px; padding-left: 130px; border: none; background-color:none; background-color: transparent !important" class="form-control border-70 d-none" readonly>
+                                                <label for="appCertificate" class="btn" style="position: absolute">
+                                                    <button data-translate="dashindex-35" style="border: 1px solid grey; margin-top: -8px; margin-left: -8px; pointer-events: none">Choose File</button>
+                                                </label>
+                                                <input id="no-chosen-certif" type="text" style="margin-top: -5px; padding-left: 130px; border: none; background-color:none; background-color: transparent !important" class="form-control border-70" readonly value="No file chosen.">
+                                                <input id="certif-upload-name" type="text" style="margin-top: -5px; padding-left: 130px; border: none; background-color:none; background-color: transparent !important" class="form-control border-70 d-none" readonly>
                                             </div>
                                             <input type="file" id="appCertificate" class="form-control d-none" name="app-certificate" placeholder="App Certificate" onchange="certificateFile(event)">
                                         </div>
@@ -1774,10 +1976,10 @@ if ($query_one_result['WEB_URL'] == null) {
                                     </div>
                                     <div class="col-sm-12 col-md-12 left">
                                         <select id="userAccess" class="form-control tab-content" name="company-name" required>
-                                            
-                                        <?php foreach($user_access as $ua): ?>
-                                            <option value="<?= $ua['ID'] ?>"><?= $ua['NAME'] ?></option>
-                                        <?php endforeach; ?>
+
+                                            <?php foreach ($user_access as $ua) : ?>
+                                                <option value="<?= $ua['ID'] ?>"><?= $ua['NAME'] ?></option>
+                                            <?php endforeach; ?>
 
                                         </select>
                                     </div>
@@ -1840,7 +2042,7 @@ if ($query_one_result['WEB_URL'] == null) {
                                             <div class="col-sm-4 d-none">
                                                 <input type="file" id="tab21_icon" class="form-control" name="tab21_icon" onchange="loadFile21(event)">
                                                 <input type="file" id="tab25_icon" class="form-control" name="tab25_icon" onchange="loadFile37(event)">
-                                            </div>                                            
+                                            </div>
                                         </div>
                                         <div class="row mt-3 d-none" id="tab1_edit_url_row">
 
@@ -1935,107 +2137,107 @@ if ($query_one_result['WEB_URL'] == null) {
                                                     </select>
                                                 </div>
                                             </div> -->
-                                            <div class="row mt-5">
-                                                <div class="col-md-12">
-                                                    <p style="font-size:.85rem;">
-                                                        <strong data-translate="dashform-27">Enable/Disable Features</strong>
-                                                    </p>
-                                                </div>
+                                        <div class="row mt-5">
+                                            <div class="col-md-12">
+                                                <p style="font-size:.85rem;">
+                                                    <strong data-translate="dashform-27">Enable/Disable Features</strong>
+                                                </p>
                                             </div>
-                                            <div class="row">
-                                                <div class="col-md-12">
-                                                    <label class="genapkcheckbox" for="enable_sms_edit" style="font-size:.8rem;"> SMS
-                                                        <input type="checkbox" id="enable_sms_edit" name="enable_sms" value="1">
-                                                        <span class="checkmark-small"></span>
-                                                    </label>
-                                                </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <label class="genapkcheckbox" for="enable_sms_edit" style="font-size:.8rem;"> SMS
+                                                    <input type="checkbox" id="enable_sms_edit" name="enable_sms" value="1">
+                                                    <span class="checkmark-small"></span>
+                                                </label>
                                             </div>
-                                            <div class="row">
-                                                <div class="col-md-12">
-                                                    <label class="genapkcheckbox" for="enable_osint_edit" style="font-size:.8rem;"> OSINT Search
-                                                        <input type="checkbox" id="enable_osint_edit" name="enable_osint" value="1">
-                                                        <span class="checkmark-small"></span>
-                                                    </label>
-                                                </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <label class="genapkcheckbox" for="enable_osint_edit" style="font-size:.8rem;"> OSINT Search
+                                                    <input type="checkbox" id="enable_osint_edit" name="enable_osint" value="1">
+                                                    <span class="checkmark-small"></span>
+                                                </label>
                                             </div>
-                                            <div class="row">
-                                                <div class="col-md-12">
-                                                    <label class="genapkcheckbox" for="enable_scan_edit" style="font-size:.8rem;"> ID Scan
-                                                        <input type="checkbox" id="enable_scan_edit" name="enable_scan" value="1">
-                                                        <span class="checkmark-small"></span>
-                                                    </label>
-                                                </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <label class="genapkcheckbox" for="enable_scan_edit" style="font-size:.8rem;"> ID Scan
+                                                    <input type="checkbox" id="enable_scan_edit" name="enable_scan" value="1">
+                                                    <span class="checkmark-small"></span>
+                                                </label>
                                             </div>
-                                            <div class="row">
-                                                <div class="col-md-12">
-                                                    <label class="genapkcheckbox" for="enable_email_edit" style="font-size:.8rem;"> Email
-                                                        <input type="checkbox" id="enable_email_edit" name="enable_email" value="1">
-                                                        <span class="checkmark-small"></span>
-                                                    </label>
-                                                </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <label class="genapkcheckbox" for="enable_email_edit" style="font-size:.8rem;"> Email
+                                                    <input type="checkbox" id="enable_email_edit" name="enable_email" value="1">
+                                                    <span class="checkmark-small"></span>
+                                                </label>
                                             </div>
-                                            <div class="row mt-5">
-                                                <div class="col-md-12">
-                                                    <p style="font-size:.85rem;">
-                                                        Choose your preferred look for Nexilis build UI.
-                                                    </p>
-                                                </div>
+                                        </div>
+                                        <div class="row mt-5">
+                                            <div class="col-md-12">
+                                                <p style="font-size:.85rem;">
+                                                    Choose your preferred look for Nexilis build UI.
+                                                </p>
                                             </div>
-                                            <div class="row">
-                                                <label class="col-sm-4 col-form-label" for="nx_im_theme_edit">Messaging :</label>
+                                        </div>
+                                        <div class="row">
+                                            <label class="col-sm-4 col-form-label" for="nx_im_theme_edit">Messaging :</label>
 
-                                                <div class="col-sm-8">
-                                                    <!-- <input type="file" id="tab3_icon" class="form-control" name="tab3_icon"> -->
-                                                    <select class="form-control" name="nx_im_theme_edit" id="nx_im_theme_edit">
-                                                        <option value="0" selected>Standard</option>
-                                                        <option value="1">Bubble</option>
-                                                    </select>
-                                                </div>
+                                            <div class="col-sm-8">
+                                                <!-- <input type="file" id="tab3_icon" class="form-control" name="tab3_icon"> -->
+                                                <select class="form-control" name="nx_im_theme_edit" id="nx_im_theme_edit">
+                                                    <option value="0" selected>Standard</option>
+                                                    <option value="1">Bubble</option>
+                                                </select>
                                             </div>
-                                            <div class="row mt-3">
-                                                <label class="col-sm-4 col-form-label" for="nx_ac_theme_edit">Audio Call :</label>
+                                        </div>
+                                        <div class="row mt-3">
+                                            <label class="col-sm-4 col-form-label" for="nx_ac_theme_edit">Audio Call :</label>
 
-                                                <div class="col-sm-8">
-                                                    <!-- <input type="file" id="tab3_icon" class="form-control" name="tab3_icon"> -->
-                                                    <select class="form-control" name="nx_ac_theme_edit" id="nx_ac_theme_edit">
-                                                        <option value="0" selected>Standard</option>
-                                                        <option value="1">Bubble</option>
-                                                    </select>
-                                                </div>
+                                            <div class="col-sm-8">
+                                                <!-- <input type="file" id="tab3_icon" class="form-control" name="tab3_icon"> -->
+                                                <select class="form-control" name="nx_ac_theme_edit" id="nx_ac_theme_edit">
+                                                    <option value="0" selected>Standard</option>
+                                                    <option value="1">Bubble</option>
+                                                </select>
                                             </div>
-                                            <div class="row mt-3">
-                                                <label class="col-sm-4 col-form-label" for="nx_sm_theme_edit">Seminar :</label>
+                                        </div>
+                                        <div class="row mt-3">
+                                            <label class="col-sm-4 col-form-label" for="nx_sm_theme_edit">Seminar :</label>
 
-                                                <div class="col-sm-8">
-                                                    <!-- <input type="file" id="tab3_icon" class="form-control" name="tab3_icon"> -->
-                                                    <select class="form-control" name="nx_sm_theme_edit" id="nx_sm_theme_edit">
-                                                        <option value="0" selected>Standard</option>
-                                                        <option value="1">Bubble</option>
-                                                    </select>
-                                                </div>
+                                            <div class="col-sm-8">
+                                                <!-- <input type="file" id="tab3_icon" class="form-control" name="tab3_icon"> -->
+                                                <select class="form-control" name="nx_sm_theme_edit" id="nx_sm_theme_edit">
+                                                    <option value="0" selected>Standard</option>
+                                                    <option value="1">Bubble</option>
+                                                </select>
                                             </div>
-                                            <div class="row mt-3">
-                                                <label class="col-sm-4 col-form-label" for="nx_ls_theme_edit">Live Streaming :</label>
+                                        </div>
+                                        <div class="row mt-3">
+                                            <label class="col-sm-4 col-form-label" for="nx_ls_theme_edit">Live Streaming :</label>
 
-                                                <div class="col-sm-8">
-                                                    <!-- <input type="file" id="tab3_icon" class="form-control" name="tab3_icon"> -->
-                                                    <select class="form-control" name="nx_ls_theme_edit" id="nx_ls_theme_edit">
-                                                        <option value="0" selected>Standard</option>
-                                                        <option value="1">Bubble</option>
-                                                    </select>
-                                                </div>
+                                            <div class="col-sm-8">
+                                                <!-- <input type="file" id="tab3_icon" class="form-control" name="tab3_icon"> -->
+                                                <select class="form-control" name="nx_ls_theme_edit" id="nx_ls_theme_edit">
+                                                    <option value="0" selected>Standard</option>
+                                                    <option value="1">Bubble</option>
+                                                </select>
                                             </div>
-                                            <div class="row mt-3">
-                                                <label class="col-sm-4 col-form-label" for="nx_vc_theme_edit">Video Call :</label>
+                                        </div>
+                                        <div class="row mt-3">
+                                            <label class="col-sm-4 col-form-label" for="nx_vc_theme_edit">Video Call :</label>
 
-                                                <div class="col-sm-8">
-                                                    <!-- <input type="file" id="tab3_icon" class="form-control" name="tab3_icon"> -->
-                                                    <select class="form-control" name="nx_vc_theme_edit" id="nx_vc_theme_edit">
-                                                        <option value="0" selected>Standard</option>
-                                                        <option value="1">Bubble</option>
-                                                    </select>
-                                                </div>
+                                            <div class="col-sm-8">
+                                                <!-- <input type="file" id="tab3_icon" class="form-control" name="tab3_icon"> -->
+                                                <select class="form-control" name="nx_vc_theme_edit" id="nx_vc_theme_edit">
+                                                    <option value="0" selected>Standard</option>
+                                                    <option value="1">Bubble</option>
+                                                </select>
                                             </div>
+                                        </div>
                                         <div class="row mt-5">
                                             <div class="col-md-12">
                                                 <p style="font-size:.85rem;">
@@ -2158,7 +2360,7 @@ if ($query_one_result['WEB_URL'] == null) {
                                             <label class="col-sm-4 col-form-label" for="background" data-translate="dashform-35">Background wallpaper :</label>
 
                                             <div class="col-sm-8" id="section-background-2">
-                                                 <div class="form-control">
+                                                <div class="form-control">
                                                     <label for="background_edit" class="btn" style="position: absolute">
                                                         <button data-translate="dashindex-35" style="border: 1px solid grey; margin-top: -8px; margin-left: -8px; pointer-events: none">Choose File</button>
                                                     </label>
@@ -2185,7 +2387,7 @@ if ($query_one_result['WEB_URL'] == null) {
 
                                         <div class="check-existing-image mt-2 mb-4">
 
-                                            <?php if(isset($oldBG)): ?>
+                                            <?php if (isset($oldBG)) : ?>
                                                 <div class="text-success"><b data-translate="dashform-37">Existing Background Image Found.</b></div>
                                             <?php endif; ?>
 
@@ -2193,7 +2395,7 @@ if ($query_one_result['WEB_URL'] == null) {
 
                                         </div>
 
-                                        <?php if(isset($oldBG)): ?>
+                                        <?php if (isset($oldBG)) : ?>
                                             <label class="genapkcheckbox mt-2 mb-5" for="use-old-bg-2" data-translate="dashform-38"> I want to use old background
                                                 <input type="checkbox" id="use-old-bg-2" name="use-old-bg" value="1">
                                                 <span class="checkmark"></span>
@@ -2545,8 +2747,7 @@ if ($query_one_result['WEB_URL'] == null) {
 
 <script src="js/webappform_dev.js?<?php echo $version; ?>"></script>
 
-<script> 
-
+<script>
     // $('#lang-nav').hover(function(){
     //     $('#lang-menu').dropdown("show");
     //     }, function(){
@@ -2558,70 +2759,70 @@ if ($query_one_result['WEB_URL'] == null) {
     //     }, function(){
     //     $('#lang-menu').dropdown("hide");
     // });
-    
-    if (localStorage.lang == 1){
-        $('#companyName').attr('placeholder','Nama Perusahaan');
-        $('.category-name').attr('placeholder','Masukan nama kategori');
-        $('#companyWebsite').attr('placeholder','URL Website');
+
+    if (localStorage.lang == 1) {
+        $('#companyName').attr('placeholder', 'Nama Perusahaan');
+        $('.category-name').attr('placeholder', 'Masukan nama kategori');
+        $('#companyWebsite').attr('placeholder', 'URL Website');
     }
 
-    $("#change-lang-EN").click(function () {
-		localStorage.lang = 0;
-		$("#lang-nav").text('EN');
-        $('#companyName').attr('placeholder','Company Name');
-        $('.category-name').attr('placeholder','Insert category name');
-        $('#companyWebsite').attr('placeholder','Website URL');
-		change_lang();
-	});
+    $("#change-lang-EN").click(function() {
+        localStorage.lang = 0;
+        $("#lang-nav").text('EN');
+        $('#companyName').attr('placeholder', 'Company Name');
+        $('.category-name').attr('placeholder', 'Insert category name');
+        $('#companyWebsite').attr('placeholder', 'Website URL');
+        change_lang();
+    });
 
-	$("#change-lang-ID").click(function () {
-		localStorage.lang = 1;
-		$("#lang-nav").text('ID');
-        $('#companyName').attr('placeholder','Nama Perusahaan');
-        $('.category-name').attr('placeholder','Masukan nama kategori');
-        $('#companyWebsite').attr('placeholder','URL Website');
-		change_lang();
-	}); 
+    $("#change-lang-ID").click(function() {
+        localStorage.lang = 1;
+        $("#lang-nav").text('ID');
+        $('#companyName').attr('placeholder', 'Nama Perusahaan');
+        $('.category-name').attr('placeholder', 'Masukan nama kategori');
+        $('#companyWebsite').attr('placeholder', 'URL Website');
+        change_lang();
+    });
 
-    $('#background').change(function (e) {
+    $('#background').change(function(e) {
         e.preventDefault();
 
         $('#no-chosen-bg').hide();
         $('#bg-upload-name').removeClass('d-none');
-        $('#bg-upload-name').attr('placeholder',this.files[0].name);
+        $('#bg-upload-name').attr('placeholder', this.files[0].name);
     });
 
-    $('#background_edit').change(function (e) {
+    $('#background_edit').change(function(e) {
         e.preventDefault();
 
         $('#no-chosen-bg-edit').hide();
         $('#bg-upload-name-edit').removeClass('d-none');
-        $('#bg-upload-name-edit').attr('placeholder',this.files[0].name);
+        $('#bg-upload-name-edit').attr('placeholder', this.files[0].name);
     });
 
-    $('#splashscreen').change(function (e) {
+    $('#splashscreen').change(function(e) {
         e.preventDefault();
 
         $('#no-chosen-splash').hide();
         $('#splash-upload-name').removeClass('d-none');
-        $('#splash-upload-name').attr('placeholder',this.files[0].name);
+        $('#splash-upload-name').attr('placeholder', this.files[0].name);
     });
 
-    $('#appCertificate').change(function (e) {
+    $('#appCertificate').change(function(e) {
         e.preventDefault();
 
         $('#no-chosen-certif').hide();
         $('#certif-upload-name').removeClass('d-none');
-        $('#certif-upload-name').attr('placeholder',this.files[0].name);
+        $('#certif-upload-name').attr('placeholder', this.files[0].name);
     });
 
-    $('#inputAlias').on('input', function(){
+    $('#inputAlias').on('input', function() {
 
         let val = $('#inputAlias').val();
 
-        if (val.length < 6){
+        if (val.length < 6) {
             $('#alias-error-text').removeClass('d-none');
-        }else{
+        } else {
             $('#alias-error-text').addClass('d-none');
         }
 
@@ -2629,13 +2830,13 @@ if ($query_one_result['WEB_URL'] == null) {
 
     })
 
-    $('#keyPassword').on('input', function(){
+    $('#keyPassword').on('input', function() {
 
         let val = $('#keyPassword').val();
 
-        if (val.length < 8){
+        if (val.length < 8) {
             $('#key-password-error-text').removeClass('d-none');
-        }else{
+        } else {
             $('#key-password-error-text').addClass('d-none');
         }
 
@@ -2643,13 +2844,13 @@ if ($query_one_result['WEB_URL'] == null) {
 
     })
 
-    $('#storePassword').on('input', function(){
+    $('#storePassword').on('input', function() {
 
         let val = $('#storePassword').val();
 
-        if (val.length < 8){
+        if (val.length < 8) {
             $('#key-store-password-error-text').removeClass('d-none');
-        }else{
+        } else {
             $('#key-store-password-error-text').addClass('d-none');
 
         }
@@ -2658,18 +2859,113 @@ if ($query_one_result['WEB_URL'] == null) {
 
     })
 
-    function checkLength(){
+    function checkLength() {
 
         let inputAlias = $('#inputAlias').val();
         let keyPassword = $('#keyPassword').val();
         let storePassword = $('#storePassword').val();
 
-        if (inputAlias.length >= 6 && keyPassword.length >= 8 && storePassword.length >= 8){
+        if (inputAlias.length >= 6 && keyPassword.length >= 8 && storePassword.length >= 8) {
             $('#submit-form').attr('disabled', false);
-        }else{
+        } else {
             $('#submit-form').attr('disabled', true);
         }
 
     }
 
+    var menuTypeValue = $("#menuType").val();
+
+    if (menuTypeValue == 0) {
+        $("#palio-balloon").show();
+        $(".docked-content").hide();
+        $(".docked-content-2").show();
+        $("#burger-area").hide();
+        $("#sub-floating-button").show();
+        $("#sub-floating-button-2").show();
+        $("#sub-docked-button").hide();
+        $("#sub-docked-button-2").hide();
+        $("#sub-burger-button").hide();
+
+        $('#show_fb_options').addClass('d-none');
+        $('#show_fb_options').html('');
+
+        let fb_pp_radio = `
+        <label class="col-sm-4 col-form-label" for="access_model">Use Floating Button image as Profile Pict. :</label>
+
+        <div class="col-sm-8">
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="fb_pp" id="fb_pp1" value="1">
+                <label class="form-check-label" for="fb_pp1">Yes</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="fb_pp" id="fb_pp0" value="0" checked>
+                <label class="form-check-label" for="fb_pp0">No</label>
+            </div>
+        </div>
+        `
+
+        $('#fb_pp_options').html(fb_pp_radio);
+        $('#fb_pp_options').removeClass('d-none');
+    } else if (menuTypeValue == 1) {
+        $("#palio-balloon").hide();
+        $(".docked-content").show();
+        $(".docked-content-2").hide();
+        $("#burger-area").hide();
+        $("#sub-floating-button").hide();
+        $("#sub-floating-button-2").hide();
+        $("#sub-docked-button").show();
+        $("#sub-docked-button-2").show();
+        $("#sub-burger-button").hide();
+
+        let show_fb_radio = `
+        <label class="col-sm-4 col-form-label" for="access_model">Show Floating Button :</label>
+
+        <div class="col-sm-8">
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="show_fb" id="show_fb1" value="1">
+                <label class="form-check-label" for="show_fb1">Yes</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="show_fb" id="show_fb0" value="0" checked>
+                <label class="form-check-label" for="show_fb0">No</label>
+            </div>
+        </div>`
+
+        let fb_pp_radio = `
+        <label class="col-sm-4 col-form-label" for="access_model">Use Floating Button image as Profile Pict. :</label>
+
+        <div class="col-sm-8">
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="fb_pp" id="fb_pp1" value="1">
+                <label class="form-check-label" for="fb_pp1">Yes</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="fb_pp" id="fb_pp0" value="0" checked>
+                <label class="form-check-label" for="fb_pp0">No</label>
+            </div>
+        </div>
+        `
+
+        $('#fb_pp_options').html(fb_pp_radio);
+        $('#fb_pp_options').removeClass('d-none');
+
+        $('#show_fb_options').html(show_fb_radio);
+        $('#show_fb_options').removeClass('d-none');
+    } else {
+        $("#palio-balloon").hide();
+        $(".docked-content").hide();
+        $(".docked-content-2").show();
+        $("#burger-area").show();
+        $("#sub-floating-button").hide();
+        $("#sub-floating-button-2").hide();
+        $("#sub-docked-button").hide();
+        $("#sub-docked-button-2").hide();
+        $("#sub-burger-button").show();
+
+        $('#show_fb_options').addClass('d-none');
+        $('#show_fb_options').html('');
+
+        $('#fb_pp_options').html('');
+        $('#fb_pp_options').addClass('d-none');
+    }
 </script>

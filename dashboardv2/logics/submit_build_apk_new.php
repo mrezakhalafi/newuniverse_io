@@ -121,9 +121,9 @@ function makeAPK($be, $weburl, $logo, $appid, $compname, $acc, $do_keystore, $ke
     }
 
     // if ($gps_pushkit == 1) {
-    // $gps_path = $_SERVER['DOCUMENT_ROOT'] . '/dashboardv2/uploads/gps_pushkit/' . $gps_pushkit;
-    // $gps_curl_file = curl_file_create($gps_path, pathinfo($gps_path, PATHINFO_EXTENSION), $gps_pushkit);
-    $postfields_arr["fms_enable"] = $gps_pushkit;
+        // $gps_path = $_SERVER['DOCUMENT_ROOT'] . '/dashboardv2/uploads/gps_pushkit/' . $gps_pushkit;
+        // $gps_curl_file = curl_file_create($gps_path, pathinfo($gps_path, PATHINFO_EXTENSION), $gps_pushkit);
+        $postfields_arr["fms_enable"] = $gps_pushkit;
     // }
 
     // $postfields_arr["active_tabs"] = $active_tabs;
@@ -180,14 +180,16 @@ function makeAPK($be, $weburl, $logo, $appid, $compname, $acc, $do_keystore, $ke
     $status = $json_obj->status;
     $name = $json_obj->name;
 
-    if ($status == 0) {
+    if ($status == 0){
 
         // $filename = $_SERVER["DOCUMENT_ROOT"] . '/dashboardv2/uploads/' . $json_obj->name;
 
         echo ("Berhasil|" . base_url() . "dashboardv2/uploads/" . $name);
-    } else {
+
+    }else{
 
         echo ("Gagal|" . $json_obj->message);
+
     }
 }
 
@@ -382,7 +384,7 @@ if (!isset($_POST['generate-apk']) && !isset($_POST['edit_apk'])) {
 
             $access_model = 0;
 
-
+            
             // ENABLE DISABLE FEATURES
             $enable_sms = 0;
             $enable_osint = 0;
@@ -472,6 +474,11 @@ if (!isset($_POST['generate-apk']) && !isset($_POST['edit_apk'])) {
                     $tab1_icon = $id_company . '_' . $_FILES['tab1_icon']['name'];
                 }
             }
+            else if (isset($_GET['tab1_icon'])) {
+                $sql .= ", TAB1_ICON";
+                $tab1_icon = $_POST['tab1_icon'];
+            }
+
             if (isset($_FILES['tab2_icon']) && $_FILES['tab2_icon']['size'] != 0) {
                 // No file was selected for upload, your (re)action goes here
                 if (move_uploaded_file($_FILES['tab2_icon']['tmp_name'], $_SERVER['DOCUMENT_ROOT'] . '/dashboardv2/uploads/tab_icon/' . $id_company . '_' . $_FILES['tab2_icon']['name'])) {
@@ -479,6 +486,11 @@ if (!isset($_POST['generate-apk']) && !isset($_POST['edit_apk'])) {
                     $tab2_icon = $id_company . '_' . $_FILES['tab2_icon']['name'];
                 }
             }
+            else if (isset($_GET['tab2_icon'])) {
+                $sql .= ", TAB2_ICON";
+                $tab2_icon = $_POST['tab2_icon'];
+            }
+            
             if (isset($_FILES['tab3_icon']) && $_FILES['tab3_icon']['size'] != 0) {
                 // No file was selected for upload, your (re)action goes here
                 if (move_uploaded_file($_FILES['tab3_icon']['tmp_name'], $_SERVER['DOCUMENT_ROOT'] . '/dashboardv2/uploads/tab_icon/' . $id_company . '_' . $_FILES['tab3_icon']['name'])) {
@@ -486,12 +498,21 @@ if (!isset($_POST['generate-apk']) && !isset($_POST['edit_apk'])) {
                     $tab3_icon = $id_company . '_' . $_FILES['tab3_icon']['name'];
                 }
             }
+            else if (isset($_GET['tab3_icon'])) {
+                $sql .= ", TAB3_ICON";
+                $tab3_icon = $_POST['tab3_icon'];
+            }
+
             if (isset($_FILES['tab4_icon']) && $_FILES['tab4_icon']['size'] != 0) {
                 // No file was selected for upload, your (re)action goes here
                 if (move_uploaded_file($_FILES['tab4_icon']['tmp_name'], $_SERVER['DOCUMENT_ROOT'] . '/dashboardv2/uploads/tab_icon/' . $id_company . '_' . $_FILES['tab4_icon']['name'])) {
                     $sql .= ", TAB4_ICON";
                     $tab4_icon = $id_company . '_' . $_FILES['tab4_icon']['name'];
                 }
+            }
+            else if (isset($_GET['tab4_icon'])) {
+                $sql .= ", TAB4_ICON";
+                $tab4_icon = $_POST['tab4_icon'];
             }
 
             if (isset($_POST['access_model'])) {
@@ -559,6 +580,11 @@ if (!isset($_POST['generate-apk']) && !isset($_POST['edit_apk'])) {
                     $fb1_icon = $id_company . '_' . $_FILES['fb1_icon']['name'];
                 }
             }
+            else if (isset($_GET['fb1_icon'])) {
+                $sql .= ", FBUTTON1";
+                $fb1_icon = $_POST['fb1_icon'];
+            }
+
             if ($_FILES['fb2_icon']['size'] != 0) {
                 // No file was selected for upload, your (re)action goes here
                 if (move_uploaded_file($_FILES['fb2_icon']['tmp_name'], $_SERVER['DOCUMENT_ROOT'] . '/dashboardv2/uploads/fb_icon/' . $id_company . '_' . $_FILES['fb2_icon']['name'])) {
@@ -566,6 +592,11 @@ if (!isset($_POST['generate-apk']) && !isset($_POST['edit_apk'])) {
                     $fb2_icon = $id_company . '_' . $_FILES['fb2_icon']['name'];
                 }
             }
+            else if (isset($_GET['fb2_icon'])) {
+                $sql .= ", FBUTTON2";
+                $fb2_icon = $_POST['fb2_icon'];
+            }
+
             if ($_FILES['fb3_icon']['size'] != 0) {
                 // No file was selected for upload, your (re)action goes here
                 if (move_uploaded_file($_FILES['fb3_icon']['tmp_name'], $_SERVER['DOCUMENT_ROOT'] . '/dashboardv2/uploads/fb_icon/' . $id_company . '_' . $_FILES['fb3_icon']['name'])) {
@@ -573,6 +604,11 @@ if (!isset($_POST['generate-apk']) && !isset($_POST['edit_apk'])) {
                     $fb3_icon = $id_company . '_' . $_FILES['fb3_icon']['name'];
                 }
             }
+            else if (isset($_GET['fb3_icon'])) {
+                $sql .= ", FBUTTON3";
+                $fb3_icon = $_POST['fb3_icon'];
+            }
+
             if ($_FILES['fb4_icon']['size'] != 0) {
                 // No file was selected for upload, your (re)action goes here
                 if (move_uploaded_file($_FILES['fb4_icon']['tmp_name'], $_SERVER['DOCUMENT_ROOT'] . '/dashboardv2/uploads/fb_icon/' . $id_company . '_' . $_FILES['fb4_icon']['name'])) {
@@ -580,12 +616,21 @@ if (!isset($_POST['generate-apk']) && !isset($_POST['edit_apk'])) {
                     $fb4_icon = $id_company . '_' . $_FILES['fb4_icon']['name'];
                 }
             }
+            else if (isset($_GET['fb4_icon'])) {
+                $sql .= ", FBUTTON4";
+                $fb4_icon = $_POST['fb4_icon'];
+            }
+
             if ($_FILES['fb5_icon']['size'] != 0) {
                 // No file was selected for upload, your (re)action goes here
                 if (move_uploaded_file($_FILES['fb5_icon']['tmp_name'], $_SERVER['DOCUMENT_ROOT'] . '/dashboardv2/uploads/fb_icon/' . $id_company . '_' . $_FILES['fb5_icon']['name'])) {
                     $sql .= ", FBUTTON5";
                     $fb4_icon = $id_company . '_' . $_FILES['fb5_icon']['name'];
                 }
+            }
+            else if (isset($_GET['fb5_icon'])) {
+                $sql .= ", FBUTTON5";
+                $fb5_icon = $_POST['fb5_icon'];
             }
 
             // if ($_FILES['background']['size'] != 0) {
@@ -594,8 +639,8 @@ if (!isset($_POST['generate-apk']) && !isset($_POST['edit_apk'])) {
             //         $sql .= ", APP_BG";
             //     }
             // }
-            $jumlahFile = 0;
-
+            $jumlahFile = 0;            
+            
             $list_bg = "";
 
             if (isset($_FILES['background'])) {
@@ -605,7 +650,7 @@ if (!isset($_POST['generate-apk']) && !isset($_POST['edit_apk'])) {
                     for ($i = 0; $i < $jumlahFile; $i++) {
                         $namaFile = $_FILES['background']['name'][$i];
                         $lokasiTmp = $_FILES['background']['tmp_name'][$i];
-
+    
                         # kita tambahkan uniqid() agar nama gambar bersifat unik
                         $namaBaru = $id_company . '_' . $namaFile;
                         $lokasiBaru = "{$folderUpload}/{$namaBaru}";
@@ -628,7 +673,7 @@ if (!isset($_POST['generate-apk']) && !isset($_POST['edit_apk'])) {
 
             // print_r($_FILES['background']);
 
-
+           
 
             if ($_FILES['splashscreen']['size'] != 0) {
                 if (move_uploaded_file($_FILES['splashscreen']['tmp_name'], $_SERVER['DOCUMENT_ROOT'] . '/dashboardv2/uploads/splashscreen/' . $id_company . '_' . $_FILES['splashscreen']['name'])) {
@@ -642,6 +687,10 @@ if (!isset($_POST['generate-apk']) && !isset($_POST['edit_apk'])) {
                     $cpaas_icon = $id_company . '_' . $_FILES['cpaas_icon']['name'];
                     $sql .= ", CPAAS_ICON";
                 }
+            }
+            else if (isset($_GET['cpaas_icon'])) {
+                $cpaas_icon = $_POST['cpaas_icon'];
+                $sql .= ", CPAAS_ICON";
             }
 
             if (isset($_POST['app_font'])) {
@@ -744,19 +793,38 @@ if (!isset($_POST['generate-apk']) && !isset($_POST['edit_apk'])) {
                 $tab1_icon = $id_company . '_' . $_FILES['tab1_icon']['name'];
                 $sql .= ", '$tab1_icon'";
             }
+            else {
+                $tab1_icon = $_POST['tab1_icon'];
+                $sql .= ", '$tab1_icon'";
+            }
+
             if (isset($_FILES['tab2_icon']) && $_FILES['tab2_icon']['size'] != 0) {
                 // No file was selected for upload, your (re)action goes here
                 $tab2_icon = $id_company . '_' . $_FILES['tab2_icon']['name'];
                 $sql .= ", '$tab2_icon'";
             }
+            else {
+                $tab2_icon = $_POST['tab2_icon'];
+                $sql .= ", '$tab2_icon'";
+            }
+
             if (isset($_FILES['tab3_icon']) && $_FILES['tab3_icon']['size'] != 0) {
                 // No file was selected for upload, your (re)action goes here
                 $tab3_icon = $id_company . '_' . $_FILES['tab3_icon']['name'];
                 $sql .= ", '$tab3_icon'";
             }
+            else {
+                $tab3_icon = $_POST['tab3_icon'];
+                $sql .= ", '$tab3_icon'";
+            }
+
             if (isset($_FILES['tab4_icon']) && $_FILES['tab4_icon']['size'] != 0) {
                 // No file was selected for upload, your (re)action goes here
                 $tab4_icon = $id_company . '_' . $_FILES['tab4_icon']['name'];
+                $sql .= ", '$tab4_icon'";
+            }
+            else {
+                $tab4_icon = $_POST['tab4_icon'];
                 $sql .= ", '$tab4_icon'";
             }
 
@@ -807,24 +875,48 @@ if (!isset($_POST['generate-apk']) && !isset($_POST['edit_apk'])) {
                 $fb1_icon = $id_company . '_' . $_FILES['fb1_icon']['name'];
                 $sql .= ", '$fb1_icon'";
             }
+            else{
+                $fb1_icon = $_POST['fb1_icon'];
+                $sql .= ", '$fb1_icon'";
+            }
+
             if ($_FILES['fb2_icon']['size'] != 0) {
                 // No file was selected for upload, your (re)action goes here
                 $fb2_icon = $id_company . '_' . $_FILES['fb2_icon']['name'];
                 $sql .= ", '$fb2_icon'";
             }
+            else{
+                $fb2_icon = $_POST['fb2_icon'];
+                $sql .= ", '$fb2_icon'";
+            }
+
             if ($_FILES['fb3_icon']['size'] != 0) {
                 // No file was selected for upload, your (re)action goes here
                 $fb3_icon = $id_company . '_' . $_FILES['fb3_icon']['name'];
                 $sql .= ", '$fb3_icon'";
             }
+            else{
+                $fb3_icon = $_POST['fb3_icon'];
+                $sql .= ", '$fb3_icon'";
+            }
+
             if ($_FILES['fb4_icon']['size'] != 0) {
                 // No file was selected for upload, your (re)action goes here
                 $fb4_icon = $id_company . '_' . $_FILES['fb4_icon']['name'];
                 $sql .= ", '$fb4_icon'";
             }
+            else{
+                $fb4_icon = $_POST['fb4_icon'];
+                $sql .= ", '$fb4_icon'";
+            }
+
             if ($_FILES['fb5_icon']['size'] != 0) {
                 // No file was selected for upload, your (re)action goes here
                 $fb5_icon = $id_company . '_' . $_FILES['fb5_icon']['name'];
+                $sql .= ", '$fb5_icon'";
+            }
+            else{
+                $fb5_icon = $_POST['fb5_icon'];
                 $sql .= ", '$fb5_icon'";
             }
 
@@ -839,6 +931,9 @@ if (!isset($_POST['generate-apk']) && !isset($_POST['edit_apk'])) {
             }
 
             if ($_FILES['cpaas_icon']['size'] != 0) {
+                $sql .= ", '$cpaas_icon'";
+            }
+            else if (isset($_POST['cpaas_icon'])) {
                 $sql .= ", '$cpaas_icon'";
             }
 
@@ -940,11 +1035,11 @@ if (!isset($_POST['generate-apk']) && !isset($_POST['edit_apk'])) {
 
                     $valueQuery = array();
 
-                    foreach ($category as $cat) {
+                    foreach($category as $cat) {
                         if ($cat['PARENT'] != '') {
-                            $str = "('" . $cat["ID"] . "', '" . $cat['NAME'] . "', '" . $cat['PARENT'] . "', $be_id)";
+                            $str = "('".$cat["ID"]."', '".$cat['NAME']."', '".$cat['PARENT']."', $be_id)";
                         } else {
-                            $str = "('" . $cat["ID"] . "', '" . $cat['NAME'] . "', NULL, $be_id)";
+                            $str = "('".$cat["ID"]."', '".$cat['NAME']."', NULL, $be_id)";
                         }
                         array_push($valueQuery, $str);
                     }
@@ -969,31 +1064,31 @@ if (!isset($_POST['generate-apk']) && !isset($_POST['edit_apk'])) {
                 }
 
                 // if ($enable_sms != 0) {
-                $sqlPrefs = "REPLACE INTO `PREFS` (`BE`, `KEY`, `VALUE`) VALUES ($be_id, 'app_builder_enable_sms', '$enable_sms')";
-                $prefsBg = $dbConnPalio->prepare($sqlPrefs);
-                $prefsBg->execute();
-                $prefsBg->close();
+                    $sqlPrefs = "REPLACE INTO `PREFS` (`BE`, `KEY`, `VALUE`) VALUES ($be_id, 'app_builder_enable_sms', '$enable_sms')";
+                    $prefsBg = $dbConnPalio->prepare($sqlPrefs);
+                    $prefsBg->execute();
+                    $prefsBg->close();
                 // }
 
                 // if ($enable_osint != 0) {
-                $sqlPrefs = "REPLACE INTO `PREFS` (`BE`, `KEY`, `VALUE`) VALUES ($be_id, 'app_builder_enable_osint', '$enable_osint')";
-                $prefsBg = $dbConnPalio->prepare($sqlPrefs);
-                $prefsBg->execute();
-                $prefsBg->close();
+                    $sqlPrefs = "REPLACE INTO `PREFS` (`BE`, `KEY`, `VALUE`) VALUES ($be_id, 'app_builder_enable_osint', '$enable_osint')";
+                    $prefsBg = $dbConnPalio->prepare($sqlPrefs);
+                    $prefsBg->execute();
+                    $prefsBg->close();
                 // }
 
                 // if ($enable_scan != 0) {
-                $sqlPrefs = "REPLACE INTO `PREFS` (`BE`, `KEY`, `VALUE`) VALUES ($be_id, 'app_builder_enable_scan', '$enable_scan')";
-                $prefsBg = $dbConnPalio->prepare($sqlPrefs);
-                $prefsBg->execute();
-                $prefsBg->close();
+                    $sqlPrefs = "REPLACE INTO `PREFS` (`BE`, `KEY`, `VALUE`) VALUES ($be_id, 'app_builder_enable_scan', '$enable_scan')";
+                    $prefsBg = $dbConnPalio->prepare($sqlPrefs);
+                    $prefsBg->execute();
+                    $prefsBg->close();
                 // }
 
                 // if ($enable_email != 0) {
-                $sqlPrefs = "REPLACE INTO `PREFS` (`BE`, `KEY`, `VALUE`) VALUES ($be_id, 'app_builder_enable_email', '$enable_email')";
-                $prefsBg = $dbConnPalio->prepare($sqlPrefs);
-                $prefsBg->execute();
-                $prefsBg->close();
+                    $sqlPrefs = "REPLACE INTO `PREFS` (`BE`, `KEY`, `VALUE`) VALUES ($be_id, 'app_builder_enable_email', '$enable_email')";
+                    $prefsBg = $dbConnPalio->prepare($sqlPrefs);
+                    $prefsBg->execute();
+                    $prefsBg->close();
                 // }
 
                 if (isset($_POST["nx_im_theme"])) {
@@ -1209,90 +1304,99 @@ if (!isset($_POST['generate-apk']) && !isset($_POST['edit_apk'])) {
 
         if (move_uploaded_file($_FILES['tab1_icon_edit']['tmp_name'], $_SERVER['DOCUMENT_ROOT'] . '/dashboardv2/uploads/tab_icon/' . $id_company . '_' . $user_access . '_' . $_FILES['tab1_icon_edit']['name'])) {
             $filename = $id_company . '_' . $user_access . '_' . $_FILES['tab1_icon_edit']['name'];
-
+            
             $query = "($be_id, 'app_builder_tab1_icon', '$filename', $user_access)";
             array_push($arr_query, $query);
         }
+
     }
 
     if (isset($_FILES['tab2_icon_edit']) && $_FILES['tab2_icon_edit']['size'] != 0) {
 
         if (move_uploaded_file($_FILES['tab2_icon_edit']['tmp_name'], $_SERVER['DOCUMENT_ROOT'] . '/dashboardv2/uploads/tab_icon/' . $id_company . '_' . $user_access . '_' . $_FILES['tab2_icon_edit']['name'])) {
             $filename = $id_company . '_' . $user_access . '_' . $_FILES['tab2_icon_edit']['name'];
-
+            
             $query = "($be_id, 'app_builder_tab2_icon', '$filename', $user_access)";
             array_push($arr_query, $query);
         }
+
     }
 
     if (isset($_FILES['tab3_icon_edit']) && $_FILES['tab3_icon_edit']['size'] != 0) {
 
         if (move_uploaded_file($_FILES['tab3_icon_edit']['tmp_name'], $_SERVER['DOCUMENT_ROOT'] . '/dashboardv2/uploads/tab_icon/' . $id_company . '_' . $user_access . '_' . $_FILES['tab3_icon_edit']['name'])) {
             $filename = $id_company . '_' . $user_access . '_' . $_FILES['tab3_icon_edit']['name'];
-
+            
             $query = "($be_id, 'app_builder_tab3_icon', '$filename', $user_access)";
             array_push($arr_query, $query);
         }
+
     }
 
     if (isset($_FILES['tab4_icon_edit']) && $_FILES['tab4_icon_edit']['size'] != 0) {
 
         if (move_uploaded_file($_FILES['tab4_icon_edit']['tmp_name'], $_SERVER['DOCUMENT_ROOT'] . '/dashboardv2/uploads/tab_icon/' . $id_company . '_' . $user_access . '_' . $_FILES['tab4_icon_edit']['name'])) {
             $filename = $id_company . '_' . $user_access . '_' . $_FILES['tab4_icon_edit']['name'];
-
+            
             $query = "($be_id, 'app_builder_tab4_icon', '$filename', $user_access)";
             array_push($arr_query, $query);
         }
+
     }
 
     if (isset($_FILES['cpaas_icon_edit']) && $_FILES['cpaas_icon_edit']['size'] != 0) {
 
         if (move_uploaded_file($_FILES['cpaas_icon_edit']['tmp_name'], $_SERVER['DOCUMENT_ROOT'] . '/dashboardv2/uploads/tab_icon/' . $id_company . '_' . $user_access . '_' . $_FILES['cpaas_icon_edit']['name'])) {
             $filename = $id_company . '_' . $user_access . '_' . $_FILES['cpaas_icon_edit']['name'];
-
+            
             $query = "($be_id, 'app_builder_cpaas_icon', '$filename', $user_access)";
             array_push($arr_query, $query);
         }
+
     }
 
     if (isset($_FILES['fb1_icon_edit']) && $_FILES['fb1_icon_edit']['size'] != 0) {
 
         if (move_uploaded_file($_FILES['fb1_icon_edit']['tmp_name'], $_SERVER['DOCUMENT_ROOT'] . '/dashboardv2/uploads/fb_icon/' . $id_company . '_' . $user_access . '_' . $_FILES['fb1_icon_edit']['name'])) {
             $filename = $id_company . '_' . $user_access . '_' . $_FILES['fb1_icon_edit']['name'];
-
+            
             $query = "($be_id, 'app_builder_fb1_icon', '$filename', $user_access)";
             array_push($arr_query, $query);
         }
+
     }
 
     if (isset($_FILES['fb2_icon_edit']) && $_FILES['fb2_icon_edit']['size'] != 0) {
 
         if (move_uploaded_file($_FILES['fb2_icon_edit']['tmp_name'], $_SERVER['DOCUMENT_ROOT'] . '/dashboardv2/uploads/fb_icon/' . $id_company . '_' . $user_access . '_' . $_FILES['fb2_icon_edit']['name'])) {
             $filename = $id_company . '_' . $user_access . '_' . $_FILES['fb2_icon_edit']['name'];
-
+            
             $query = "($be_id, 'app_builder_fb2_icon', '$filename', $user_access)";
             array_push($arr_query, $query);
         }
+
     }
 
     if (isset($_FILES['fb3_icon_edit']) && $_FILES['fb3_icon_edit']['size'] != 0) {
 
         if (move_uploaded_file($_FILES['fb3_icon_edit']['tmp_name'], $_SERVER['DOCUMENT_ROOT'] . '/dashboardv2/uploads/fb_icon/' . $id_company . '_' . $user_access . '_' . $_FILES['fb3_icon_edit']['name'])) {
             $filename = $id_company . '_' . $user_access . '_' . $_FILES['fb3_icon_edit']['name'];
-
+            
             $query = "($be_id, 'app_builder_fb3_icon', '$filename', $user_access)";
             array_push($arr_query, $query);
         }
+
     }
 
     if (isset($_FILES['fb4_icon_edit']) && $_FILES['fb4_icon_edit']['size'] != 0) {
 
         if (move_uploaded_file($_FILES['fb4_icon_edit']['tmp_name'], $_SERVER['DOCUMENT_ROOT'] . '/dashboardv2/uploads/fb_icon/' . $id_company . '_' . $user_access . '_' . $_FILES['fb4_icon_edit']['name'])) {
             $filename = $id_company . '_' . $user_access . '_' . $_FILES['fb4_icon_edit']['name'];
-
+            
             $query = "($be_id, 'app_builder_fb4_icon', '$filename', $user_access)";
             array_push($arr_query, $query);
         }
+
     }
 
     if (isset($_FILES['background_edit'])) {
@@ -1320,21 +1424,23 @@ if (!isset($_POST['generate-apk']) && !isset($_POST['edit_apk'])) {
             }
 
             $background = $list_bg;
-
+            
             $query = "($be_id, 'app_builder_background', '$background', $user_access)";
             array_push($arr_query, $query);
         }
+
     } else if (isset($_POST['background_edit'])) {
 
         $background = base64_decode($_POST['background_edit']);
-
+        
         $query = "($be_id, 'app_builder_background', '$background', $user_access)";
         array_push($arr_query, $query);
+
     }
 
     $split_arr_query = implode(",", $arr_query);
 
-    $sql = "REPLACE INTO `PREFS_MAB` (`BE`, `KEY`, `VALUE`, `ACCESS_CATEGORY`) VALUES " . $split_arr_query;
+    $sql = "REPLACE INTO `PREFS_MAB` (`BE`, `KEY`, `VALUE`, `ACCESS_CATEGORY`) VALUES ".$split_arr_query;
     $queryPrefs = $dbConnPalio->prepare($sql);
     $queryPrefs->execute();
 
