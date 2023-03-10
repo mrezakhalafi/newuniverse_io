@@ -5,6 +5,10 @@
 <?php include_once($_SERVER['DOCUMENT_ROOT'].'/encoder.php');?>
 <?php
 
+//     ini_set('display_errors', 1);
+// ini_set('display_startup_errors', 1);
+// error_reporting(E_ALL);
+
     $_SESSION['previous_page'] = $_SESSION['current_page'];
     $_SESSION['current_page'] = 10;
     require_once($_SERVER['DOCUMENT_ROOT'] . '/state_control.php');
@@ -22,72 +26,75 @@
         $h = $query->get_result()->fetch_assoc();
         $email = $h['EMAIL'];
         $query->close();
+        
 
-        $query = $dbconn->prepare("SELECT * FROM USER_ACCOUNT WHERE EMAIL_ACCOUNT = ?");
-        $query->bind_param("s", $email);
-        $query->execute();
-        $itemUser = $query->get_result()->fetch_assoc();
-        $query->close();
+        if ($h != null) {
+            $query = $dbconn->prepare("SELECT * FROM USER_ACCOUNT WHERE EMAIL_ACCOUNT = ?");
+            $query->bind_param("s", $email);
+            $query->execute();
+            $itemUser = $query->get_result()->fetch_assoc();
+            $query->close();
+    
+            $id = $itemUser['ACTIVE'];
+            $trial = $itemUser['STATUS'];
+            $company_id = $itemUser['COMPANY'];
+            $password = $itemUser['PASSWORD'];
+            $user_id = $itemUser['ID'];
 
-        $id = $itemUser['ACTIVE'];
-        $trial = $itemUser['STATUS'];
-        $company_id = $itemUser['COMPANY'];
-        $password = $itemUser['PASSWORD'];
-        $user_id = $itemUser['ID'];
+            if ($id == 0) {
 
-        if ($id == 0) {
+                if ($trial == 3) {
+                    $active = 3;
+                    $query = $dbconn->prepare("UPDATE USER_ACCOUNT SET ACTIVE = ?, STATE = 2 WHERE EMAIL_ACCOUNT = ?");
+                    $query->bind_param("is", $active, $email);
+                    $query->execute();
+                    $dbconn->commit();
+                    $query->close();
 
-            if ($trial == 3) {
-                $active = 3;
-                $query = $dbconn->prepare("UPDATE USER_ACCOUNT SET ACTIVE = ?, STATE = 2 WHERE EMAIL_ACCOUNT = ?");
-                $query->bind_param("is", $active, $email);
-                $query->execute();
-                $dbconn->commit();
-                $query->close();
+                    $query = $dbconn->prepare("DELETE FROM HASH WHERE HASH = ?");
+                    $query->bind_param('s', $hash);
+                    $query->execute();
+                    $query->close();
 
-                $query = $dbconn->prepare("DELETE FROM HASH WHERE HASH = ?");
-                $query->bind_param('s', $hash);
-                $query->execute();
-                $query->close();
+                    if ($_SESSION['password_show'] == null) {
+                        redirect(base_url() . 'login.php');
+                    } else {
+                        setSession('id_user', $user_id);
+                        insertSession($user_id);
 
-                if ($_SESSION['password_show'] == null) {
-                    redirect(base_url() . 'login.php');
+                        echo "<script language='javascript'>";
+                        echo "location.href = 'trialcheckout.php';";
+                        echo "</script>";
+                    }
                 } else {
-                    setSession('id_user', $user_id);
-                    insertSession($user_id);
+                    $active = 1;
+                    $query = $dbconn->prepare("UPDATE USER_ACCOUNT SET ACTIVE = ?, STATE = 2 WHERE EMAIL_ACCOUNT = ?");
+                    $query->bind_param("is", $active, $email);
+                    $query->execute();
+                    $dbconn->commit();
+                    $query->close();
 
-                    echo "<script language='javascript'>";
-                    echo "location.href = 'trialcheckout.php';";
-                    echo "</script>";
+                    $query = $dbconn->prepare("DELETE FROM HASH WHERE HASH = ?");
+                    $query->bind_param('s', $hash);
+                    $query->execute();
+                    $query->close();
+
+                    if ($_SESSION['password_show'] == null) {
+                        redirect(base_url() . 'login.php');
+                    } else {
+                        setSession('id_user', $user_id);
+                        insertSession($user_id);
+
+                        echo "<script language='javascript'>";
+                        echo "location.href = 'paycheckout.php';";
+                        echo "</script>";
+                    }
                 }
-            } else {
-                $active = 1;
-                $query = $dbconn->prepare("UPDATE USER_ACCOUNT SET ACTIVE = ?, STATE = 2 WHERE EMAIL_ACCOUNT = ?");
-                $query->bind_param("is", $active, $email);
-                $query->execute();
-                $dbconn->commit();
-                $query->close();
-
-                $query = $dbconn->prepare("DELETE FROM HASH WHERE HASH = ?");
-                $query->bind_param('s', $hash);
-                $query->execute();
-                $query->close();
-
-                if ($_SESSION['password_show'] == null) {
-                    redirect(base_url() . 'login.php');
-                } else {
-                    setSession('id_user', $user_id);
-                    insertSession($user_id);
-
-                    echo "<script language='javascript'>";
-                    echo "location.href = 'paycheckout.php';";
-                    echo "</script>";
-                }
-            }
+            } 
         } else {
             if ($_SESSION['password_show'] != null) {
                 echo '<script language="javascript">';
-                echo 'alert("Your account might have been activated or not registered due to registration cancellation or verification expiration.");';
+                // echo 'alert("Your account might have been activated or not registered due to registration cancellation or verification expiration.");';
                 echo 'location.href = "dashboardv2/index.php";';
                 echo '</script>';
             } else {

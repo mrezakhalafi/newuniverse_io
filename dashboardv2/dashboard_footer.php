@@ -47,7 +47,8 @@
         justify-content: center;
     }
 
-    .carousel-control-next, .carousel-control-prev {
+    .carousel-control-next,
+    .carousel-control-prev {
         width: 10%;
     }
 
@@ -59,7 +60,7 @@
 
     @media (min-width: 1024px) {
         #slogan {
-            float:right;
+            float: right;
         }
     }
 </style>
@@ -69,11 +70,11 @@
     <div class="container-fluid">
         <div class="row" id="copyright-footer">
             <div class="col-12 col-lg-6">
-                <strong>Copyright &copy; 2022 nexilis.</strong>
+                <strong>Copyright &copy; 2023 nexilis.</strong>
                 All rights reserved.
             </div>
             <div class="col-12 col-lg-6">
-                <strong><span  id="slogan"><span style="color:black;">Customer Engagement, </span><span style="color:#f2ad33;">Made Easy</span></span></strong>
+                <strong><span id="slogan"><span style="color:black;">Customer Engagement, </span><span style="color:#f2ad33;">Made Easy</span></span></strong>
             </div>
         </div>
     </div>
@@ -118,16 +119,15 @@
         $("#modal-session-expire").css("height", "");
     });
 
-    let updateHeight = setInterval(function(){
+    let updateHeight = setInterval(function() {
         // console.log("Height");
-        $('.content-wrapper').css('min-height','100%');
-    },100);
+        $('.content-wrapper').css('min-height', '100%');
+    }, 100);
 
     let linkURL = window.location.href.split("/");
 
     if (linkURL.includes('usage') || linkURL.includes('usage.php') || linkURL.includes('form_management') || linkURL.includes('form_management.php') ||
-    linkURL.includes('mailbox') || linkURL.includes('mailbox.php') || linkURL.includes('appservice') || linkURL.includes('appservice.php')){
+        linkURL.includes('mailbox') || linkURL.includes('mailbox.php') || linkURL.includes('appservice') || linkURL.includes('appservice.php')) {
         clearInterval(updateHeight);
     }
-
 </script>

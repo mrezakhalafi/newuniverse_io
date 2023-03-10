@@ -64,14 +64,15 @@ $password = MD5($dataUser['PASSWORD']);
 $user_id = $dataUser['ID'];
 $userStatus = $dataUser['STATUS'];
 $userState = $dataUser['STATE'];
+$userActive = $dataUser['ACTIVE'];
 $email = $dataUser['EMAIL_ACCOUNT'];
 $query->close();
 
-if ($userState == 3 && $userStatus == 1) {
+if ($userState == 3 && $userStatus == 1) { // SUBSCRIBE LUNAS
   header('Location: status/palio/status.php');
-} elseif ($userState < 2 && $userStatus == 1) {
+} elseif ($userState < 2 && $userStatus == 1) { // BELUM VERIFY
   header('Location: verifyemail.php');
-} else if ($userStatus == 3 && $userState == 3) {
+} else if (($userStatus == 3 && $userState == 3) || ($userActive == 0 && $userState == 2)) { // TRIAL DILARANG MASUK OR EXPIRED
   header('Location: dashboardv2/index');
 }
 
@@ -774,7 +775,7 @@ if (isset($_POST['dashboard']) || $userState == 1) {
         height: 45px;
         min-height: 30px;
         max-height: 55px;
-        padding: 10px;
+        padding: 6px;
       }
     }
 
@@ -1001,11 +1002,14 @@ if (isset($_POST['dashboard']) || $userState == 1) {
               </div>
             </div>
 
+            <hr>
+            <br>
+
             <div class="row">
               <span class="m-0" style="color:#F2AD33"><strong>Bill</strong></span>
             </div>
             <br>
-            <div class="row">
+            <!-- <div class="row">
               <span class="fs-20 text-secondary"><span id="pay-8">Package</span> : <?php echo $currency . " " . $price_item_amount; ?></span>
             </div>
             <div class="row mt-3" style="border-bottom: 1px solid black;">
@@ -1014,7 +1018,37 @@ if (isset($_POST['dashboard']) || $userState == 1) {
             </div>
             <div class="row my-4">
               <p id="pay-9" class="fs-15 m-0">Payment Method : </p>
+            </div> -->
+
+            <div class="row ml-0 input-group">
+              <!-- <p class="fs-18 mb-0">Total</p> -->
+              <!-- <p class="fs-18 ml-auto mb-0"><php echo $currencyBill . " " . sprintf('%0.2f', $billAmt); ?></p> -->
+              <span class="fs-18 mr-3">Rp</span><input type="text" min="0" maxlength="20" class="form-control form-control fs-16 fontRobReg" id="amount" placeholder="Please input amount. (e.g., 1000000)" name="amount" value="450000.00" readonly="">
             </div>
+
+            <div class="row my-3 justify-content-center">
+
+
+              <div class="mx-1" id="paydiv"></div>
+            </div>
+
+            <form id="form-paypal">
+              <div>
+                <label style="white-space:nowrap;">
+                  <input type="radio" class="pay-intent" id="subscription" name="intent" value="subscription" checked="">
+                  <span id="pay-10" style="white-space:normal;">Monthly Subscription (cancel anytime)</span>
+                </label>
+              </div>
+
+              <div>
+                <label style="white-space:nowrap;">
+                  <input type="radio" class="pay-intent" id="order" name="intent" value="order">
+                  <span id="pay-11" style="white-space:normal;">One Month Only (you will be notified towards end of each billing cycle)</span>
+                </label>
+              </div>
+            </form>
+
+
             <div class="row justify-content-center">
 
 
@@ -1379,6 +1413,10 @@ if (isset($_POST['dashboard']) || $userState == 1) {
     $('#exp-month-paycheckout').text('Bulan Kadaluarsa');
     $('#exp-year-paycheckout').text('Tahun Kadaluarsa');
   }
+
+  $("#credit-card-number").bind("change space keyup", function() {
+    $(this).val($(this).val().replace(/[^0-9]/g, ''));
+  });
 
   $("#credit-card-exp-year").bind("change space keyup", function() {
     $(this).val($(this).val().replace(/[^0-9]/g, ''));

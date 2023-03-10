@@ -2,9 +2,17 @@
 
 include_once($_SERVER['DOCUMENT_ROOT'] . '/chatcore/logics/chat_dbconn.php');
 
-	$fpin = $_GET['f_pin'];
-	$customer = $_GET['customer_fpin'];
-	$complain_id = $_GET['complain_id'];
+session_start();
+
+    if (isset($_GET['f_pin']) && isset($_GET['customer_fpin']) && isset($_GET['complain_id'])) {
+        $fpin = $_GET['f_pin'];
+        $customer = $_GET['customer_fpin'];
+        $complain_id = $_GET['complain_id'];
+    } else {
+        $fpin = $_SESSION['complain_officer'];
+        $customer = $_SESSION['complain_cust'];
+        $complain_id = $_SESSION['complain_id'];
+    }
 
 	try {
 

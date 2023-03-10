@@ -38,7 +38,7 @@ $due_date = "Due Date Reminder";
 $overdue = "Overdue Notice";
 $cutoff_date = "Cut Off Date Reminder";
 $terminate = "Service Termination Notice";
-$subscribe = "Subscription Activation";
+$subscribe = "<p id='subs-active'>Subscription Activation</p>";
 
 // $trial = "Reminder: Your trial has expired";
 // $payment= "Payment Success";
@@ -50,7 +50,7 @@ $message1 = "Hey there, <br>
 
 			Livestreaming, Push Notifications, Instant Messaging, Video and VoIP Calling Features <br> into their mobile apps so that they could stay connected with their applications users.<br>
 			<br>
-			Here are some resources to help get you started: <a href='/guide/index'>Quick Start Guides</a>
+			Here are some resources to help get you started: <a href='/guide/index?from=2'>Quick Start Guides</a>
 			<br>
 			We can’t wait to see what you've build!
 			<br>
@@ -291,7 +291,7 @@ $nextMessage5 = "  <br>
 
 			<i>Livestreaming</i>, <i>Push Notifications</i>, <i>Instant Messaging</i>, <i>Video</i> dan <i>VoIP Calling</i> <br> ke dalam aplikasi seluler agar mereka dapat tetap terhubung dengan pengguna aplikasi mereka.<br>
 			<br>
-			Berikut adalah berbagai sumber untuk membantu anda memulai menggunakan aplikasi: <a href='/guide/index'>panduan Memulai Cepat</a>
+			Berikut adalah berbagai sumber untuk membantu anda memulai menggunakan aplikasi: <a href='/guide/index?from=2'>panduan Memulai Cepat</a>
 			<br>
 			Kami tidak dapat menunggu untuk melihat apa yang telah anda bangun!
 			<br>
@@ -352,15 +352,29 @@ $nextMessage5 = "  <br>
 			newuniverse.io<br>`;
 			$("#msg-body").html(message6_ID);
 		<?php
+		} else if ($itemMessage2['M_ID'] == 11) {
+		?>
+			var mail_dueDate = '<?= $bill_date['DUE_DATE'] ?>';
+			var message11_ID = `Untuk Pengguna,
+			Terima kasih telah melakukan aktivasi langganan newuniverse.io anda! <br><br>
+			Saat ini, anda mempunyai akses ke semua layanan <i>API</i> kami dan kami harap anda akan menikmati layanan terbaik kami. Sebagai pengingat, untuk menghindari segala bentuk ketidaknyamanan mohon ingat untuk selalu membayar langganan anda tepat waktu. Semoga Beruntung.
+			<br>
+			<br>
+			Terima kasih.<br>
+			Dengan Hormat<br>
+			newuniverse.io<br>`;
+			$("#msg-body").html(message11_ID);
+		<?php
 		}
 		?>
 
 		var indonesiaDate = '<?php echo indonesiaDate(date("Y H:i -m-d", strtotime($itemMessage2['MESSAGE_DATE']))); ?>';
 
 		$("#from-newuniverse").text("Dari: support@newuniverse.io");
+		$('#subs-active').text('Aktivasi Langganan');
 		$('#back-inbox-text').text("Kembali ke kotak surat");
 		$('#read-mail-text').text("Baca Surat");
-		$(".pull-right").text(indonesiaDate);
+		$(".pull").text(indonesiaDate);
 	}
 
 	$("#change-lang-EN").click(function() {
@@ -375,7 +389,7 @@ $nextMessage5 = "  <br>
 
 				Livestreaming, Push Notifications, Instant Messaging, Video and VoIP Calling Features <br> into their mobile apps so that they could stay connected with their applications users.<br>
 				<br>
-				Here are some resources to help get you started: <a href='/guide/index'>Quick Start Guides</a>
+				Here are some resources to help get you started: <a href='/guide/index?from=2'>Quick Start Guides</a>
 				<br>
 				We can’t wait to see what you've build!
 				<br>
@@ -443,14 +457,29 @@ $nextMessage5 = "  <br>
 				newuniverse.io<br>`;
 			$("#msg-body").html(message6_EN);
 		<?php
+		} else if ($itemMessage2['M_ID'] == 11) {
+		?>
+			var mail_dueDate = '<?= $bill_date['DUE_DATE'] ?>';
+			var message11_EN = `Dear User,
+				Thank you for activating your subscription to newuniverse.io!<br><br>
+				Currently, you have access to all of our API services and we hope that you will be enjoying our best services. Just as a reminder, to avoid any inconveniences please remember to always pay your subscription on time. Best of Luck.
+				<br>
+				<br>
+				Thank you.<br>
+				With Regards<br>
+				newuniverse.io<br>`;
+			$("#msg-body").html(message11_EN);
+		<?php
 		}
 		?>
+
 		localStorage.lang = 0;
 		$("#from-newuniverse").text("From: support@newuniverse.io");
+		$('#subs-active').text('Subscription Activation');
 		$("#lang-nav").text('EN');
 		$('#back-inbox-text').text("Back to Inbox");
 		$('#read-mail-text').text("Read Mail");
-		$(".pull-right").text(englishDate);
+		$(".pull").text(englishDate);
 		change_lang();
 	});
 
@@ -485,7 +514,7 @@ $nextMessage5 = "  <br>
 		
 				<i>Livestreaming</i>, <i>Push Notifications</i>, <i>Instant Messaging</i>, <i>Video</i> dan <i>VoIP Calling</i> <br> ke dalam aplikasi seluler agar mereka dapat tetap terhubung dengan pengguna aplikasi mereka.<br>
 				<br>
-				Berikut adalah berbagai sumber untuk membantu anda memulai menggunakan aplikasi: <a href='/guide/index'>panduan Memulai Cepat</a>
+				Berikut adalah berbagai sumber untuk membantu anda memulai menggunakan aplikasi: <a href='/guide/index?from=2'>panduan Memulai Cepat</a>
 				<br>
 				Kami tidak dapat menunggu untuk melihat apa yang telah anda bangun!
 				<br>
@@ -546,6 +575,19 @@ $nextMessage5 = "  <br>
 				newuniverse.io<br>`;
 			$("#msg-body").html(message6_ID);
 		<?php
+		} else if ($itemMessage2['M_ID'] == 11) {
+		?>
+			var mail_dueDate = '<?= $bill_date['DUE_DATE'] ?>';
+			var message11_ID = `Untuk Pengguna,
+				Terima kasih telah melakukan aktivasi langganan newuniverse.io anda! <br><br>
+				Saat ini, anda mempunyai akses ke semua layanan <i>API</i> kami dan kami harap anda akan menikmati layanan terbaik kami. Sebagai pengingat, untuk menghindari segala bentuk ketidaknyamanan mohon ingat untuk selalu membayar langganan anda tepat waktu. Semoga Beruntung.
+				<br>
+				<br>
+				Terima kasih.<br>
+				Dengan Hormat<br>
+				newuniverse.io<br>`;
+			$("#msg-body").html(message11_ID);
+		<?php
 		}
 		?>
 
@@ -553,10 +595,11 @@ $nextMessage5 = "  <br>
 
 		localStorage.lang = 1;
 		$("#from-newuniverse").text("Dari: support@newuniverse.io");
+		$('#subs-active').text('Aktivasi Langganan');
 		$("#lang-nav").text('ID');
 		$('#back-inbox-text').text("Kembali ke kotak surat");
 		$('#read-mail-text').text("Baca Surat");
-		$(".pull-right").text(indonesiaDate);
+		$(".pull").text(indonesiaDate);
 		change_lang();
 	});
 </script>

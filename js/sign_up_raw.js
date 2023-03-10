@@ -35,6 +35,7 @@
 var email = false;
 var emailNotExist = false;
 var company = false;
+var companyNotExist = false;
 var password123 = false;
 var username = false;
 var captcha = false;
@@ -82,13 +83,14 @@ $("#username").on('input', function () {
 });
 $("#companyname").on('input', function () {
     checkEmptyCompany();
+    checkExistingCompany();
     doCheck();
 });
 $("#passwordTFconfirm").on('input', function () {
     checkPasswordMatch();
     doCheck();
 
-    $('#alertEmpty5').css('display','none');
+    $('#alertEmpty5').css('display', 'none');
 });
 $("#passwordTFconfirm").on('blur', function () {
     checkExistingEmail();
@@ -98,13 +100,13 @@ $("#passwordTF").on('input', function () {
     // checkPasswordMatch();
     doCheck();
 
-    $('#alertEmpty4').css('display','none');
+    $('#alertEmpty4').css('display', 'none');
 });
 $("#email").on('input', function () {
     checkEmail();
     doCheck();
 
-    $('#alertEmpty3').css('display','none');    
+    $('#alertEmpty3').css('display', 'none');
 });
 $("#email").blur(function () {
     console.log('email lose focus');
@@ -118,10 +120,10 @@ function recaptcha_callback() {
 
     captcha = true;
 
-    $('#alertEmpty6').css('display','none');
+    $('#alertEmpty6').css('display', 'none');
 
     function doCheck() {
-        if (email == true && emailNotExist == true && company == true && password123 == true && username == true && pw_strength >= 50 && pwValidChar == true && captcha == true) {
+        if (email == true && emailNotExist == true && company == true && companyNotExist == true && password123 == true && username == true && pw_strength >= 50 && pwValidChar == true && captcha == true) {
             console.log("email= " + email);
             console.log("emailNE= " + emailNotExist);
             console.log("company= " + company);
@@ -147,7 +149,7 @@ function recaptcha_callback() {
 };
 
 function doCheck() {
-    if (email == true && emailNotExist == true && company == true && password123 == true && username == true && pw_strength >= 50 && pwValidChar == true && captcha == true) {
+    if (email == true && emailNotExist == true && company == true && companyNotExist == true && password123 == true && username == true && pw_strength >= 50 && pwValidChar == true && captcha == true) {
         let email_clean = DOMPurify.sanitize($("#email").val());
         let company_clean = DOMPurify.sanitize($("#companyname").val());
         let password_clean = DOMPurify.sanitize($("#passwordTF").val());
@@ -184,7 +186,7 @@ function checkEmail() {
 
     var regExEmail = /^[A-Z0-9._-]+@([A-Z0-9-]+\.)+[A-Z]{2,4}$/i;
 
-    if (regExEmail.test(val)) {
+    if (val && regExEmail.test(val)) {
         if (val != "") {
             $("#alertEmail").hide();
             $("#alertExisting").hide();
@@ -232,7 +234,7 @@ function checkExistingEmail() {
                     $("#alertEmail").hide();
                     emailNotExist = true;
 
-                    if (email == true && emailNotExist == true && company == true && password123 == true && username == true && pw_strength >= 50 && pwValidChar == true && captcha == true) {
+                    if (email == true && emailNotExist == true && company == true && companyNotExist == true && password123 == true && username == true && pw_strength >= 50 && pwValidChar == true && captcha == true) {
                         $('#submit_sign_up').removeClass('disabled');
                         $('#trial_sign_up').removeClass('disabled');
                     }
@@ -263,6 +265,65 @@ function checkExistingEmail() {
     }
 }
 
+function checkExistingCompany() {
+    if (company == true) {
+
+        var val = $("#companyname").val();
+
+        var formData = {
+            company: val,
+        };
+
+        $.ajax({
+            type: 'POST',
+            url: 'checkCompany',
+            data: formData,
+            encode: true,
+            timeout: 1000,
+            success: function (response, status, xhr) {
+                console.log(response);
+                if (response == 0) {
+                    if (localStorage.lang == 0) {
+                        $("#alertExistingCompany").text("This company is available.");
+                    }
+                    else {
+                        $("#alertExistingCompany").text("Company ini tersedia.");
+                    }
+                    $("#alertExistingCompany").addClass("text-success");
+                    $("#alertExistingCompany").removeClass("text-danger");
+                    $("#alertExistingCompany").show();
+                    companyNotExist = true;
+
+                    if (email == true && emailNotExist == true && company == true && companyNotExist == true && password123 == true && username == true && pw_strength >= 50 && pwValidChar == true && captcha == true) {
+                        $('#submit_sign_up').removeClass('disabled');
+                        $('#trial_sign_up').removeClass('disabled');
+                    }
+
+                } else {
+
+                    if (localStorage.lang == 0) {
+                        $("#alertExistingCompany").text("This company has already been registered. Please use a different name");
+                    } else {
+                        $("#alertExistingCompany").text("Company ini sudah terdaftar. Silahkan gunakan nama yang lain");
+                    }
+
+                    $("#alertExistingCompany").addClass("text-danger");
+                    $("#alertExistingCompany").removeClass("text-success");
+                    $("#alertExistingCompany").show();
+                    companyNotExist = false;
+
+                    $('#submit_sign_up').addClass('disabled');
+                    $('#trial_sign_up').addClass('disabled');
+                }
+            },
+            error: function (xhr, status, error) {
+                console.log(error);
+                alert('Please check your internet connection to make sure your company name is available.');
+            }
+        });
+    }
+}
+
 function checkEmptyUname() {
 
     var val = $('#username').val();
@@ -288,11 +349,11 @@ function checkEmptyCompany() {
     var regExEmpty = /\S+/i;
 
     if (regExEmpty.test(val)) {
-
+        $("#alertExistingCompany").show();
         $('#alertEmpty2').css('display', 'none');
         company = true;
     } else {
-
+        $("#alertExistingCompany").hide();
         $('#alertEmpty2').css('display', 'block');
         company = false;
     }
@@ -351,20 +412,20 @@ var password = document.getElementById("passwordTF");
         switch (prog) {
             case 0:
             case 1:
-                if (localStorage.lang == 1){
-                strength = "<span data-translate='signup-16' style='color: red;'>25% - Lemah</span>";
-                }else{
-                strength = "<span data-translate='signup-16' style='color: red;'>25% - Weak</span>";
+                if (localStorage.lang == 1) {
+                    strength = "<span data-translate='signup-16' style='color: red;'>25% - Lemah</span>";
+                } else {
+                    strength = "<span data-translate='signup-16' style='color: red;'>25% - Weak</span>";
                 }
                 progress = "25";
                 pw_strength = 25;
                 $('#passwarn').css('display', 'block');
                 break;
             case 2:
-                if (localStorage.lang == 1){
-                strength = "<span data-translate='signup-17'>50% - Lumayan</span>";
-                }else{
-                strength = "<span data-translate='signup-17'>50% - Medium</span>";
+                if (localStorage.lang == 1) {
+                    strength = "<span data-translate='signup-17'>50% - Lumayan</span>";
+                } else {
+                    strength = "<span data-translate='signup-17'>50% - Medium</span>";
                 }
                 progress = "50";
                 pw_strength = 50;
@@ -372,20 +433,20 @@ var password = document.getElementById("passwordTF");
                 break;
             case 3:
             case 4:
-                if (localStorage.lang == 1){
-                strength = "<span data-translate='signup-18'>75% - Lumayan</span>";
-                }else{
-                strength = "<span data-translate='signup-18'>75% - Medium</span>";
+                if (localStorage.lang == 1) {
+                    strength = "<span data-translate='signup-18'>75% - Lumayan</span>";
+                } else {
+                    strength = "<span data-translate='signup-18'>75% - Medium</span>";
                 }
                 progress = "75";
                 pw_strength = 75;
                 $('#passwarn').css('display', 'none');
                 break;
             case 5:
-                if (localStorage.lang == 1){
-                strength = "<span data-translate='signup-19'>100% - Kuat</span>";
-                }else{
-                strength = "<span data-translate='signup-19'>100% - Strong</span>";
+                if (localStorage.lang == 1) {
+                    strength = "<span data-translate='signup-19'>100% - Kuat</span>";
+                } else {
+                    strength = "<span data-translate='signup-19'>100% - Strong</span>";
                 }
                 progress = "100";
                 pw_strength = 100;
@@ -400,43 +461,52 @@ var password = document.getElementById("passwordTF");
 
 $("#submit_sign_up").click(function (e) {
 
-    if (username == false){
-        $('#alertEmpty1').css('display','block');
-    }else{
-        $('#alertEmpty1').css('display','none');
+    if (username == false) {
+        $('#alertEmpty1').css('display', 'block');
+    } else {
+        $('#alertEmpty1').css('display', 'none');
     }
 
-    if (company == false){
-        $('#alertEmpty2').css('display','block');
-    }else{
-        $('#alertEmpty2').css('display','none');
+    if (company == false) {
+        $('#alertEmpty2').css('display', 'block');
+    } else {
+        $('#alertEmpty2').css('display', 'none');
     }
 
-    if (email == false){
-        $('#alertEmpty3').css('display','block');
-    }else{
-        $('#alertEmpty3').css('display','none');
+    if (email == false) {
+        $('#alertEmpty3').css('display', 'block');
+    } else {
+        $('#alertEmpty3').css('display', 'none');
+    }
+
+    if ($("#email").val() == "") {
+        $("#alertEmail").hide();
+    }
+    else if ($("#email").val() != "") {
+        console.log("halo");
+        $("#alertEmpty3").hide();
+        // $("#alertEmail").show();
     }
 
     var password = $("#passwordTF").val();
     var confirmPassword = $("#passwordTFconfirm").val();
 
-    if (password == false){
-        $('#alertEmpty4').css('display','block');
-    }else{
-        $('#alertEmpty4').css('display','none');
+    if (password == false) {
+        $('#alertEmpty4').css('display', 'block');
+    } else {
+        $('#alertEmpty4').css('display', 'none');
     }
 
-    if (confirmPassword == false){
-        $('#alertEmpty5').css('display','block');
-    }else{
-        $('#alertEmpty5').css('display','none');
+    if (confirmPassword == false) {
+        $('#alertEmpty5').css('display', 'block');
+    } else {
+        $('#alertEmpty5').css('display', 'none');
     }
 
-    if (captcha == false){
-        $('#alertEmpty6').css('display','block');
-    }else{
-        $('#alertEmpty6').css('display','none');
+    if (captcha == false) {
+        $('#alertEmpty6').css('display', 'block');
+    } else {
+        $('#alertEmpty6').css('display', 'none');
     }
 
     if ($(this).hasClass('disabled')) {
@@ -471,43 +541,43 @@ $("#submit_sign_up").click(function (e) {
 
 $("#trial_sign_up").click(function (e) {
 
-    if (username == false){
-        $('#alertEmpty1').css('display','block');
-    }else{
-        $('#alertEmpty1').css('display','none');
+    if (username == false) {
+        $('#alertEmpty1').css('display', 'block');
+    } else {
+        $('#alertEmpty1').css('display', 'none');
     }
 
-    if (company == false){
-        $('#alertEmpty2').css('display','block');
-    }else{
-        $('#alertEmpty2').css('display','none');
+    if (company == false) {
+        $('#alertEmpty2').css('display', 'block');
+    } else {
+        $('#alertEmpty2').css('display', 'none');
     }
 
-    if (email == false){
-        $('#alertEmpty3').css('display','block');
-    }else{
-        $('#alertEmpty3').css('display','none');
+    if (email == false) {
+        $('#alertEmpty3').css('display', 'block');
+    } else {
+        $('#alertEmpty3').css('display', 'none');
     }
 
     var password = $("#passwordTF").val();
     var confirmPassword = $("#passwordTFconfirm").val();
 
-    if (password == false){
-        $('#alertEmpty4').css('display','block');
-    }else{
-        $('#alertEmpty4').css('display','none');
+    if (password == false) {
+        $('#alertEmpty4').css('display', 'block');
+    } else {
+        $('#alertEmpty4').css('display', 'none');
     }
 
-    if (confirmPassword == false){
-        $('#alertEmpty5').css('display','block');
-    }else{
-        $('#alertEmpty5').css('display','none');
+    if (confirmPassword == false) {
+        $('#alertEmpty5').css('display', 'block');
+    } else {
+        $('#alertEmpty5').css('display', 'none');
     }
 
-    if (captcha == false){
-        $('#alertEmpty6').css('display','block');
-    }else{
-        $('#alertEmpty6').css('display','none');
+    if (captcha == false) {
+        $('#alertEmpty6').css('display', 'block');
+    } else {
+        $('#alertEmpty6').css('display', 'none');
     }
 
     if ($(this).hasClass('disabled')) {
@@ -541,7 +611,7 @@ $("#trial_sign_up").click(function (e) {
 
 /** sign up bottom */
 /* <script type="text/javascript">
-        
+
 
         $(document).ready(function() {
             <?php if ($_SESSION['geolocSts'] == 0 && $_SESSION['language'] == 1) { ?>
@@ -557,7 +627,7 @@ $("#trial_sign_up").click(function (e) {
             <?php } ?>
         });
 
-        
+
     </script>
 
     <?php if (!empty($msg)) : ?>

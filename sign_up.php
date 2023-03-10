@@ -546,7 +546,7 @@ $timeSec = 'v=' . time();
                                                                                                                                                                                                             } ?>">
                     </div>
                     <p class="text-danger fs-15 fontRobReg m-0 text-left" id="alertEmpty2" data-translate="signup-15" style="display: none;">This fields is required.</p>
-
+                    <p class="fs-15 fontRobReg m-0 text-left" id="alertExistingCompany" style="display: none;"></p>
                     <!-- email -->
                     <div class="input-group btn border-70 p-0 mt-4">
                         <input type="email" style="width: 100%" required class="form-control form-control fs-18 fontRobReg border-0" id="email" placeholder="Email" name="email" value="<?php if (isset($_POST['sign_up'])) {
@@ -817,7 +817,12 @@ $timeSec = 'v=' . time();
         $('#passwordTFconfirm').attr('placeholder', 'Confirm Password');
         $('#submit_sign_up').attr('value', 'Sign Up');
         $('#trial_sign_up').attr('value', 'Trial');
-        $("#alertExisting").text("This email is available.");
+
+        if (emailNotExist) {
+            $("#alertExisting").text("This email is available.");
+        } else {
+            $("#alertExisting").text("This email has already been registered. Please use a different email");
+        }
         change_lang();
     });
 
@@ -830,7 +835,12 @@ $timeSec = 'v=' . time();
         $('#passwordTFconfirm').attr('placeholder', 'Konfirmasi Kata Sandi');
         $('#submit_sign_up').attr('value', 'Daftar');
         $('#trial_sign_up').attr('value', 'Uji Coba');
-        $("#alertExisting").text("Email ini tersedia.");
+
+        if (emailNotExist) {
+            $("#alertExisting").text("Email ini tersedia.");
+        } else {
+            $("#alertExisting").text("Email ini sudah terdaftar. Silahkan gunakan email yang lain");
+        }
         change_lang();
     });
 </script>

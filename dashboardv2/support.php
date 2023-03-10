@@ -221,7 +221,7 @@ $version = 'v=' . time();
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-header" style="border-bottom: 0;">
-                            <a href="<?php echo base_url(); ?>../guide/index.php">
+                            <a href="<?php echo base_url(); ?>../guide/index.php?from=1">
                                 <h5 data-translate="dashport-2">nexilis Lite Guide</h5>
 
                                 <iframe width="640" height="360" src="https://www.youtube.com/embed/fuW5AR2-rf0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
@@ -257,7 +257,7 @@ $version = 'v=' . time();
                                         <span data-translate="dashport-6">What is your development method?</span>
                                         <div class="row mt-3">
                                             <div class="col-md-5 mx-auto">
-                                                <label class="container-check">Flutter
+                                                <label class="container-check">iOS
                                                     <input type="radio" name="method" value="flutter" checked>
                                                     <span class="checkmark"></span>
                                                 </label>
@@ -358,7 +358,7 @@ $version = 'v=' . time();
                                         <span data-translate="dashport-14">Issue:</span> <span class="ticket-name"><?php echo $ticket['SUMMARY']; ?></span><br>
                                         <span data-translate="dashport-15">Created on:</span> <?php echo $ticket['CREATED_TIME']; ?><br>
                                         <span data-translate="dashport-16">By</span> <?php echo $userData['USERNAME'];
-                                            ?>
+                                                                                        ?>
                                     </div>
                                     <div class="col-md-6 text-right align-self-center">
                                         <?php if ($ticket['STATUS'] == 0) { ?>
@@ -435,8 +435,7 @@ $version = 'v=' . time();
     }(_0x5949, 0x94b45), $(_0xeb4428(0xa7))[_0xeb4428(0xa2)](_0xeb4428(0xa0)), $(_0xeb4428(0xa5))[_0xeb4428(0xa2)](_0xeb4428(0xa0)), $(_0xeb4428(0x9e))[_0xeb4428(0xa2)](_0xeb4428(0xa0)), $('a.nav-link[href=\x22support.php\x22]')[_0xeb4428(0xa4)](_0xeb4428(0xa0)), $(_0xeb4428(0x9a))['removeClass'](_0xeb4428(0xa0)));
 </script>
 
-<script> 
-
+<script>
     // $('#lang-nav').hover(function(){
     //     $('#lang-menu').dropdown("show");
     //     }, function(){
@@ -449,28 +448,27 @@ $version = 'v=' . time();
     //     $('#lang-menu').dropdown("hide");
     // });
 
-    $("#change-lang-EN").click(function () {
-		localStorage.lang = 0;
-		$("#lang-nav").text('EN');
-        $('#ticketTitle').attr('placeholder','Subject');
-        $('#ticketDetail').attr('placeholder','Description');
-        $('#search-ticket').attr('placeholder','Search ticket by issue...');
-		change_lang();
-	});
+    $("#change-lang-EN").click(function() {
+        localStorage.lang = 0;
+        $("#lang-nav").text('EN');
+        $('#ticketTitle').attr('placeholder', 'Subject');
+        $('#ticketDetail').attr('placeholder', 'Description');
+        $('#search-ticket').attr('placeholder', 'Search ticket by issue...');
+        change_lang();
+    });
 
-	$("#change-lang-ID").click(function () {
-		localStorage.lang = 1;
-		$("#lang-nav").text('ID');
-        $('#ticketTitle').attr('placeholder','Subjek');
-        $('#ticketDetail').attr('placeholder','Deskripsi');
-        $('#search-ticket').attr('placeholder','Cari tiket');
-		change_lang();
-	});  
+    $("#change-lang-ID").click(function() {
+        localStorage.lang = 1;
+        $("#lang-nav").text('ID');
+        $('#ticketTitle').attr('placeholder', 'Subjek');
+        $('#ticketDetail').attr('placeholder', 'Deskripsi');
+        $('#search-ticket').attr('placeholder', 'Cari tiket');
+        change_lang();
+    });
 
-    if (localStorage.lang == 1){
-        $('#ticketTitle').attr('placeholder','Subjek');
-        $('#ticketDetail').attr('placeholder','Deskripsi');
-        $('#search-ticket').attr('placeholder','Cari tiket');
+    if (localStorage.lang == 1) {
+        $('#ticketTitle').attr('placeholder', 'Subjek');
+        $('#ticketDetail').attr('placeholder', 'Deskripsi');
+        $('#search-ticket').attr('placeholder', 'Cari tiket');
     }
-
 </script>

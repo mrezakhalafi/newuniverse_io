@@ -2,7 +2,14 @@
 
 include_once($_SERVER['DOCUMENT_ROOT'] . '/chatcore/logics/chat_dbconn.php');
 
-	$complain_id = $_POST['cmp_id'];
+session_start();
+
+    if (isset($_POST['cmp_id'])) {
+        $complain_id = $_POST['cmp_id'];
+    } else {
+        $complain_id = $_SESSION['call_complain_id'];
+    }
+	
 
 	try {
 

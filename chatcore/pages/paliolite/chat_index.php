@@ -4,33 +4,42 @@ include_once($_SERVER['DOCUMENT_ROOT'] . '/url_function.php');
 include_once($_SERVER['DOCUMENT_ROOT'] . '/chatcore/logics/chat_dbconn.php');
 session_start();
 
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
 // not logged in yet
 if (!isset($_SESSION['web_login'])) {
 	redirect(base_url() . 'chatcore/pages/login_page.php?env=1');
 }
 
 // logout
-if (isset($_POST['submit'])) {
+if (isset($_POST['submit']) || (isset($_SESSION['currenttime']) && time() - $_SESSION['currenttime'] > 10)) {
 	$dbconn = newnus();
 
-	$query = $dbconn->prepare("SELECT * FROM WEB_LOGIN WHERE QR_CODE = ?");
-	$query->bind_param("s", $_SESSION['web_login']);
-	$query->execute();
-	$user = $query->get_result()->fetch_assoc();
-	$query->close();
+	include '../../logics/force_logout.php';
 
-	$query = $dbconn->prepare("DELETE FROM WEB_LOGIN WHERE F_PIN = ? AND FLAG = 1");
-	$query->bind_param("s", $user['F_PIN']);
-	$query->execute();
-	$query->close();
+	// $query = $dbconn->prepare("SELECT * FROM WEB_LOGIN WHERE QR_CODE = ?");
+	// $query->bind_param("s", $_SESSION['web_login']);
+	// $query->execute();
+	// $user = $query->get_result()->fetch_assoc();
+	// $query->close();
 
-	session_destroy();
-	if ($user['FLAG'] == 1) {
-		redirect(base_url() . 'chatcore/pages/login_page.php?env=1');
-	} else {
-		redirect(base_url() . 'chatcore/pages/login_page.php?env=0');
-	}
-}
+	// $query = $dbconn->prepare("DELETE FROM WEB_LOGIN WHERE F_PIN = ? AND FLAG = 1");
+	// $query->bind_param("s", $user['F_PIN']);
+	// $query->execute();
+	// $query->close();
+
+	// session_destroy();
+	// if ($user['FLAG'] == 1) {
+	// 	redirect(base_url() . 'chatcore/pages/login_page.php?env=1');
+	// } else {
+	// 	redirect(base_url() . 'chatcore/pages/login_page.php?env=0');
+	// }
+} 
+// else {
+// 	$_SESSION['currenttime'] = time();
+// }
 
 ?>
 <!DOCTYPE html>

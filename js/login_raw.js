@@ -36,7 +36,7 @@ $('#loginBTN').click(function (e) {
     }
 });
 
-$('#emailTF').keydown(function (e) {
+$('#emailTF').on('input',function (e) {
     // e.preventDefault();
     console.log(e.which);
     checkEmail();
@@ -95,6 +95,8 @@ function checkEmail() {
         }
         else {
 
+            console.log("Jangan masuk");
+
             $('#alertEmail').removeClass('d-none')
 
             $('body').on('keydown', function (e) {
@@ -104,7 +106,9 @@ function checkEmail() {
         }
     }
     else {
-        $("#emptyEmail").removeClass('d-none')
+
+        console.log("Masuk");
+        $("#emptyEmail").removeClass('d-none');
         $('#alertEmail').addClass("d-none");
     }
 

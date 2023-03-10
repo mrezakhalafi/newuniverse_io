@@ -89,6 +89,13 @@ if ($enabled) {
     }
 }
 
+function rupiah($angka)
+{
+
+    $hasil_rupiah = number_format($angka, 2, ',', '.');
+    return $hasil_rupiah;
+}
+
 $query = $dbconn->prepare("SELECT us.COMPANY_ID, SUM(TEXT_RECIPIENT) AS TEXT, SUM(IMG_RECIPIENT) AS DOC, SUM(VIDEO_RECIPIENT) AS VIDEO, SUM(LS_MINUTES) AS LS, SUM(VOIP_MINUTES) AS VOIP, SUM(VC_MINUTES) AS VIDCALL, b.BILL_DATE, b.DUE_DATE, b.CUT_OFF_DATE
 FROM USAGE_SUMMARY us, BILLING b 
 WHERE us.COMPANY_ID = ? AND b.IS_PAID = 1 AND b.COMPANY = us.COMPANY_ID AND (us.CREATED_AT BETWEEN DATE(b.BILL_DATE) AND DATE(b.CUT_OFF_DATE))
@@ -268,7 +275,13 @@ if (isset($_POST['changeCompanyLogo'])) {
 //update company name
 if (isset($_POST['changeCompanyName'])) {
 
-    echo ('<script>alert("Company Name has been changed.")</script>');
+    echo ('<script>');
+    echo ('if (localStorage.lang == 0) {');
+    echo ('alert("Company Name has been changed.")');
+    echo ('}else{');
+    echo ('alert("Nama Perusahaan telah diganti.")');
+    echo ('}');
+    echo ('</script>');
 
     $company_name = $_POST['inputCompanyName'];
 
@@ -340,7 +353,14 @@ if (isset($_POST['changeCompanyName'])) {
 //update user name
 if (isset($_POST['changeUserName'])) {
 
-    echo ('<script>alert("User Name has been changed.")</script>');
+
+    echo ('<script>');
+    echo ('if (localStorage.lang == 0) {');
+    echo ('alert("User Name has been changed.")');
+    echo ('}else{');
+    echo ('alert("Nama Pengguna telah diganti.")');
+    echo ('}');
+    echo ('</script>');
 
     $newUser = $_POST['inputUserName'];
 
@@ -464,7 +484,13 @@ if (isset($_POST['changeAdmPass'])) {
 // update internal pass
 if (isset($_POST['changeIntPass'])) {
 
-    echo ('<script>alert("Internal Password has been changed.")</script>');
+    echo ('<script>');
+    echo ('if (localStorage.lang == 0) {');
+    echo ('alert("Internal Password has been changed.")');
+    echo ('}else{');
+    echo ('alert("Kata sandi Internal telah diganti.")');
+    echo ('}');
+    echo ('</script>');
 
     $new_password_priv = $_POST['inputPass_priv'];
 
@@ -539,8 +565,6 @@ if (isset($_POST['changeIntPass'])) {
 // update support email
 if (isset($_POST['changeSuppEmail'])) {
 
-    echo ('<script>alert("Email Account for Support has been changed.")</script>');
-
     $new_supp_email = $_POST['new_supp_email'];
 
     try {
@@ -549,7 +573,11 @@ if (isset($_POST['changeSuppEmail'])) {
 
             if ($new_supp_email == $itemUser['EMAIL_ACCOUNT']) {
                 echo "<script language='javascript'>";
-                echo "alert('Email support cannot be same like your account email.');";
+                echo " if (localStorage.lang == 1){
+                    alert('Email Bantuan tidak bisa sama dengan email anda.');
+                }else{
+                    alert('Email support cannot be same like your account email.');
+                }";
                 echo "window.location.href='index.php';";
                 echo "</script>";
             } else {
@@ -582,6 +610,14 @@ if (isset($_POST['changeSuppEmail'])) {
                 $api_stream = stream_context_create($api_options);
                 $api_result = file_get_contents($api_url, false, $api_stream);
                 $api_json_result = json_decode($api_result);
+
+                echo ('<script>
+                if (localStorage.lang == 1){
+                    alert("Akun Email untuk Bantuan berhasil diganti.");
+                }else{
+                    alert("Email Account for Support has been changed.");
+                }
+                </script>');
 
                 if (http_response_code() != 200) {
                     throw new Exception('Support email update failed, please try again!');
@@ -917,6 +953,15 @@ $query->close();
         overflow-x: hidden;
     }
 
+    input::-ms-reveal,
+    input::-ms-clear {
+        display: none;
+    }
+
+    ::-ms-reveal {
+        display: none;
+    }
+
     #toCheckout:hover {
         color: #efb455 !important;
         background-color: white !important;
@@ -1202,7 +1247,7 @@ $query->close();
                                                             echo "<span id='trialprice'></span>";
                                                             echo ("<a href='" . base_url() . "checkout.php' id='toCheckout' class='btn pull-left' type='button' name='button' style='background-color: #efb455; color: white; padding-top: 0; padding-bottom: 0;'>SUBSCRIBE</a>");
                                                         } else {
-                                                            echo "[<span data-translate='dashindex-33'>ACTIVE</span>] [<span data-translate='dashindex-34'>Package:</span> " . ($bill2['CURRENCY'] == 'USD' ? "$" : "Rp") . "<span id='packagePrice'>" . $bill2['CHARGE'] . "</span>]";
+                                                            echo "[<span data-translate='dashindex-33'>ACTIVE</span>] [<span data-translate='dashindex-34'>Package:</span> " . ($bill2['CURRENCY'] == 'USD' ? "$" : "Rp ") . "<span id='packagePrice'>" . rupiah($bill2['CHARGE']) . "</span>]";
                                                             // echo ("<a href='billpayment.php' class='btn pull-left' type='button' name='button' style='background-color: #1799ad; color: white; padding-top: 0; padding-bottom: 0;'>SUBSCRIBE</a>");
                                                         }
                                                         ?>
@@ -1373,7 +1418,7 @@ $query->close();
                                                 <?php } ?>
                                                 <strong data-translate="dashindex-24">Your Prepaid Credit Balance:</strong><br>
 
-                                                <?php echo (($credit['CURRENCY'] == 'USD' ? "$" : "Rp") . ' <span id="topupAmt">' . sprintf('%0.2f', $credit['CREDIT']) . '</span>'); ?>
+                                                <?php echo (($credit['CURRENCY'] == 'USD' ? "$" : "Rp ") . ' <span id="topupAmt">' . rupiah($credit['CREDIT']) . '</span>'); ?>
                                                 <a data-translate="dashindex-25" href='../topup.php' class='btn pull-left' type='button' name='button' style='background-color: #1799ad; color: white; padding-top: 0; padding-bottom: 0;'>TOP UP</a><br>
 
                                                 </li>
@@ -1534,10 +1579,14 @@ $query->close();
 
     $("#new_supp_email").bind("change keyup input", function() {
 
-        if ($('#new_supp_email').val() != oldEmailSupport) {
+        if (($('#new_supp_email').val() != oldEmailSupport) && (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test($('#new_supp_email').val()))) {
+
             $("#submitSuppEmail").attr('disabled', false);
+
         } else {
+
             $("#submitSuppEmail").attr('disabled', true);
+
         }
 
     });

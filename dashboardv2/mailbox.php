@@ -28,7 +28,7 @@ $message1 = "Hey there, <br>
 
 			Livestreaming, Push Notifications, Instant Messaging, Video and VoIP Calling Features <br> into their mobile apps so that they could stay connected with their applications users.<br>
 			<br>
-			Here are some resources to help get you started: <a href='/guide/index'>Quickstart guides</a>
+			Here are some resources to help get you started: <a href='/guide/index?from=2'>Quickstart guides</a>
 			<br>
 			We can’t wait to see what you've build!
 			<br>
@@ -119,15 +119,15 @@ $nextMessage5 = "  <br>
 <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
 
 <style>
-    body{
-        font-family: 'Poppins',sans-serif;
-    }
+  body {
+    font-family: 'Poppins', sans-serif;
+  }
 
-    html,
-		body {
-			max-width: 100%;
-			overflow-x: hidden;
-		}
+  html,
+  body {
+    max-width: 100%;
+    overflow-x: hidden;
+  }
 </style>
 
 <div class="content-wrapper" id="mailbox">
@@ -162,21 +162,20 @@ $nextMessage5 = "  <br>
                         <td class="mailbox-name">newuniverse.io Team</td>
                         <td class="mailbox-subject mail-title">
                           <span id="msg-title-<?= $im['ID'] ?>"><?php
-                          if ($im['M_ID'] == 1) echo $welcome;
-                          else if ($im['M_ID'] == 11) echo $subscribe;
-                          else if ($im['M_ID'] == 6) echo $due_date;
-                          else if ($im['M_ID'] == 2) echo $payment;
-                          else if ($im['M_ID'] == 3) echo $overdue; //substr($message3, 0, 12)."...[TRIAL]";
-                          else if ($im['M_ID'] == 4) echo $cutoff_date; //substr($message4, 0, 12)."...[DUE DATE]";
-                          else if ($im['M_ID'] == 5) echo $terminate; //substr($message5, 0, 12)."...[PAYMENT]";
-                          ?></span>
+                                                                if ($im['M_ID'] == 1) echo $welcome;
+                                                                else if ($im['M_ID'] == 11) echo $subscribe;
+                                                                else if ($im['M_ID'] == 6) echo $due_date;
+                                                                else if ($im['M_ID'] == 2) echo $payment;
+                                                                else if ($im['M_ID'] == 3) echo $overdue; //substr($message3, 0, 12)."...[TRIAL]";
+                                                                else if ($im['M_ID'] == 4) echo $cutoff_date; //substr($message4, 0, 12)."...[DUE DATE]";
+                                                                else if ($im['M_ID'] == 5) echo $terminate; //substr($message5, 0, 12)."...[PAYMENT]";
+                                                                ?></span>
                         </td>
                         <td class="mailbox-subject">
                           <?php if ($im['IS_READ'] != 1) {
-                            echo "<b id='msg-subject-".$im['ID']."'>";
-                          } 
-                          else {
-                            echo "<span id='msg-subject-".$im['ID']."'>";
+                            echo "<b id='msg-subject-" . $im['ID'] . "'>";
+                          } else {
+                            echo "<span id='msg-subject-" . $im['ID'] . "'>";
                           } ?>
                           <?php
                           if ($im['M_ID'] == 1) echo (substr($message1, 0, 100) . "...");
@@ -189,18 +188,17 @@ $nextMessage5 = "  <br>
                           ?>
                           <?php if ($im['IS_READ'] != 1) {
                             echo "</b>";
-                          } 
-                          else {
+                          } else {
                             echo "</span>";
                           } ?>
                         </td>
                         <td class="mailbox-date">
-                          <span id="msg-<?= $im['ID'] ?>"><?php 
-                            // echo $im['MESSAGE_DATE']; 
-                            $dateNtime = $im['MESSAGE_DATE'];
-                            $newDate = date("d F Y H:i", strtotime($dateNtime));
-                            echo $newDate;
-                          ?></span>
+                          <span id="msg-<?= $im['ID'] ?>"><?php
+                                                          // echo $im['MESSAGE_DATE']; 
+                                                          $dateNtime = $im['MESSAGE_DATE'];
+                                                          $newDate = date("d F Y H:i", strtotime($dateNtime));
+                                                          echo $newDate;
+                                                          ?></span>
                           <?php if ($im['IS_READ'] != 1) {
                             echo "<span style='color: red;''>*</span>";
                           } ?>
@@ -256,8 +254,7 @@ $nextMessage5 = "  <br>
   });
 </script>
 
-<script> 
-
+<script>
   // $('#lang-nav').hover(function(){  
   //   $('#lang-menu').dropdown("show");
   //   }, function(){
@@ -270,13 +267,14 @@ $nextMessage5 = "  <br>
   //   $('#lang-menu').dropdown("hide");
   // });
 
-$(document).ready(function() {
+  $(document).ready(function() {
 
-  if(localStorage.lang == 1){
+    if (localStorage.lang == 1) {
 
-    <?php
-      function indonesiaDate($tanggal){
-        $bulan = array (
+      <?php
+      function indonesiaDate($tanggal)
+      {
+        $bulan = array(
           1 => 'Januari',
           'Februari',
           'Maret',
@@ -291,27 +289,27 @@ $(document).ready(function() {
           'Desember'
         );
         $pecahkan = explode('-', $tanggal);
-        return $pecahkan[2] . ' ' . $bulan[ (int)$pecahkan[1] ] . ' ' . $pecahkan[0];
+        return $pecahkan[2] . ' ' . $bulan[(int)$pecahkan[1]] . ' ' . $pecahkan[0];
       }
-    ?>
+      ?>
 
-    <?php 
+      <?php
       foreach ($itemMessage as $im) {
-        ?>
+      ?>
         var mailID = '<?= $im['ID'] ?>';
         var indonesiaDate = '<?php echo indonesiaDate(date('Y H:i -m-d', strtotime($im['MESSAGE_DATE']))); ?>';
-        $("#msg-"+mailID).text(indonesiaDate);
+        $("#msg-" + mailID).text(indonesiaDate);
         <?php
 
         if ($im['M_ID'] == 1) {
-          ?>
+        ?>
           var message1_ID = `Halo, <br>
           Selamat Datang!<br><br>
           newuniverse.io membantu perusahaan untuk menanamkan Fitur <i>Contact Center</i>,
 
           <i>Livestreaming</i>, <i>Push Notifications</i>, <i>Instant Messaging</i>, <i>Video</i> dan <i>VoIP Calling</i> <br> ke dalam aplikasi seluler agar mereka dapat tetap terhubung dengan pengguna aplikasi mereka.<br>
           <br>
-          Berikut adalah berbagai sumber untuk membantu anda memulai menggunakan aplikasi: <a href='/guide/index'>panduan Memulai Cepat</a>
+          Berikut adalah berbagai sumber untuk membantu anda memulai menggunakan aplikasi: <a href='/guide/index?from=2'>panduan Memulai Cepat</a>
           <br>
           Kami tidak dapat menunggu untuk melihat apa yang telah anda bangun!
           <br>
@@ -320,12 +318,11 @@ $(document).ready(function() {
           Dengan Hormat<br>
           newuniverse.io<br>`;
           var message1_title_ID = "Selamat Datang di newuniverse.io!";
-          $("#msg-subject-<?= $im['ID'] ?>").html(message1_ID.substr(0,100) + "...");
+          $("#msg-subject-<?= $im['ID'] ?>").html(message1_ID.substr(0, 100) + "...");
           $("#msg-title-<?= $im['ID'] ?>").text(message1_title_ID);
-          <?php
-        }
-        else if ($im['M_ID'] == 2) {
-          ?>
+        <?php
+        } else if ($im['M_ID'] == 2) {
+        ?>
           var message2_ID = `Untuk Pengguna...
           Anda belum membayar untuk paket anda, jika anda tertarik untuk menggunakan layanan kami mohon selesaikan pembayaran anda.
 
@@ -333,12 +330,11 @@ $(document).ready(function() {
           Dengan Hormat
           newuniverse.io<br>`;
           var message2_title_ID = "Melihat Pembayaran";
-          $("#msg-subject-<?= $im['ID'] ?>").html(message2_ID.substr(0,100) + "...");
+          $("#msg-subject-<?= $im['ID'] ?>").html(message2_ID.substr(0, 100) + "...");
           $("#msg-title-<?= $im['ID'] ?>").text(message2_title_ID);
-          <?php
-        }
-        else if ($im['M_ID'] == 3) {
-          ?>
+        <?php
+        } else if ($im['M_ID'] == 3) {
+        ?>
           var message3_ID = `Untuk Pengguna...
           Pengingat Keterlambatan:
           Paket anda telah memasuki masa tenggang, harap pastikan untuk menyelesaikan pembayaran anda untuk melanjutkan menggunakan layanan kami.
@@ -347,12 +343,11 @@ $(document).ready(function() {
           Dengan Hormat
           newuniverse.io`;
           var message3_title_ID = "Melihat Keterlambatan";
-          $("#msg-subject-<?= $im['ID'] ?>").html(message3_ID.substr(0,100) + "...");
+          $("#msg-subject-<?= $im['ID'] ?>").html(message3_ID.substr(0, 100) + "...");
           $("#msg-title-<?= $im['ID'] ?>").text(message3_title_ID);
-          <?php
-        }
-        else if ($im['M_ID'] == 4) {
-          ?>
+        <?php
+        } else if ($im['M_ID'] == 4) {
+        ?>
           var message4_ID = `Untuk Pengguna...
           Pengingat Tanggal Pemotongan:
           Paket anda telah memasuki masa tenggang, dan akan berakhir .
@@ -361,12 +356,11 @@ $(document).ready(function() {
           Dengan Hormat
           newuniverse.io<br>`;
           var message4_title_ID = "Pengingat Tanggal Pemotongan";
-          $("#msg-subject-<?= $im['ID'] ?>").html(message4_ID.substr(0,100) + "...");
+          $("#msg-subject-<?= $im['ID'] ?>").html(message4_ID.substr(0, 100) + "...");
           $("#msg-title-<?= $im['ID'] ?>").text(message4_title_ID);
-          <?php
-        }
-        else if ($im['M_ID'] == 5) {
-          ?>
+        <?php
+        } else if ($im['M_ID'] == 5) {
+        ?>
           var message5_ID = `Untuk Pengguna...
           Paket anda telah berakhir .
 
@@ -376,12 +370,11 @@ $(document).ready(function() {
           Dengan Hormat
           newuniverse.io<br>`;
           var message5_title_ID = "Melihat Pemutusan Layanan";
-          $("#msg-subject-<?= $im['ID'] ?>").html(message5_ID.substr(0,100) + "...");
+          $("#msg-subject-<?= $im['ID'] ?>").html(message5_ID.substr(0, 100) + "...");
           $("#msg-title-<?= $im['ID'] ?>").text(message5_title_ID);
-          <?php
-        }
-        else if ($im['M_ID'] == 6) {
-          ?>
+        <?php
+        } else if ($im['M_ID'] == 6) {
+        ?>
           var message6_ID = `Untuk Pengguna...
           Pengingat Tanggal Jatuh Tempo:
           Untuk melanjutkan menggunakan layanan kami, anda harus melakukan pembayaran kembali .
@@ -390,39 +383,54 @@ $(document).ready(function() {
           Dengan Hormat
           newuniverse.io<br>`;
           var message6_title_ID = "Pengingat Tanggal Jatuh Tempo";
-          $("#msg-subject-<?= $im['ID'] ?>").html(message6_ID.substr(0,100) + "...");
+          $("#msg-subject-<?= $im['ID'] ?>").html(message6_ID.substr(0, 100) + "...");
           $("#msg-title-<?= $im['ID'] ?>").text(message6_title_ID);
-          <?php
+        <?php
+        } else if ($im['M_ID'] == 11) {
+        ?>
+          var message11_ID = `Untuk Pengguna,
+
+          Terima kasih telah melakukan aktivasi langganan newuniverse.io anda! <br><br>
+          Saat ini, anda mempunyai akses ke semua layanan <i>API</i> kami dan kami harap anda akan menikmati layanan terbaik kami. Sebagai pengingat, untuk menghindari segala bentuk ketidaknyamanan mohon ingat untuk selalu membayar langganan anda tepat waktu. Semoga Beruntung.
+          <br>
+          <br>
+          Terima kasih.<br>
+          Dengan Hormat<br>
+          newuniverse.io<br>`;
+          var message11_title_ID = "Aktivasi Langganan";
+          $("#msg-subject-<?= $im['ID'] ?>").html(message11_ID.substr(0, 100) + "...");
+          $("#msg-title-<?= $im['ID'] ?>").text(message11_title_ID);
+      <?php
         }
       }
-    ?>
+      ?>
 
-    $('#mailbox-text').text("Kotak Surat");
-    $('#inbox-text').text("Pesan Masuk");
-    $('#search-msg').attr('placeholder','Cari pesan dengan awalan subjek...');
-    $(".mailbox-name").text("Tim newuniverse.io");
-  }
+      $('#mailbox-text').text("Kotak Surat");
+      $('#inbox-text').text("Pesan Masuk");
+      $('#search-msg').attr('placeholder', 'Cari pesan dengan awalan subjek...');
+      $(".mailbox-name").text("Tim newuniverse.io");
+    }
 
-  $("#change-lang-EN").click(function () {
-		localStorage.lang = 0;
+    $("#change-lang-EN").click(function() {
+      localStorage.lang = 0;
 
-    <?php 
+      <?php
       foreach ($itemMessage as $im) {
-        ?>
+      ?>
         var mailID = '<?= $im['ID'] ?>';
         var englishDate = '<?= date("d F Y H:i", strtotime($im['MESSAGE_DATE'])); ?>';
-        $("#msg-"+mailID).text(englishDate);
+        $("#msg-" + mailID).text(englishDate);
         <?php
 
         if ($im['M_ID'] == 1) {
-          ?>
+        ?>
           var message1_EN = `Hey there, <br>
           Welcome!<br><br>
           newuniverse.io helps companies to embed Contact Center,
 
           Livestreaming, Push Notifications, Instant Messaging, Video and VoIP Calling Features <br> into their mobile apps so that they could stay connected with their applications users.<br>
           <br>
-          Here are some resources to help get you started: <a href='/guide/index'>Quickstart guides</a>
+          Here are some resources to help get you started: <a href='/guide/index?from=2'>Quickstart guides</a>
           <br>
           We can’t wait to see what you've build!
           <br>
@@ -431,12 +439,11 @@ $(document).ready(function() {
           With Regards<br>
           newuniverse.io<br>`;
           var message1_title_EN = "Welcome to newuniverse.io!";
-          $("#msg-subject-<?= $im['ID'] ?>").html(message1_EN.substr(0,100) + "...");
+          $("#msg-subject-<?= $im['ID'] ?>").html(message1_EN.substr(0, 100) + "...");
           $("#msg-title-<?= $im['ID'] ?>").text(message1_title_EN);
-          <?php
-        }
-        else if ($im['M_ID'] == 2) {
-          ?>
+        <?php
+        } else if ($im['M_ID'] == 2) {
+        ?>
           var message2_EN = `Dear User...
           You haven't paid for your package, if you are interested in using our services please finish your payment.
 
@@ -444,12 +451,11 @@ $(document).ready(function() {
           With Regards
           newuniverse.io<br>`;
           var message2_title_EN = "Payment Notice";
-          $("#msg-subject-<?= $im['ID'] ?>").html(message2_EN.substr(0,100) + "...");
+          $("#msg-subject-<?= $im['ID'] ?>").html(message2_EN.substr(0, 100) + "...");
           $("#msg-title-<?= $im['ID'] ?>").text(message2_title_EN);
-          <?php
-        }
-        else if ($im['M_ID'] == 3) {
-          ?>
+        <?php
+        } else if ($im['M_ID'] == 3) {
+        ?>
           var message3_EN = `Dear User...
           Overdue Reminder:
           Your package has entered a grace period, make sure to finish your payment to continue using our services.
@@ -458,12 +464,11 @@ $(document).ready(function() {
           With Regards
           newuniverse.io`;
           var message3_title_EN = "Overdue Notice";
-          $("#msg-subject-<?= $im['ID'] ?>").html(message3_EN.substr(0,100) + "...");
+          $("#msg-subject-<?= $im['ID'] ?>").html(message3_EN.substr(0, 100) + "...");
           $("#msg-title-<?= $im['ID'] ?>").text(message3_title_EN);
-          <?php
-        }
-        else if ($im['M_ID'] == 4) {
-          ?>
+        <?php
+        } else if ($im['M_ID'] == 4) {
+        ?>
           var message4_EN = `Dear User...
           Cut Off Date Reminder:
           Your package has entered a grace period, and will be terminated on .
@@ -472,12 +477,11 @@ $(document).ready(function() {
           With Regards
           newuniverse.io<br>`;
           var message4_title_EN = "Cut Off Date Reminder";
-          $("#msg-subject-<?= $im['ID'] ?>").html(message4_EN.substr(0,100) + "...");
+          $("#msg-subject-<?= $im['ID'] ?>").html(message4_EN.substr(0, 100) + "...");
           $("#msg-title-<?= $im['ID'] ?>").text(message4_title_EN);
-          <?php
-        }
-        else if ($im['M_ID'] == 5) {
-          ?>
+        <?php
+        } else if ($im['M_ID'] == 5) {
+        ?>
           var message5_EN = `Dear User...
           Your package has been terminated on .
 
@@ -487,12 +491,11 @@ $(document).ready(function() {
           With Regards
           newuniverse.io<br>`;
           var message5_title_EN = "Service Termination Notice";
-          $("#msg-subject-<?= $im['ID'] ?>").html(message5_EN.substr(0,100) + "...");
+          $("#msg-subject-<?= $im['ID'] ?>").html(message5_EN.substr(0, 100) + "...");
           $("#msg-title-<?= $im['ID'] ?>").text(message5_title_EN);
-          <?php
-        }
-        else if ($im['M_ID'] == 6) {
-          ?>
+        <?php
+        } else if ($im['M_ID'] == 6) {
+        ?>
           var message6_EN = `Dear User...
           Due Date Reminder:
           To continue using our services, you have to make a repayment on .
@@ -501,27 +504,43 @@ $(document).ready(function() {
           With Regards
           newuniverse.io<br>`;
           var message6_title_EN = "Due Date Reminder";
-          $("#msg-subject-<?= $im['ID'] ?>").html(message6_EN.substr(0,100) + "...");
+          $("#msg-subject-<?= $im['ID'] ?>").html(message6_EN.substr(0, 100) + "...");
           $("#msg-title-<?= $im['ID'] ?>").text(message6_title_EN);
-          <?php
+        <?php
+        } else if ($im['M_ID'] == 11) {
+        ?>
+          var message11_EN = `Dear User,
+
+          Thank you for activating your subscription to newuniverse.io!<br><br>
+          Currently, you have access to all of our API services and we hope that you will be enjoying our best services. Just as a reminder, to avoid any inconveniences please remember to always pay your subscription on time. Best of Luck.
+          <br>
+          <br>
+          Thank you.<br>
+          With Regards<br>
+          newuniverse.io<br>`;
+          var message11_title_EN = "Subscription Activation";
+          $("#msg-subject-<?= $im['ID'] ?>").html(message11_EN.substr(0, 100) + "...");
+          $("#msg-title-<?= $im['ID'] ?>").text(message11_title_EN);
+      <?php
         }
       }
-    ?>
+      ?>
 
-		$("#lang-nav").text('EN');
-    $('#mailbox-text').text("Mailbox");
-    $('#inbox-text').text("Inbox");
-    $('#search-msg').attr('placeholder','Search messages by subject...');
-    $(".mailbox-name").text("newuniverse.io Team");
-		change_lang();
-	});
+      $("#lang-nav").text('EN');
+      $('#mailbox-text').text("Mailbox");
+      $('#inbox-text').text("Inbox");
+      $('#search-msg').attr('placeholder', 'Search messages by subject...');
+      $(".mailbox-name").text("newuniverse.io Team");
+      change_lang();
+    });
 
-	$("#change-lang-ID").click(function () {
-		localStorage.lang = 1;
-
-    <?php
-      function dateIndonesia($tanggal){
-        $bulan = array (
+    $("#change-lang-ID").click(function() {
+      localStorage.lang = 1;
+      console.log(localStorage.lang);
+      <?php
+      function dateIndonesia($tanggal)
+      {
+        $bulan = array(
           1 => 'Januari',
           'Februari',
           'Maret',
@@ -536,27 +555,27 @@ $(document).ready(function() {
           'Desember'
         );
         $pecahkan = explode('-', $tanggal);
-        return $pecahkan[2] . ' ' . $bulan[ (int)$pecahkan[1] ] . ' ' . $pecahkan[0];
+        return $pecahkan[2] . ' ' . $bulan[(int)$pecahkan[1]] . ' ' . $pecahkan[0];
       }
-    ?>
+      ?>
 
-    <?php 
+      <?php
       foreach ($itemMessage as $im) {
-        ?>
+      ?>
         var mailID = '<?= $im['ID'] ?>';
         var indonesiaDate = '<?php echo dateIndonesia(date('Y H:i -m-d', strtotime($im['MESSAGE_DATE']))); ?>';
-        $("#msg-"+mailID).text(indonesiaDate);
+        $("#msg-" + mailID).text(indonesiaDate);
         <?php
-      
+
         if ($im['M_ID'] == 1) {
-          ?>
+        ?>
           var message1_ID = `Halo, <br>
           Selamat Datang!<br><br>
           newuniverse.io membantu perusahaan untuk menanamkan Fitur <i>Contact Center</i>,
 
           <i>Livestreaming</i>, <i>Push Notifications</i>, <i>Instant Messaging</i>, <i>Video</i> dan <i>VoIP Calling</i> <br> ke dalam aplikasi seluler agar mereka dapat tetap terhubung dengan pengguna aplikasi mereka.<br>
           <br>
-          Berikut adalah berbagai sumber untuk membantu anda memulai menggunakan aplikasi: <a href='/guide/index'>panduan Memulai Cepat</a>
+          Berikut adalah berbagai sumber untuk membantu anda memulai menggunakan aplikasi: <a href='/guide/index?from=2'>panduan Memulai Cepat</a>
           <br>
           Kami tidak dapat menunggu untuk melihat apa yang telah anda bangun!
           <br>
@@ -565,12 +584,11 @@ $(document).ready(function() {
           Dengan Hormat<br>
           newuniverse.io<br>`;
           var message1_title_ID = "Selamat Datang di newuniverse.io!";
-          $("#msg-subject-<?= $im['ID'] ?>").html(message1_ID.substr(0,100) + "...");
+          $("#msg-subject-<?= $im['ID'] ?>").html(message1_ID.substr(0, 100) + "...");
           $("#msg-title-<?= $im['ID'] ?>").text(message1_title_ID);
-          <?php
-        }
-        else if ($im['M_ID'] == 2) {
-          ?>
+        <?php
+        } else if ($im['M_ID'] == 2) {
+        ?>
           var message2_ID = `Untuk Pengguna...
           Anda belum membayar untuk paket anda, jika anda tertarik untuk menggunakan layanan kami mohon selesaikan pembayaran anda.
 
@@ -578,12 +596,11 @@ $(document).ready(function() {
           Dengan Hormat
           newuniverse.io<br>`;
           var message2_title_ID = "Melihat Pembayaran";
-          $("#msg-subject-<?= $im['ID'] ?>").html(message2_ID.substr(0,100) + "...");
+          $("#msg-subject-<?= $im['ID'] ?>").html(message2_ID.substr(0, 100) + "...");
           $("#msg-title-<?= $im['ID'] ?>").text(message2_title_ID);
-          <?php
-        }
-        else if ($im['M_ID'] == 3) {
-          ?>
+        <?php
+        } else if ($im['M_ID'] == 3) {
+        ?>
           var message3_ID = `Untuk Pengguna...
           Pengingat Keterlambatan:
           Paket anda telah memasuki masa tenggang, harap pastikan untuk menyelesaikan pembayaran anda untuk melanjutkan menggunakan layanan kami.
@@ -592,12 +609,11 @@ $(document).ready(function() {
           Dengan Hormat
           newuniverse.io`;
           var message3_title_ID = "Melihat Keterlambatan";
-          $("#msg-subject-<?= $im['ID'] ?>").html(message3_ID.substr(0,100) + "...");
+          $("#msg-subject-<?= $im['ID'] ?>").html(message3_ID.substr(0, 100) + "...");
           $("#msg-title-<?= $im['ID'] ?>").text(message3_title_ID);
-          <?php
-        }
-        else if ($im['M_ID'] == 4) {
-          ?>
+        <?php
+        } else if ($im['M_ID'] == 4) {
+        ?>
           var message4_ID = `Untuk Pengguna...
           Pengingat Tanggal Pemotongan:
           Paket anda telah memasuki masa tenggang, dan akan berakhir .
@@ -606,12 +622,11 @@ $(document).ready(function() {
           Dengan Hormat
           newuniverse.io<br>`;
           var message4_title_ID = "Pengingat Tanggal Pemotongan";
-          $("#msg-subject-<?= $im['ID'] ?>").html(message4_ID.substr(0,100) + "...");
+          $("#msg-subject-<?= $im['ID'] ?>").html(message4_ID.substr(0, 100) + "...");
           $("#msg-title-<?= $im['ID'] ?>").text(message4_title_ID);
-          <?php
-        }
-        else if ($im['M_ID'] == 5) {
-          ?>
+        <?php
+        } else if ($im['M_ID'] == 5) {
+        ?>
           var message5_ID = `Untuk Pengguna...
           Paket anda telah berakhir .
 
@@ -621,12 +636,11 @@ $(document).ready(function() {
           Dengan Hormat
           newuniverse.io<br>`;
           var message5_title_ID = "Melihat Pemutusan Layanan";
-          $("#msg-subject-<?= $im['ID'] ?>").html(message5_ID.substr(0,100) + "...");
+          $("#msg-subject-<?= $im['ID'] ?>").html(message5_ID.substr(0, 100) + "...");
           $("#msg-title-<?= $im['ID'] ?>").text(message5_title_ID);
-          <?php
-        }
-        else if ($im['M_ID'] == 6) {
-          ?>
+        <?php
+        } else if ($im['M_ID'] == 6) {
+        ?>
           var message6_ID = `Untuk Pengguna...
           Pengingat Tanggal Jatuh Tempo:
           Untuk melanjutkan menggunakan layanan kami, anda harus melakukan pembayaran kembali .
@@ -635,20 +649,36 @@ $(document).ready(function() {
           Dengan Hormat
           newuniverse.io<br>`;
           var message6_title_ID = "Pengingat Tanggal Jatuh Tempo";
-          $("#msg-subject-<?= $im['ID'] ?>").html(message6_ID.substr(0,100) + "...");
+          $("#msg-subject-<?= $im['ID'] ?>").html(message6_ID.substr(0, 100) + "...");
           $("#msg-title-<?= $im['ID'] ?>").text(message6_title_ID);
-          <?php
+        <?php
+        } else if ($im['M_ID'] == 11) {
+        ?>
+          var message11_ID = `Untuk Pengguna,
+
+          Terima kasih telah melakukan aktivasi langganan newuniverse.io anda! <br><br>
+          Saat ini, anda mempunyai akses ke semua layanan <i>API</i> kami dan kami harap anda akan menikmati layanan terbaik kami. Sebagai pengingat, untuk menghindari segala bentuk ketidaknyamanan mohon ingat untuk selalu membayar langganan anda tepat waktu. Semoga Beruntung.
+          <br>
+          <br>
+          Terima kasih.<br>
+          Dengan Hormat<br>
+          newuniverse.io<br>`;
+          var message11_title_ID = "Aktivasi Langganan";
+          $("#msg-subject-<?= $im['ID'] ?>").html(message11_ID.substr(0, 100) + "...");
+          $("#msg-title-<?= $im['ID'] ?>").text(message11_title_ID);
+      <?php
         }
       }
-    ?>
+      ?>
 
-		$("#lang-nav").text('ID');
-    $('#mailbox-text').text("Kotak Surat");
-    $('#inbox-text').text("Pesan Masuk");
-    $('#search-msg').attr('placeholder','Cari pesan dengan awalan subjek...');
-    $(".mailbox-name").text("Tim newuniverse.io");
-		change_lang();
-	});  
 
-});
+      $("#lang-nav").text('ID');
+      $('#mailbox-text').text("Kotak Surat");
+      $('#inbox-text').text("Pesan Masuk");
+      $('#search-msg').attr('placeholder', 'Cari pesan dengan awalan subjek...');
+      $(".mailbox-name").text("Tim newuniverse.io");
+      change_lang();
+    });
+
+  });
 </script>

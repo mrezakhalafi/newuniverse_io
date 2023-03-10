@@ -2397,7 +2397,7 @@ public class MainActivity extends Activity {
          Do not share your newuniverse.io Account or ever give it out to someone outside your organization.
          ************************************/
         /**
-         * Nexilis.connect (String NexilisAccount, Activity RegisteredActivity, int NexilisButtonMode, boolean UserMayModifyUID, Callback ConnectCallback)
+         * API.connect (String NexilisAccount, Activity RegisteredActivity, int NexilisButtonMode, boolean UserMayModifyUID, Callback ConnectCallback)
          *
          * NexilisAccount 		: Your Nexilis.io Account.
          * RegisteredActivity       	: Android's Activity class that is used to register the Nexilis Button
@@ -2413,7 +2413,7 @@ public class MainActivity extends Activity {
          * 		You need to implement onSuccess(String NexilisUserID) & onFailed(String reasonCode) to handle the RESULT.
          *
          */
-        Nexilis.connect("***REPLACE***WITH***YOUR***NEXILIS***ACCOUNT***", this, 0, new Callback() {
+        API.connect("***REPLACE***WITH***YOUR***NEXILIS***ACCOUNT***", this, 0, new Callback() {
             @Override
             public void onSuccess(final String NexilisUserID) {
                 // Handle onSuccess event here.
@@ -2425,14 +2425,14 @@ public class MainActivity extends Activity {
             public void onFailed(final String reasonCode) {
                 // Handle onFailed event here.
                 // This callback will be triggered automatically when there is an issue during
-                // the execution of Nexilis.connect method.
+                // the execution of API.connect method.
             }
         });
 
         /**
          *
          * An OPTIONAL Method to change your Nexilis User ID
-         * You can call this method anytime after Nexilis.connect calls onSuccess
+         * You can call this method anytime after API.connect calls onSuccess
          *
          * String ResponCode = Nexilis.changeUsername(String NewUserID)
          *
@@ -2447,7 +2447,7 @@ public class MainActivity extends Activity {
          * 		103:Username is empty
          * 		104:Username length is too short
          * 		105:Username length is too long
-         * 		106:Illegal State. Be sure call Nexilis.connect and #callback state onSuccess called
+         * 		106:Illegal State. Be sure call API.connect and #callback state onSuccess called
          * NewUserID	: Desired User ID
          */
     }
@@ -2964,7 +2964,7 @@ public class MainActivity extends Activity {
          Do not share your newuniverse.io Account or ever give it out to someone outside your organization.
          ************************************/
         /** 
-        * Nexilis.connect (String NexilisAccount, Activity RegisteredActivity, int NexilisButtonMode, boolean UserMayModifyUID, Callback ConnectCallback) 
+        * API.connect (String NexilisAccount, Activity RegisteredActivity, int NexilisButtonMode, boolean UserMayModifyUID, Callback ConnectCallback) 
         * 
         * NexilisAccount 		: Your Nexilis.io Account. 
         * RegisteredActivity 	: Android's Activity class that is used to register the Nexilis Button 
@@ -2979,7 +2979,7 @@ public class MainActivity extends Activity {
         * 		You need to implement onSuccess(String NexilisUserID) & onFailed(String reasonCode) to handle the RESULT. 
         * 
         */
-        Nexilis.connect("***REPLACE***WITH***YOUR***NEXILIS***ACCOUNT***", this,1, new Callback() {
+        API.connect("***REPLACE***WITH***YOUR***NEXILIS***ACCOUNT***", this,1, new Callback() {
 
             @Override
             public void onSuccess(final String NexilisUserID) {

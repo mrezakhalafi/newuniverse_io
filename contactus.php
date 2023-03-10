@@ -18,7 +18,7 @@ $version = 'v=2.03';
 		font-family: 'Poppins', sans-serif;
 	}
 
-	.btn{
+	.btn {
 		font-size: 15px;
 	}
 </style>
@@ -48,7 +48,7 @@ $version = 'v=2.03';
 							<input required type="text" name="name" class="form-control" id="name" placeholder="Name">
 						</div>
 						<div class="col">
-							<input required type="email" name="email" class="form-control" id="email" placeholder="Email"">
+							<input required type="email" name="email" class="form-control" id="email" placeholder="Email">
 							<p data-translate="contactus-2" class="text-danger fs-15 fontRobReg m-0 text-left" id="alertEmail" style="display: none;"></p>
 						</div>
 					</div>
@@ -57,7 +57,7 @@ $version = 'v=2.03';
 							<textarea required class="form-control" id="message" name="message" rows="10" placeholder="Message""></textarea>
 						</div>
 					</div>
-					<div class="row my-3">
+					<div class=" row my-3">
 						<div class="col-md-12">
 							<!-- <button data-translate="contactus-3" id="submit" type="submit" name="send" class="btn nav-menu-btn-wht-alt w-100 m-0"></button> -->
 							<button data-translate="contactus-3" id="submit" onclick="sendJSON()" class="btn nav-menu-btn-wht-alt w-100 m-0"></button>
@@ -129,48 +129,48 @@ $(document).ready(function(){
 	var animateLevelUpTi3;
 	var animateLevelUpTi4;
 
-	runLevelUpAnimation();
-	resumeLevelUpAnimation();
+	// runLevelUpAnimation();
+	// resumeLevelUpAnimation();
 
-	$('#FB_1').on("mouseenter", function () {
-	clearAnimateLevelUp();
-	$('#FB_1').attr('src','palio_button/assets/Untitled110_20220121183610.png');
-	$('#FB_2').attr('src','newAssets/floating_button/button_chat.png');
-	$('#FB_3').attr('src','newAssets/floating_button/button_call.png');
-	$('#FB_4').attr('src','newAssets/floating_button/button_stream.png');
-	}).on("mouseleave", function () {
-	resumeLevelUpAnimation();
-	});
+	// $('#FB_1').on("mouseenter", function () {
+	// clearAnimateLevelUp();
+	// $('#FB_1').attr('src','palio_button/assets/Untitled110_20220121183610.png');
+	// $('#FB_2').attr('src','newAssets/floating_button/button_chat.png');
+	// $('#FB_3').attr('src','newAssets/floating_button/button_call.png');
+	// $('#FB_4').attr('src','newAssets/floating_button/button_stream.png');
+	// }).on("mouseleave", function () {
+	// resumeLevelUpAnimation();
+	// });
 
-	$('#FB_2').on("mouseenter", function () {
-	clearAnimateLevelUp();
-	$('#FB_1').attr('src','newAssets/floating_button/button_cc.png');
-	$('#FB_2').attr('src','palio_button/assets/Untitled110_20220121183614.png');
-	$('#FB_3').attr('src','newAssets/floating_button/button_call.png');
-	$('#FB_4').attr('src','newAssets/floating_button/button_stream.png');
-	}).on("mouseleave", function () {
-	resumeLevelUpAnimation();
-	});
+	// $('#FB_2').on("mouseenter", function () {
+	// clearAnimateLevelUp();
+	// $('#FB_1').attr('src','newAssets/floating_button/button_cc.png');
+	// $('#FB_2').attr('src','palio_button/assets/Untitled110_20220121183614.png');
+	// $('#FB_3').attr('src','newAssets/floating_button/button_call.png');
+	// $('#FB_4').attr('src','newAssets/floating_button/button_stream.png');
+	// }).on("mouseleave", function () {
+	// resumeLevelUpAnimation();
+	// });
 
-	$('#FB_3').on("mouseenter", function () {
-	clearAnimateLevelUp();
-	$('#FB_1').attr('src','newAssets/floating_button/button_cc.png');
-	$('#FB_2').attr('src','newAssets/floating_button/button_chat.png');
-	$('#FB_3').attr('src','palio_button/assets/Untitled110_20220121183621.png');
-	$('#FB_4').attr('src','newAssets/floating_button/button_stream.png');
-	}).on("mouseleave", function () {
-	resumeLevelUpAnimation();
-	});
+	// $('#FB_3').on("mouseenter", function () {
+	// clearAnimateLevelUp();
+	// $('#FB_1').attr('src','newAssets/floating_button/button_cc.png');
+	// $('#FB_2').attr('src','newAssets/floating_button/button_chat.png');
+	// $('#FB_3').attr('src','palio_button/assets/Untitled110_20220121183621.png');
+	// $('#FB_4').attr('src','newAssets/floating_button/button_stream.png');
+	// }).on("mouseleave", function () {
+	// resumeLevelUpAnimation();
+	// });
 
-	$('#FB_4').on("mouseenter", function () {
-	clearAnimateLevelUp();
-	$('#FB_1').attr('src','newAssets/floating_button/button_cc.png');
-	$('#FB_2').attr('src','newAssets/floating_button/button_chat.png');
-	$('#FB_3').attr('src','newAssets/floating_button/button_call.png');
-	$('#FB_4').attr('src','palio_button/assets/Untitled110_20220121183617.png');
-	}).on("mouseleave", function () {
-	resumeLevelUpAnimation();
-	});
+	// $('#FB_4').on("mouseenter", function () {
+	// clearAnimateLevelUp();
+	// $('#FB_1').attr('src','newAssets/floating_button/button_cc.png');
+	// $('#FB_2').attr('src','newAssets/floating_button/button_chat.png');
+	// $('#FB_3').attr('src','newAssets/floating_button/button_call.png');
+	// $('#FB_4').attr('src','palio_button/assets/Untitled110_20220121183617.png');
+	// }).on("mouseleave", function () {
+	// resumeLevelUpAnimation();
+	// });
 
 	function clearAnimateLevelUp(){
 	clearInterval(animateLevelUpIn);

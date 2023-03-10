@@ -304,6 +304,10 @@ echo "<script>
     .modal-content {
         overflow-y: hidden !important;
     }
+
+    .dropdown-toggle::after {
+        margin-left: 0.6rem !important;
+    }
 </style>
 
 </head>
@@ -375,7 +379,7 @@ echo "<script>
             <button id="navbar-main" class="navbar-toggler navbar-toggler-right" style="background-color: #1799ad !important;" type="button" data-toggle="collapse" data-target="#navbar-section" aria-controls="navbar-section" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse" id="navbar-section">
+            <div class="collapse navbar-collapse pt-2" id="navbar-section">
                 <ul class="navbar-nav ml-auto d-flex justify-content-center align-items-start">
                     <li class="nav-item dropdown position-static" id="usecase-li">
                         <a data-translate="indexnav-9" style="font-size: 18px !important; margin-right: 0px;" class="nav-link nav-menu-link dropdown-toggle fontRobReg fs-20 greenText" id="usecase-nav" aria-haspopup="true" aria-expanded="false" href="<?php echo base_url(); ?>usecase.php"></a>
@@ -439,7 +443,7 @@ echo "<script>
 
                     <?php if (isset($_SESSION['password']) && $_SESSION['password'] == md5('T3sB4Y4rN0X3nd1t')) { ?>
                         <li class="nav-item dropdown position-static" id="blog-li">
-                            <a style="font-size: 18px !important; margin-right: 0px;" class="nav-link nav-menu-link dropdown-toggle fontRobReg fs-20 greenText" id="blog-nav" role="button" aria-haspopup="true" aria-expanded="false" data-translate="indexnav-30">News & Update</a>
+                            <a id="nu-nav" style="font-size: 18px !important; margin-right: 0px;" class="nav-link nav-menu-link dropdown-toggle fontRobReg fs-20 greenText" aria-haspopup="true" aria-expanded="false" data-translate="indexnav-30">News & Update</a>
                             <div class="dropdown-menu" id="blog-menu" aria-labelledby="dropdownMenuButton">
                                 <div class="col d-flex justify-content-start p-0">
                                     <a class="dropdown-item fontRobReg fs-20 py-2 greenText" href="<?php echo base_url(); ?>blog-index.php" style="display: inline;  color: #1a73e8;" data-translate="indexnav-30">News & Update</a>

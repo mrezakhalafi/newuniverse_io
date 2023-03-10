@@ -43,6 +43,7 @@ $(function () {
         }
 
         console.log("XENDIT RESPONSE", creditCardCharge);
+        $('html').css('overflow', 'hidden');
 
         if (creditCardCharge.status === 'APPROVED' || creditCardCharge.status === 'VERIFIED') {
             console.log("APPROVED/VERIFIED")
@@ -61,7 +62,8 @@ $(function () {
     }
 
     function displayError(err) {
-        console.log("ERR", err)
+        console.log("ERR", err);
+        $('html').css('overflow', '');
         $('#three-ds-container').hide();
         $('.overlay').hide();
         $('#creditModalCenter').modal('hide');

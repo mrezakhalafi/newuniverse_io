@@ -2,6 +2,10 @@
 
 include_once($_SERVER['DOCUMENT_ROOT'] . '/chatcore/logics/chat_dbconn.php');
 
+ini_set('display_errors', 1);
+    ini_set('display_startup_errors', 1);
+    error_reporting(E_ALL);
+
 $flag = $_GET['flag'];
 $fpin = $_GET['f_pin'];
 

@@ -2,6 +2,9 @@
 session_start();
 require_once($_SERVER['DOCUMENT_ROOT'] . '/url_function.php');
 
+$from = '';
+$from = $_GET['from'];
+
 ?>
 
 <!DOCTYPE html>
@@ -321,8 +324,14 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/url_function.php');
         <div class="container-fluid mt-3">
           <div class="row">
             <div class="col-sm-12">
-              <a href="<?= base_url(); ?>dashboardv2/mailbox.php" style="text-decoration: none"><span style="font-family:'Josefin Sans', sans-serif">&lt;&lt; <span id="back-inbox-text">Back to Mailbox</span></span></a>
-              <h1 id="head">Nexilis Android SDK</h1>
+
+              <?php if ($from == 1) : ?>
+                <a href="<?= base_url(); ?>dashboardv2/support.php" style="text-decoration: none"><span style="font-family:'Josefin Sans', sans-serif">&lt;&lt; <span id="back-inbox-text">Back to Support</span></span></a>
+              <?php elseif ($from == 2) : ?>
+                <a href="<?= base_url(); ?>dashboardv2/mailbox.php" style="text-decoration: none"><span style="font-family:'Josefin Sans', sans-serif">&lt;&lt; <span id="back-inbox-text">Back to Mailbox</span></span></a>
+              <?php endif; ?>
+
+              <h1 id="head" class="mt-3">Nexilis Android SDK</h1>
               <hr style="border-top: 2px solid blue; opacity: 1;">
               <p>
                 The Nexilis Android SDK provides access to the Nexilis API for any Android applications. The most recent version of the Nexilis Android SDK can be found on a Maven Repository.
@@ -427,11 +436,11 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/url_function.php');
             </pre>
 
                 <p>
-                  Add the <i>Nexilis.connect</i> method to start Nexilis’s background service on the Client side and connect to the Nexilis Server.
+                  Add the <i>API.connect</i> method to start Nexilis’s background service on the Client side and connect to the Nexilis Server.
                 </p>
                 <pre class="prettyprint lang-java">
 
-  Nexilis.connect("***REPLACE***WITH***YOUR***NEXILIS***ACCOUNT***", this, new Callback() {
+  API.connect("***REPLACE***WITH***YOUR***NEXILIS***ACCOUNT***", this, new Callback() {
     @Override
     public void onSuccess(final String NexilisUserID) {
         // Handle onSuccess event here.
@@ -443,7 +452,7 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/url_function.php');
     public void onFailed(final String reasonCode) {
         // Handle onFailed event here.
         // This callback will be triggered automatically when there is an issue during
-        // the execution of Nexilis.connect method.
+        // the execution of API.connect method.
     }
   });
               </pre>
@@ -453,7 +462,7 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/url_function.php');
                 </p>
 
                 <p>
-                  The following <span class="highlight-blue">reasonCode</span> will be passed to an <i>onFailed</i> callback when Nexilis encounters an issue during the execution of the <i>Nexilis.connect</i> method.
+                  The following <span class="highlight-blue">reasonCode</span> will be passed to an <i>onFailed</i> callback when Nexilis encounters an issue during the execution of the <i>API.connect</i> method.
                 </p>
 
                 <table id="reasonCode">

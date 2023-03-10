@@ -44,7 +44,7 @@ if (isset($_GET['email']) && isset($_GET['password'])) {
 
             //echo '<script>alert("Wrong Password")</script>';
 
-        } else if ($itemUser2 != null && strtotime($itemUser2['CUT_OFF_DATE']) < strtotime(date('Y-m-d H:i:s'))) {
+        } else if ($itemUser2 != null && strtotime($itemUser2['CUT_OFF_DATE']) < strtotime(date('Y-m-d H:i:s')) && $itemUser3 == null) {
             if (insertSession($itemUser['ID'])) {
                 setSession('email', $email);
                 setSession('password_show', $showPassword);
@@ -53,7 +53,7 @@ if (isset($_GET['email']) && isset($_GET['password'])) {
                 setSession('id_company', $itemUser['COMPANY']);
                 $msg = 'expired';
             }
-        } else if ($itemUser['ACTIVE'] != $active && $itemUser['ACTIVE'] != 3) {
+        } else if ($itemUser['ACTIVE'] != $active && $itemUser['ACTIVE'] != 3 && $itemUser3 != null) {
             if (insertSession($itemUser['ID'])) {
                 setSession('email', $email);
                 setSession('hash', $itemUser['HASH']);

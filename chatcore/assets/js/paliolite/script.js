@@ -1158,12 +1158,14 @@ let fetchPeriodicInterval = setInterval(function () {
 	// fetchFriendPeriodic();
 	// fetchProfile(dir);
 	// checkBlockSts();
-	// checkComplain();
-	// fetchNotifPeriodic();
+	checkComplain();
+	fetchNotifPeriodic();
 
 	// groupList.forEach((elem) => {
 	// 	fetchGroupMembers(elem.id);
 	// });
+
+	checkOnlineStatus();
 
 	init();
 
@@ -2555,7 +2557,7 @@ DOM.messageInput.addEventListener('input', function (e) {
 				// var title = $(data).filter('meta[property="og:title"]').attr("content");
 				let title = $(xmlHttp.responseText).filter('title').text();
 				let description = $(xmlHttp.responseText).
-					filter('meta[property="og:description"],meta[name="description"],meta[name="twitter:description"],meta[itemprop="description"]').attr("content");
+				filter('meta[property="og:description"],meta[name="description"],meta[name="twitter:description"],meta[itemprop="description"]').attr("content");
 
 				DOM.urlPreviewIcon.src = img;
 				DOM.urlPreviewTitle.innerHTML = title;
@@ -2857,6 +2859,7 @@ DOM.searchFriendFwdClear.addEventListener("click", () => {
 });
 
 let showFriendList = () => {
+	console.log("SIAPA");
 	DOM.friendList.style.left = 0;
 	DOM.friendList.innerHTML = "";
 	mClassList(DOM.chatList).add('d-none');
@@ -3799,12 +3802,28 @@ DOM.broadcastEndTime.addEventListener('change', (e) => {
 
 let combineStartTime = () => {
 	// startDateTimeStr = '';
-	let startDateTimeMillis = '';
-	if (startdatepart && starttimepart) {
-		startDateTimeStr = startdatepart + ' ' + starttimepart;
-		startDateTimeMillis = new Date(startDateTimeStr).getTime().toString();
+	let startDateTimeMillis = "";
+	if (startdatepart.length > 0 && starttimepart.length > 0) {
+		startDateTimeStr = startdatepart + " " + starttimepart;
+	} else {
+		startDateTimeStr = DOM.broadcastStartDate.value + " " + DOM.broadcastStartTime.value;
 	}
-	return startDateTimeMillis;
+	startDateTimeMillis = new Date(startDateTimeStr).getTime();
+	let currentTime = new Date().getTime();
+
+	console.log(currentTime - startDateTimeMillis);
+	if (currentTime - startDateTimeMillis > 60000) {
+		alert("Please check the start time you selected. Start time can not be longer than one minute ago.");
+		return false;
+		// return currentTime;
+	} else if (currentTime - startDateTimeMillis < 60000) {
+		return startDateTimeMillis;
+		// return currentTime;
+	} else {
+		return startDateTimeMillis;
+		// return currentTime;
+	}
+
 	// // // console.log(new Date(startDateTimeStr).getTime().toString());
 };
 
@@ -4052,7 +4071,7 @@ DOM.complainAcc.addEventListener('click', () => {
 });
 
 // rej complain
-DOM.complainRej.addEventListener('click', () => {
+function rejectComplain() {
 	// open xhr
 	var xmlHttp = new XMLHttpRequest();
 	xmlHttp.onreadystatechange = function () {
@@ -4065,6 +4084,10 @@ DOM.complainRej.addEventListener('click', () => {
 
 	mClassList(DOM.complainModal).remove('d-block');
 	mClassList(DOM.complainModal).add('d-none');
+}
+
+DOM.complainRej.addEventListener('click', () => {
+	rejectComplain();
 });
 
 let sendBroadcast = () => {
@@ -4353,6 +4376,10 @@ let checkComplainStatus = (c_id) => {
 			let data = JSON.parse(xmlHttp.responseText);
 			if (data.STATUS === 2) {
 				localStorage.removeItem('complainID');
+				localStorage.removeItem('complain');
+				localStorage.removeItem('complain_name');
+				localStorage.removeItem('complain_channel');
+				localStorage.removeItem('call_complain_ID');
 				// localStorage.complainID = null;
 				alert('Contact center session has ended');
 				document.location.reload();
@@ -4516,7 +4543,7 @@ DOM.callCCAcc.addEventListener('click', () => {
 	xmlHttp.send(formData);
 });
 
-DOM.callCCRej.addEventListener('click', () => {
+function callCCReject() {
 	mClassList(DOM.callCCModal).remove('d-block');
 	mClassList(DOM.callCCModal).add('d-none');
 
@@ -4538,6 +4565,10 @@ DOM.callCCRej.addEventListener('click', () => {
 	alert("Call Rejected.");
 	mClassList(DOM.callCCModal).remove('d-block');
 	mClassList(DOM.callCCModal).add('d-none');
+}
+
+DOM.callCCRej.addEventListener('click', () => {
+	callCCReject();
 });
 
 DOM.deleteConversation.addEventListener('click', () => {
@@ -4705,3 +4736,27 @@ $('#search-friend').keyup(function () {
 		showFriendList();
 	}
 })
+
+function checkOnlineStatus() {
+	// localStorage.removeItem('complainID');
+	// 		localStorage.removeItem('complain');
+	// 		localStorage.removeItem('complain_name');
+	// 		localStorage.removeItem('complain_channel');
+
+	console.log('CHECK ONLINE');
+	let xhr = new XMLHttpRequest();
+	let url = '/chatcore/logics/check_online_status?t=' + new Date().getTime();
+	// let complaintID = localStorage.getItem("complainID");
+	// let call_complain_ID = localStorage.getItem("call_complain_ID");
+
+	xhr.onreadystatechange = function () {
+		if (xhr.readyState == 4 && xhr.status == 200) {
+			// if (xhr.responseText == "Conversation deleted") {
+			// // xhr.log(xhr.responseText);
+			// }
+			// // console.log(xhr.responseText);
+		}
+	}
+	xhr.open("get", url);
+	xhr.send();
+}

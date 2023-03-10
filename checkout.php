@@ -777,9 +777,9 @@ if (isset($_POST['dashboard']) || $userState == 1) {
                                 <strong id="pay-3" class="alignleft">Order date:</strong><span class="alignright"><?php echo date("d F Y"); ?></span><br>
                                 <hr>
                             </div>
-                            <!-- <br> -->
+                            <br>
 
-                            <!-- <div style="text-align: left; width: 100%;"><strong id="pay-7">Palio Lite Package</strong></div>
+                            <div style="text-align: left; width: 100%;"><strong id="pay-7">Palio Lite Package</strong></div>
 
                             <div class="row justify-content-center mx-0 my-3">
                                 <div class="col-md-12" id="sub-benefits">
@@ -810,12 +810,12 @@ if (isset($_POST['dashboard']) || $userState == 1) {
                                         <li data-translate="newpricing-20"></li>
                                     </ul>
                                 </div>
-                            </div> -->
+                            </div>
 
-                            <!-- <br> -->
+                            <br>
                         </div>
 
-                        <!-- <hr>
+                        <hr>
                         <br>
 
                         <div class="row">
@@ -842,7 +842,10 @@ if (isset($_POST['dashboard']) || $userState == 1) {
 
                                 </ul>
                             </div>
-                        </div> -->
+                        </div>
+
+                        <hr>
+                        <br>
 
                         <div class="row">
                             <span class="m-0" style="color:#F2AD33"><strong id="bill-text">Bill</strong></span>
@@ -923,11 +926,13 @@ if (isset($_POST['dashboard']) || $userState == 1) {
                                             <div class="input-group btn border-70 p-0 mt-4">
                                                 <input maxlength="16" size="16" type="text" required class="form-control form-control fs-16 fontRobReg" id="credit-card-number" placeholder="Credit Card Number (e.g 4000000000001091)" name="creditCardNumber">
                                             </div>
-                                            <div class="row input-group btn border-70 p-0 mt-4" style="text-align: left; width: unset">
-                                                <div class="col-sm-4">
-                                                    <p id="exp-month-checkout">Exp Month</p>
-                                                    <div class="input-group btn border-70 p-0 mt-4">
-                                                        <select required class="form-control form-control fs-16 fontRobReg" id="credit-card-exp-month" placeholder="MM" style="border-color: #608CA5" name="creditCardExpMonth">
+                                            <div class="row input-group btn border-70 p-0 mt-4" style="text-align: left; margin-left: 0px">
+                                                <div class="col-5 d-flex justify-content-start align-items-center">
+                                                    <p id="exp-month-paycheckout" class="mb-0">Exp Date</p>
+                                                </div>
+                                                <div class="col-7">
+                                                    <div class="input-group btn border-70 p-0">
+                                                        <select required="" class="form-control form-control fs-16 fontRobReg" id="credit-card-exp-month" placeholder="MM" style="border-color: #608CA5" name="creditCardExpMonth">
                                                             <option>01</option>
                                                             <option>02</option>
                                                             <option>03</option>
@@ -943,16 +948,20 @@ if (isset($_POST['dashboard']) || $userState == 1) {
                                                         </select>
                                                     </div>
                                                 </div>
-                                                <div class="col-sm-5">
-                                                    <p id="exp-year-checkout">Exp Year</p>
-                                                    <div class="input-group btn border-70 p-0 mt-4">
-                                                        <input maxlength="4" size="4" type="text" required class="form-control form-control fs-16 fontRobReg" id="credit-card-exp-year" placeholder="YYYY" style="border-color: #608CA5" name="creditCardExpYear">
+                                                <div class="col-5 d-flex justify-content-start align-items-center mt-3">
+                                                    <p id="exp-year-paycheckout" class="mb-0">Exp Year</p>
+                                                </div>
+                                                <div class="col-7 mt-3">
+                                                    <div class="input-group btn border-70 p-0">
+                                                        <input maxlength="4" size="4" type="text" required="" class="form-control form-control fs-16 fontRobReg" id="credit-card-exp-year" placeholder="YYYY" style="border-color: #608CA5" name="creditCardExpYear">
                                                     </div>
                                                 </div>
-                                                <div class="col-sm-3">
-                                                    <p>CVV</p>
-                                                    <div class="input-group btn border-70 p-0 mt-4">
-                                                        <input maxlength="3" size="3" type="text" required class="form-control form-control fs-16 fontRobReg" id="credit-card-cvv" placeholder="123" style="border-color: #608CA5" name="creditCardCvv">
+                                                <div class="col-5 d-flex justify-content-start align-items-center mt-3">
+                                                    <p class="mb-0">CVV</p>
+                                                </div>
+                                                <div class="col-7 mt-3">
+                                                    <div class="input-group btn border-70 p-0">
+                                                        <input maxlength="3" size="3" type="text" required="" class="form-control form-control fs-16 fontRobReg" id="credit-card-cvv" placeholder="123" style="border-color: #608CA5" name="creditCardCvv">
                                                     </div>
                                                 </div>
                                             </div>

@@ -93,7 +93,7 @@ if ($_SESSION['id_user'] != '') {
     } else if ($itemUser2 != null && strtotime($itemUser2['CUT_OFF_DATE']) < strtotime(date('Y-m-d H:i:s'))) {
       $msg = 'expired';
       // header("Location: dashboard2/");
-    } else if ($itemUser['ACTIVE'] == 0 && $itemUser['STATE'] < 2) {
+    } else if ($itemUser['ACTIVE'] == 0 && $itemUser['STATE'] < 2 && $itemUser3 != null) {
       $msg = "Please Validate Your Email!";
       header("Location: /verifyemail.php");
       die();
@@ -347,7 +347,7 @@ to get the desired effect
       <!-- Left navbar links -->
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+          <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i style="font-size: 18px" class="fas fa-bars"></i></a>
         </li>
       </ul>
 
@@ -437,10 +437,12 @@ to get the desired effect
     <!-- Main Sidebar Container -->
     <aside class="main-sidebar sidebar-dark-primary elevation-4">
       <!-- Brand Logo -->
-      <a href="<?php echo base_url(); ?>" class="brand-link">
+      <a href="<?php echo base_url(); ?>" class="brand-link mt-2 mb-2">
         <!-- <img src="<?php echo base_url(); ?>newAssets/home-green.png" id="homeLogo" class="brand-image my-1" style="max-height: 30px;"> -->
         <img src="assets/logomark_regular_small.png" alt="Palio Logo" class="brand-image img-circle elevation-3 my-1" style="opacity: .8;">
-        <span class="brand-text text-center"><strong>newuniverse.io</strong></span>
+        <div class="mt-1">
+          <span class="brand-text text-center"><strong>newuniverse.io</strong></span>
+        </div>
         <!-- <img src="assets/palio_logo.png" class="brand-image" style="max-height: 35px; width: auto;"> -->
       </a>
 
@@ -492,7 +494,7 @@ to get the desired effect
             </li>
             <li class="nav-item">
               <a href="webappform.php" class="nav-link">
-                <i class="nav-icon fab fa-wpforms"></i>
+                <i class="nav-icon fab fa-pushed"></i>
                 <p data-translate="dashside-6">
                   <!-- URL Form -->
                 </p>
